@@ -1,7 +1,7 @@
 # Blender 3.6.2 MTL File: 'home.blend'
 # www.blender.org
 
-newmtl Garage-cherepicza.003
+newmtl Garage-cherepicza.004
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.114943 0.114943 0.114943
@@ -11,7 +11,7 @@ d 1.000000
 illum 2
 map_Kd Map/Home Around/Cherepicza.jpg
 
-newmtl Garage-dver.003
+newmtl Garage-dver.004
 Ns 62.500000
 Ka 0.289062 0.289062 0.289062
 Ks 0.210938 0.210938 0.210938
@@ -21,7 +21,7 @@ d 1.000000
 illum 3
 map_Kd Map/Home Around/vorota.jpg
 
-newmtl Garage-pallet.004
+newmtl Garage-pallet.005
 Ns 200.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -31,7 +31,7 @@ d 1.000000
 illum 1
 map_Kd Map/Сottage 5_brick.jpg
 
-newmtl Garage-stavny.003
+newmtl Garage-stavny.004
 Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.061246 0.035601 0.030713
@@ -41,7 +41,7 @@ Ni 1.450000
 d 1.000000
 illum 1
 
-newmtl Garage-steklo.003
+newmtl Garage-steklo.004
 Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.335833 0.905329 0.960000
@@ -51,7 +51,7 @@ Ni 1.450000
 d 1.000000
 illum 2
 
-newmtl Garage-wall.003
+newmtl Garage-wall.004
 Ns 200.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -61,7 +61,7 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/WALL_041.JPG
 
-newmtl Hall-cherepicza.003
+newmtl Hall-cherepicza.004
 Ns 675.419495
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -71,7 +71,7 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/Cherepicza.jpg
 
-newmtl Hall-pallet.003
+newmtl Hall-pallet.004
 Ns 260.868317
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -81,7 +81,7 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/Сottage 1_brick.jpg
 
-newmtl Hall-stavny.003
+newmtl Hall-stavny.004
 Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.061246 0.035601 0.030713
@@ -91,7 +91,7 @@ Ni 1.450000
 d 1.000000
 illum 1
 
-newmtl Hall-steklo.003
+newmtl Hall-steklo.004
 Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.335833 0.905329 0.960000
@@ -101,7 +101,7 @@ Ni 1.450000
 d 1.000000
 illum 2
 
-newmtl Hall-wall.003
+newmtl Hall-wall.004
 Ns 200.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -111,7 +111,7 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/WALL_041.JPG
 
-newmtl L-1-dver.003
+newmtl L-1-dver.004
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -121,7 +121,7 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/dver.jpg
 
-newmtl L-1-pallet.003
+newmtl L-1-pallet.004
 Ns 200.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -131,7 +131,7 @@ d 1.000000
 illum 1
 map_Kd Map/Сottage 5_brick.jpg
 
-newmtl L-1-stavny.003
+newmtl L-1-stavny.004
 Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.061246 0.035601 0.030713
@@ -141,7 +141,7 @@ Ni 1.450000
 d 1.000000
 illum 1
 
-newmtl L-1-steklo.003
+newmtl L-1-steklo.004
 Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.335833 0.905329 0.960000
@@ -151,7 +151,7 @@ Ni 1.450000
 d 1.000000
 illum 2
 
-newmtl L-1-wall.003
+newmtl L-1-wall.004
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -161,7 +161,7 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/WALL_041.JPG
 
-newmtl L-2-dver.003
+newmtl L-2-dver.004
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -171,7 +171,7 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/dver-2.jpg
 
-newmtl L-2-pallet.003
+newmtl L-2-pallet.004
 Ns 200.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -181,7 +181,7 @@ d 1.000000
 illum 1
 map_Kd Map/Сottage 5_brick.jpg
 
-newmtl L-2-stavny.003
+newmtl L-2-stavny.004
 Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.061246 0.035601 0.030713
@@ -191,7 +191,7 @@ Ni 1.450000
 d 1.000000
 illum 1
 
-newmtl L-2-steklo.003
+newmtl L-2-steklo.004
 Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.335833 0.905329 0.960000
@@ -201,7 +201,7 @@ Ni 1.450000
 d 1.000000
 illum 2
 
-newmtl L-2-wall.003
+newmtl L-2-wall.004
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -211,7 +211,7 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/WALL_041.JPG
 
-newmtl Material_#45.005
+newmtl Material_#45.001
 Ns 57.752281
 Ka 1.000000 1.000000 1.000000
 Kd 0.114435 0.124772 0.152926
@@ -221,7 +221,7 @@ Ni 1.450000
 d 1.000000
 illum 1
 
-newmtl Roof-pallet.003
+newmtl Roof-pallet.005
 Ns 260.868317
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -231,7 +231,7 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/Сottage 1_brick.jpg
 
-newmtl Roof-pallet.004
+newmtl Roof-pallet.006
 Ns 260.868317
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
