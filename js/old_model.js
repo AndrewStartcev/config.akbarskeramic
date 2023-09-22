@@ -255,3 +255,242 @@ button2.addEventListener('click', () => {
     loadModel(1); // Загрузить вторую модель
   }
 });
+
+
+const l2Button = document.getElementById("l111");
+l2Button.addEventListener('mouseover', handleMouseOver);
+l2Button.addEventListener('mouseout', handleMouseOut);
+l2Button.addEventListener('click', handleClick);
+
+
+function handleMouseOver() {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      const l2 = homeObject.getObjectByName("L-2");
+      const roof1 = homeObject.getObjectByName("Roof1");
+      const roof = homeObject.getObjectByName("Roof");
+
+      // Показываем элементы только если второй этаж не включен
+      if (!isL2Enabled) {
+        // Сохраняем оригинальные материалы при показе элементов
+        if (l2 && !l2OriginalMaterial) {
+          l2OriginalMaterial = l2.material;
+        }
+        if (roof1 && !roof1OriginalMaterial) {
+          roof1OriginalMaterial = roof1.material;
+        }
+        if (roof && !roofOriginalMaterial) {
+          roofOriginalMaterial = roof.material;
+        }
+
+        // Скрыть "Roof1"
+        hideObject(roof1);
+
+        // Показать "L-2" и "Roof" с выбранным материалом
+        showObjectWithMaterial(l2, showMaterial);
+        showObjectWithMaterial(roof, showMaterial);
+      }
+    }
+  }
+}
+
+// Обработчик события при убирании курсора с кнопки L-2
+function handleMouseOut() {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      const l2 = homeObject.getObjectByName("L-2");
+      const roof1 = homeObject.getObjectByName("Roof1");
+      const roof = homeObject.getObjectByName("Roof");
+
+      // Выполняем действия только если второй этаж не включен
+      if (!isL2Enabled) {
+        // Восстанавливаем оригинальные материалы при убирании курсора
+        if (l2OriginalMaterial) {
+          l2.material = l2OriginalMaterial;
+        }
+        if (roof1OriginalMaterial) {
+          roof1.material = roof1OriginalMaterial;
+        }
+        if (roofOriginalMaterial) {
+          roof.material = roofOriginalMaterial;
+        }
+
+        // Скрываем "L-2" и "Roof" при убирании курсора
+        hideObject(l2);
+        hideObject(roof);
+
+        // Показываем "Roof1"
+        showObjectWithMaterial(roof1, roof1OriginalMaterial);
+      }
+    }
+  }
+}
+
+// Обработчик события клика по кнопке L-2
+function handleClick() {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      const l2 = homeObject.getObjectByName("L-2");
+      const roof = homeObject.getObjectByName("Roof");
+      const roof1 = homeObject.getObjectByName("Roof1");
+
+      // Переключаем состояние второго этажа
+      if (isL2Enabled) {
+        hideObject(l2);
+        hideObject(roof);
+        showObjectWithMaterial(roof1, roof1OriginalMaterial);
+      } else {
+        // Если второй этаж выключен, восстанавливаем оригинальные материалы
+        showObjectWithMaterial(l2, l2OriginalMaterial);
+        showObjectWithMaterial(roof, roofOriginalMaterial);
+      }
+      isL2Enabled = !isL2Enabled;
+    }
+  }
+}
+
+const l3Button = document.getElementById("l222");
+l3Button.addEventListener('mouseover', handleMouseOver2);
+l3Button.addEventListener('mouseout', handleMouseOut2);
+l3Button.addEventListener('click', handleClick2);
+
+
+// Обработчик события клика по кнопке L-2
+function handleClick2() {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      const hall = homeObject.getObjectByName("Hall");
+
+      // Переключаем состояние второго этажа
+      if (isL3Enabled) {
+        handleClick()
+        hideObject(hall);
+      } else {
+        handleClick()
+        showObjectWithMaterial(hall, hallOriginalMaterial);
+      }
+      isL3Enabled = !isL3Enabled;
+    }
+  }
+}
+
+function handleMouseOver2() {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      const hall = homeObject.getObjectByName("Hall");
+
+      // Показываем элементы только если второй этаж не включен
+      if (!isL3Enabled) {
+        // Сохраняем оригинальные материалы при показе элементов
+        if (hall && !hallOriginalMaterial) {
+          hallOriginalMaterial = hall.material;
+        }
+
+        handleMouseOver()
+        showObjectWithMaterial(hall, showMaterial);
+      }
+    }
+  }
+}
+
+// Обработчик события при убирании курсора с кнопки L-2
+function handleMouseOut2() {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      const hall = homeObject.getObjectByName("Hall");
+
+      // Выполняем действия только если второй этаж не включен
+      if (!isL3Enabled) {
+        // Сохраняем оригинальные материалы при показе элементов
+        if (hall && !hallOriginalMaterial) {
+          hallOriginalMaterial = hall.material;
+        }
+
+        handleMouseOut()
+        hideObject(hall);
+      }
+    }
+  }
+}
+
+const l4Button = document.getElementById("l333");
+l4Button.addEventListener('mouseover', handleMouseOver3);
+l4Button.addEventListener('mouseout', handleMouseOut3);
+l4Button.addEventListener('click', handleClick3);
+
+
+// Обработчик события клика по кнопке L-2
+function handleClick3() {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      const garage = homeObject.getObjectByName("Garage");
+
+      // Переключаем состояние второго этажа
+      if (isL4Enabled) {
+        handleClick()
+        hideObject(garage);
+      } else {
+        handleClick2()
+        showObjectWithMaterial(garage, garageOriginalMaterial);
+      }
+      isL4Enabled = !isL4Enabled;
+    }
+  }
+}
+
+function handleMouseOver3() {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      const garage = homeObject.getObjectByName("Garage");
+
+      // Показываем элементы только если второй этаж не включен
+      if (!isL4Enabled) {
+        // Сохраняем оригинальные материалы при показе элементов
+        if (garage && !garageOriginalMaterial) {
+          garageOriginalMaterial = garage.material;
+        }
+
+        handleMouseOver2()
+        showObjectWithMaterial(garage, showMaterial);
+      }
+    }
+  }
+}
+
+// Обработчик события при убирании курсора с кнопки L-2
+function handleMouseOut3() {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      const garage = homeObject.getObjectByName("Garage");
+
+      // Выполняем действия только если второй этаж не включен
+      if (!isL4Enabled) {
+        // Сохраняем оригинальные материалы при показе элементов
+        if (garage && !garageOriginalMaterial) {
+          garageOriginalMaterial = garage.material;
+        }
+
+        handleMouseOut2()
+        hideObject(garage);
+      }
+    }
+  }
+}

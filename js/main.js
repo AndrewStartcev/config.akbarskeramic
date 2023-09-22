@@ -87,6 +87,8 @@ $(document).ready(function () {
 		getCurrentSettings();
 		setSeams();
 		singleBrickOrder('spoon', 2);
+
+		updateWallTexture();
 	}
 
 	function drawBricks() {

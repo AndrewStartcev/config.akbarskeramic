@@ -80,6 +80,17 @@ body {
 #app-menu .app-chapter .inner .group-items .group-item .txt {float: left;}
 #app-menu .app-chapter .inner .group-items .group-item.active {background: #4d4d4d;}
 
+#app-menu .app-chapter .inner .group-items .layout-group-item {position: relative; overflow: hidden; cursor: pointer; clear: both; width: 100%; border-radius: 15px;}
+#app-menu .app-chapter .inner .group-items .layout-group-item:last-child {margin-bottom: 0px;}
+#app-menu .app-chapter .inner .group-items .layout-group-item .img {border-radius: 10px; overflow: hidden; float: left;}
+#app-menu .app-chapter .inner .group-items .layout-group-item .img.circled {border-radius: 50%;}
+#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {float: left;}
+#app-menu .app-chapter .inner .group-items .layout-group-item .txt {float: left;}
+#app-menu .app-chapter .inner .group-items .layout-group-item:hover {background: #838383;}
+#app-menu .app-chapter .inner .group-items .layout-group-item.active {background: #4d4d4d;}
+
+
+
 .app-chapter .inner .group-items .group-item.active .img img {
 	filter: brightness(0.8);
   }
@@ -193,6 +204,13 @@ body {
 	#app-menu .app-chapter .inner .group-items .group-item .txt {width: calc(100% - 80px); height: 60px;}
 	#app-menu .app-chapter .inner .group-items .group-item .txt h3 {height: 30px; line-height: 30px; font-size: 20px;}
 	#app-menu .app-chapter .inner .group-items .group-item .txt p {height: 30px; line-height: 30px; font-size: 16px;}
+
+		#app-menu .app-chapter .inner .group-items .layout-group-item {margin-bottom: 20px; height: 80px; padding: 10px;}
+		#app-menu .app-chapter .inner .group-items .layout-group-item .img {width: 60px; height: 60px; margin-right: 20px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {width: calc(100% - 80px); height: 60px; line-height: 60px; font-size: 20px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt {width: calc(100% - 80px); height: 60px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt h3 {height: 30px; line-height: 30px; font-size: 20px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt p {height: 30px; line-height: 30px; font-size: 16px;}
 
 	.face.front .face-textures {
 		transform:  translateZ(0px) translateX(-104px) translateY(0px) rotateX(0deg) rotateY(359deg) rotateZ(0deg);
@@ -325,12 +343,20 @@ body {
 
 	.bricks-list::after {content: ""; height: 100px; display: block;}
 	#app-menu .app-chapter .inner .group-items .group-item {margin-bottom: 10px; height: 60px;}
+		.bricks-list::after {content: ""; height: 100px; display: block;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item {margin-bottom: 10px; height: 60px;}
 
 	#app-menu .app-chapter .inner .group-items .group-item .img {width: 40px; height: 40px; margin-right: 10px;}
 	#app-menu .app-chapter .inner .group-items .group-item > h3 {width: calc(100% - 50px); height: 40px; line-height: 40px; font-size: 18px;}
 	#app-menu .app-chapter .inner .group-items .group-item .txt {width: calc(100% - 50px); height: 40px;}
 	#app-menu .app-chapter .inner .group-items .group-item .txt h3 {height: 20px; line-height: 20px; font-size: 16px;}
 	#app-menu .app-chapter .inner .group-items .group-item .txt p {height: 20px; line-height: 20px; font-size: 12px;}
+
+		#app-menu .app-chapter .inner .group-items .layout-group-item .img {width: 40px; height: 40px; margin-right: 10px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {width: calc(100% - 50px); height: 40px; line-height: 40px; font-size: 18px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt {width: calc(100% - 50px); height: 40px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt h3 {height: 20px; line-height: 20px; font-size: 16px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt p {height: 20px; line-height: 20px; font-size: 12px;}
 
 	.seam-list {max-height: calc(100vh - 350px) !important;}
 	.seam-list::after {content: ""; height: 50px; display: block;}
@@ -398,4 +424,18 @@ body {
 	margin-bottom: 20px;
   height: 162px;
 	padding: 0;
+}
+.layout-home .img {
+	width: 30px!important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.layout-home .img img {
+	width: 30px;
+	height: 30px;
+}
+.layout-home h3 {
+	width: calc(100% - 50px)!important;
+	font-size: 18px!important;
 }
