@@ -30,20 +30,49 @@
 </head>
 
 <body id="AKBARS">
-  <div id="loading-banner" class="loading-banner">
+  <!-- loading-banner  -->
+  <!-- <div id="loading-banner" class="loading-banner">
     <a href="https://akbarskeramic.ru/" class="loading-banner__logo">
       <img src="imgs/logo-white-akbars.svg" alt="Акбарс Керамик">
     </a>
     <p class="loading-banner__text">
       <span id="loading-text">Загрузка страницы</span>
     </p>
+  </div> -->
+
+  <div class="loading-banner" id="loading-banner">
+    <div class="wrap-prelogo">
+      <div class="prelogo">
+        <a href="https://akbarskeramic.ru/" class="loading-banner__logo">
+          <img src="imgs/logo-white-akbars.svg" alt="Акбарс Керамик">
+        </a>
+
+      </div>
+      <h2 class="loading-title">Ак барс керамик</h2>
+    </div>
+    <div class="loading-text">
+      <div class="loading-dots">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div>
+      <span id="loading-text">Загрузка страницы...</span>
+
+    </div>
   </div>
+  <div id="askscreen">
+    <img src="img/unnamed.gif" alt="" />
+    <h2>Переверните телефон</h2>
+  </div>
+  <!-- END loading-banner END -->
+
   <div id="AKBARS-forms" class="AKBARS-project">
     <div class="inner"></div>
   </div>
+
   <section id="AKBARS-APP" class="AKBARS-project custom-scroll">
     <div id="modes" class="box-shadow">
-      <div class="mode active" id="mode-2d">
+      <div class="mode" id="mode-2d">
         <svg xmlns="http://www.w3.org/2000/svg" width="133" height="86" viewBox="0 0 133 86" fill="none">
           <path d="M33 0H98V26H33V0Z" fill="#D9D9D9" />
           <path d="M33 60H98V86H33V60Z" fill="#D9D9D9" />
@@ -52,8 +81,332 @@
         </svg>
       </div>
       <div class="mode" id="mode-3d">2D</div>
-      <div class="mode" id="mode-3d-three">3D</div>
+      <div class="mode active" id="mode-3d-three">3D</div>
     </div>
+    <div id="pdf" class="box-shadow">
+      <div class="mode">
+        <div class="save-pdf flex-center" data-tooltip="Скачать PDF">
+          <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 320 320" style="enable-background:new 0 0 320 320;" xml:space="preserve">
+            <g>
+              <path class="st0" d="M170.6,301c-28,0-56,0-83.9-0.1c-2.9,0-4.9,0.7-6.7,3.1c-3,4.2-6.4,8.1-9.7,12c-4.5,5.2-10.7,5.3-15,0
+          		C37.5,294.5,19.9,272.7,2.4,251c-2.5-3.1-3.1-6.6-1.3-10.2c1.8-3.6,4.8-5.3,8.9-5.1c4.5,0.1,9-0.2,13.5,0.1
+          		c3.4,0.2,4.1-1.2,4.1-4.3c-0.1-19.2-0.1-38.3-0.1-57.5c0-9.2,1.5-11.2,10.7-12.9c3.1-0.6,1.8-2.7,1.8-4.2c0.1-22.5,0.1-45,0.1-67.4
+          		c0-6.3,0-12.7,0-19c0-3.5,1.1-6.4,3.7-8.9C63.1,42.3,82.4,23,101.7,3.7c2.5-2.5,5.3-3.7,8.9-3.7c48.1,0,96.3,0,144.4,0
+          		c7.1,0,10.7,3.8,10.7,11.4c0,23.8,0.1,47.6-0.1,71.4c0,3.8,0.7,5.2,4.8,5c9.8-0.3,19.7-0.2,29.5-0.1c11.5,0.1,20,8.2,20,19.7
+          		c0.1,27.6,0.1,55.3,0,82.9c-0.1,11.3-8.2,19.4-19.5,19.7c-10,0.2-20,0.3-30-0.1c-4.2-0.1-4.8,1.3-4.8,5.1
+          		c0.1,24.3,0.1,48.6,0.1,72.9c0,10-2.8,12.8-12.7,12.8C225.5,301,198,301,170.6,301z M98.3,281.6c0.8,1.1,1.7,0.9,2.5,0.9
+          		c47.5,0,95,0,142.4,0.1c3.2,0,3.8-1,3.8-4c-0.1-21.2-0.2-42.3,0-63.5c0-4-1.1-4.9-5-4.9c-35.5,0.1-71-0.2-106.4,0.3
+          		c-13.6,0.2-23.3-8.8-23-23.2c0.6-25.8,0.2-51.6,0.2-77.4c0-14.2,7.7-21.9,21.8-22c36,0,72-0.1,107.9,0.1c3.5,0,4.5-0.8,4.4-4.4
+          		c-0.2-20.2-0.1-40.3,0-60.5c0-3.1-0.6-4.2-4-4.2c-40.1,0.1-80.3,0.1-120.4,0c-3.5,0-4,1.2-4,4.2c0.1,14.3,0.1,28.6,0.1,43
+          		c0,9.2-3.1,12.2-12.4,12.2c-14.5,0-29,0.1-43.5,0c-2.6,0-3.8,0.4-3.8,3.5c0.1,25.3,0.1,50.6,0,76c0,3.1,1.2,3.5,3.8,3.4
+          		c7.5-0.1,15-0.1,22.5,0c9.2,0,12.6,3.4,12.6,12.6c0,19.3,0.1,38.6-0.1,58c0,3.2,0.7,4.5,4.1,4.2c4-0.3,8,0,12-0.1
+          		c4.5-0.2,8.3,0.7,10.4,5.2c2.1,4.6,0.4,8.3-2.5,11.9C113.8,262.3,106,272,98.3,281.6z M216,191.6c26.8,0,53.6-0.1,80.4,0.1
+          		c3.7,0,4.8-0.8,4.7-4.7c-0.2-25.3-0.2-50.6,0-75.9c0-3.3-0.6-4.6-4.2-4.5c-53.6,0.1-107.2,0.1-160.9,0c-3.9,0-4.6,1.3-4.6,4.8
+          		c0.1,25,0.2,50,0,74.9c0,4.6,1.5,5.4,5.7,5.4C163.3,191.5,189.6,191.6,216,191.6z M96.4,254.1c-2.3,0-3.2-0.1-4.1,0
+          		c-9.8,1.1-13.5-4.3-13.3-13.2c0.4-19,0.1-37.9,0.2-56.9c0-3.2-0.7-4.3-4-4.2c-8.1,0.3-16.3,0.3-24.4,0c-3.7-0.1-4.7,0.8-4.7,4.6
+          		c0.2,19.6,0.1,39.3,0.1,58.9c0,7.6-3.2,10.7-10.9,10.9c-1.7,0-3.6-0.7-5.4,0.9c10.9,13.5,21.8,26.8,32.9,40.6
+          		C73.8,282,84.6,268.6,96.4,254.1z M99.8,33.5c-8.9,8.7-17.6,17.2-26.6,26.2c8.3,0,16.3,0,24.4,0c2.2,0,2.3-1.3,2.3-3
+          		C99.8,48.9,99.8,41.2,99.8,33.5z" />
+              <path class="st0" d="M197.2,148.6c0-7.5,0-15,0-22.4c0-6.7,1.9-8.5,8.7-8.5c5.8,0,11.7-0.8,17.4,0.5c12.7,3,18.5,12.3,20.3,24.2
+          		c1.6,10.7-0.2,20.9-7.7,29.3c-4.6,5.3-10.5,7.9-17.5,8.1c-4.5,0.1-9,0.1-13.5,0.1c-5.4-0.1-7.6-2.1-7.7-7.5
+          		C197.1,164.6,197.2,156.6,197.2,148.6z M214.8,130.1c-1,1.5-5-2.4-5.1,2.4c-0.1,11,0,21.9,0,32.9c0,1.3,0.4,2,1.9,2.3
+          		c10,1.9,17.9-3.7,19.2-13.8c0.4-3.1,0.4-6.3,0.1-9.4C230,134.9,224.9,130.2,214.8,130.1z" />
+              <path class="st0"
+                d="M147.2,148.5c0-7.6-0.1-15.3,0-22.9c0.1-5.8,2.1-7.9,7.8-7.8c6.3,0.2,12.6-1,18.8,1.1
+          		c9.5,3.2,15.1,11.8,14,21.5c-1,9.5-8.7,16.8-18.5,17.8c-9.6,0.9-9.6,0.9-9.6,10.8c0,1.3,0.1,2.7,0,4c-0.3,4.7-2.7,7.4-6.5,7.1
+          		c-4.3-0.3-6-3.1-6-7.1C147.2,164.7,147.2,156.6,147.2,148.5z M164.1,145.9c1.1,0,1.8,0,2.4,0c5.3-0.2,9-3.6,8.9-8.1
+          		c-0.1-5.1-4.2-7.6-11.7-7.8c-7-0.2-3.1,4.9-3.9,7.6c-0.3,1,0.1,2.3-0.1,3.5C159.2,145,160.5,146.8,164.1,145.9z" />
+              <path class="st0" d="M252.9,148.9c0-7.7,0-15.3,0-22.9c0-6.1,1.9-8.2,7.9-8.2c6-0.1,12,0,18,0c4.2,0,6.9,2.2,6.8,6.3
+          		c0,4-2.7,6.2-6.9,6.1c-3.2,0-6.3,0.2-9.5-0.1c-3.2-0.3-3.9,1-3.9,4c0,8.2-0.1,8.2,8.1,8.2c7.5,0,10.5,1.7,10.6,6.1
+          		c0.2,4.6-3,6.5-10.7,6.5c-7.9,0-7.9,0-7.9,7.8c0,3.7,0.1,7.3-0.1,11c-0.1,3.8-2,6.5-6,6.5c-4.2,0-6.4-2.5-6.4-6.7
+          		C252.8,165.2,252.9,157,252.9,148.9z" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div id="app-menu">
+      <div class="fl">
+        <div class="app-logo">
+          <a href="https://akbarskeramic.ru/" class="flex-center" data-tooltip="АК Барс Керамик">
+            <img src="imgs/logo-white-akbars.svg" alt="Акбарс Керамик">
+          </a>
+        </div>
+        <div class="app-menu-item flex-center" data-chapter="layout" data-tooltip="Планировка">
+          <img src="img/icons/home-active.svg" alt="">
+        </div>
+        <div class="app-menu-item flex-center" data-chapter="bricks" data-tooltip="Кладка">
+          <img src="imgs/bricks.svg" alt="">
+        </div>
+        <div class="app-menu-item flex-center" data-chapter="bricks-format" data-tooltip="Формат кирпичей">
+          <img src="imgs/bricks-format.svg" alt="">
+        </div>
+        <div class="app-menu-item flex-center" data-chapter="seam" data-tooltip="Тип шва">
+          <img src="imgs/bricks-types.svg" alt="">
+        </div>
+        <div class="app-menu-item flex-center" data-chapter="bricklaying" data-tooltip="Тип кладки">
+          <img src="imgs/bricks-laying.svg" alt="">
+        </div>
+
+
+
+      </div>
+      <div class="fr">
+        <div class="app-chapter" id="layout">
+          <div class="inner">
+            <h2>Планировка</h2>
+
+            <div class="group-items layout-home">
+              <div class="layout-group-item active" id="layout-type-1">
+                <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
+                <h3>Планировка 1 (<span class="val">155 m<sup>2</sup></span>)</h3>
+              </div>
+              <div class="layout-group-item" id="layout-type-2">
+                <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
+                <h3>Планировка 2 (<span class="val">246 m<sup>2</sup></span>)</h3>
+              </div>
+              <div class="layout-group-item" id="layout-type-3">
+                <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
+                <h3>Планировка 3 (<span class="val">302 m<sup>2</sup></span>)</h3>
+              </div>
+              <div class="layout-group-item" id="layout-type-4">
+                <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
+                <h3>Планировка 4 (<span class="val">348 m<sup>2</sup></span>)</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter" id="bricks">
+          <div class="inner">
+            <h2>Формируемая кладка</h2>
+
+            <div id="chosen-bricks">
+              <div class="no-bricks flex-center">Выберите кладку кирпичей</div>
+            </div>
+            <h2>Облицовочный кирпич</h2>
+            <div class="group-items bricks-list custom-scroll" data-settings="bricks">
+              <div class="brick-item bricks1 active" data-value="bricks1">
+                <img src="/bricks/preview/bricks1.png">
+                <h2>Шоколад дикий <br>камень</h2>
+              </div>
+              <div class="brick-item bricks2" data-value="bricks2">
+                <img src="/bricks/preview/bricks2.png">
+                <h2>Шоколад гладкий</h2>
+              </div>
+              <div class="brick-item bricks3" data-value="bricks3">
+                <img src="/bricks/preview/bricks3.png">
+                <h2>Терракот галич <br>с песком</h2>
+              </div>
+              <div class="brick-item bricks4" data-value="bricks4">
+                <img src="/bricks/preview/bricks4.png">
+                <h2>Солома Скала</h2>
+              </div>
+              <div class="brick-item bricks5" data-value="bricks5">
+                <img src="/bricks/preview/bricks5.png">
+                <h2>Солома Рустик</h2>
+              </div>
+              <div class="brick-item bricks6" data-value="bricks6">
+                <img src="/bricks/preview/bricks6.png">
+                <h2>Солова Руст</h2>
+              </div>
+              <div class="brick-item bricks7" data-value="bricks7">
+                <img src="/bricks/preview/bricks7.png">
+                <h2>Солома дикий <br> камень</h2>
+              </div>
+              <div class="brick-item bricks8" data-value="bricks8">
+                <img src="/bricks/preview/bricks8.png">
+                <h2>Солома гладкий</h2>
+              </div>
+              <div class="brick-item bricks9" data-value="bricks9">
+                <img src="/bricks/preview/bricks9.png">
+                <h2>Солома бархат</h2>
+              </div>
+              <div class="brick-item bricks10" data-value="bricks10">
+                <img src="/bricks/preview/bricks10.png">
+                <h2>Солома гладкий <br>графитовый</h2>
+              </div>
+              <div class="brick-item bricks11" data-value="bricks11">
+                <img src="/bricks/preview/bricks11.png">
+                <h2>Терракот галич <br> с песком</h2>
+              </div>
+              <div class="brick-item bricks12" data-value="bricks12">
+                <img src="/bricks/preview/bricks12.png">
+                <h2>Красный галич <br> с песком</h2>
+              </div>
+              <div class="brick-item bricks13" data-value="bricks13">
+                <img src="/bricks/preview/bricks13.png">
+                <h2>Бордо галич <br>с песком</h2>
+              </div>
+              <div class="brick-item bricks14" data-value="bricks14">
+                <img src="/bricks/preview/bricks14.png">
+                <h2>Челны шоколад</h2>
+              </div>
+              <div class="brick-item bricks15" data-value="bricks15">
+                <img src="/bricks/preview/bricks15.png">
+                <h2>Челны шоколад <br> дикий камень</h2>
+              </div>
+              <div class="brick-item bricks16" data-value="bricks16">
+                <img src="/bricks/preview/bricks16.png">
+                <h2>Челны солома</h2>
+              </div>
+              <div class="brick-item bricks17" data-value="bricks17">
+                <img src="/bricks/preview/bricks17.png">
+                <h2>Челны солома ореховый</h2>
+              </div>
+              <div class="brick-item bricks18" data-value="bricks18">
+                <img src="/bricks/preview/bricks18.png">
+                <h2>Челны абрикос</h2>
+              </div>
+              <div class="brick-item bricks19" data-value="bricks19">
+                <img src="/bricks/preview/bricks19.png">
+                <h2>Млечный путь</h2>
+              </div>
+              <div class="brick-item bricks20" data-value="bricks20">
+                <img src="/bricks/preview/bricks20.png">
+                <h2>Красный</h2>
+              </div>
+              <div class="brick-item bricks21" data-value="bricks21">
+                <img src="/bricks/preview/bricks21.png">
+                <h2>Красный челны</h2>
+              </div>
+              <div class="brick-item bricks22" data-value="bricks22">
+                <img src="/bricks/preview/bricks22.png">
+                <h2>Красный бархат</h2>
+              </div>
+              <div class="brick-item bricks23" data-value="bricks23">
+                <img src="/bricks/preview/bricks23.png">
+                <h2>Бордо</h2>
+              </div>
+              <div class="brick-item bricks24" data-value="bricks24">
+                <img src="/bricks/preview/bricks24.png">
+                <h2>Бордо дикий <br>камень</h2>
+              </div>
+              <div class="brick-item bricks25" data-value="bricks25">
+                <img src="/bricks/preview/bricks25.png">
+                <h2>Новый <br>бежевый</h2>
+              </div>
+              <div class="brick-item bricks26" data-value="bricks26">
+                <img src="/bricks/preview/bricks26.png">
+                <h2>Новый <br>красный</h2>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter" id="bricks-format">
+          <div class="inner">
+            <h2>Формат кирпича</h2>
+            <div class="group-items format" data-settings="format">
+              <div class="group-item active" data-value="0.26">
+                <div class="img"><img src="/imgs/bricks-format1.svg" alt=""></div>
+                <h3>250*120*65 мм</h3>
+              </div>
+              <div class="group-item" data-value="0.352">
+                <div class="img"><img src="/imgs/bricks-format2.svg" alt=""></div>
+                <h3>250*120*88 мм</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter" id="seam">
+          <div class="inner">
+            <h2>Тип шва</h2>
+            <div class="group-items seam" data-settings="seam">
+              <div class="group-item active" data-value="3.2">
+                <div class="img"><img src="/imgs/bricks-type1.svg" alt=""></div>
+                <h3>8 мм</h3>
+              </div>
+              <div class="group-item" data-value="4">
+                <div class="img"><img src="/imgs/bricks-type2.svg" alt=""></div>
+                <h3>10 мм</h3>
+              </div>
+              <div class="group-item" data-value="4.8">
+                <div class="img"><img src="/imgs/bricks-type3.svg" alt=""></div>
+                <h3>12 мм</h3>
+              </div>
+            </div>
+            <h2>Цвет шва</h2>
+            <div class="group-items seam-list seam-color custom-scroll" data-settings="seam-color">
+              <div class="group-item active" data-value="white">
+                <div class="img circled">
+                  <img src="/seams/white.jpg">
+                </div>
+                <h3>Белый</h3>
+              </div>
+              <div class="group-item" data-value="light-grey">
+                <div class="img circled">
+                  <img src="/seams/light-grey.jpg">
+                </div>
+                <h3>Светло-серый</h3>
+              </div>
+              <div class="group-item" data-value="dark-grey">
+                <div class="img circled">
+                  <img src="/seams/dark-grey.jpg">
+                </div>
+                <h3>Темно-серый</h3>
+              </div>
+              <div class="group-item" data-value="light-brown">
+                <div class="img circled">
+                  <img src="/seams/light-brown.jpg">
+                </div>
+                <h3>Бежевый</h3>
+              </div>
+              <div class="group-item" data-value="terrakot">
+                <div class="img circled">
+                  <img src="/seams/terrakot.jpg">
+                </div>
+                <h3>Терракот</h3>
+              </div>
+              <div class="group-item" data-value="chocolate">
+                <div class="img circled">
+                  <img src="/seams/chocolate.jpg">
+                </div>
+                <h3>Шоколад</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter" id="bricklaying">
+          <div class="inner">
+            <h2>Тип кладки</h2>
+            <div class="group-items bricklaying" data-settings="bricklaying">
+              <div class="group-item active" data-value="spoon">
+                <div class="img"><img src="/imgs/bricks-laying1.svg" alt=""></div>
+                <div class="txt">
+                  <h3>Ложковая</h3>
+                  <p>смещение 1/2</p>
+                </div>
+              </div>
+              <div class="group-item" data-value="spoon1">
+                <div class="img"><img src="/imgs/bricks-laying2.svg" alt=""></div>
+                <div class="txt">
+                  <h3>Ложковая</h3>
+                  <p>смещение 1/4</p>
+                </div>
+              </div>
+              <div class="group-item" data-value="spoon2">
+                <div class="img"><img src="/imgs/bricks-laying2_2.svg" alt=""></div>
+                <div class="txt">
+                  <h3>Ложковая</h3>
+                  <p>косое смещение 1/4</p>
+                </div>
+              </div>
+              <div class="group-item" data-value="chain">
+                <div class="img"><img src="/imgs/bricks-laying3.svg" alt=""></div>
+                <h3>Цепная</h3>
+              </div>
+              <div class="group-item" data-value="chaotic">
+                <div class="img"><img src="/imgs/bricks-laying3_2.svg" alt=""></div>
+                <h3>Хаотичная</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="house">
       <div class="inner flex-center">
         <div class="container-3d box-shadow">
@@ -84,305 +437,13 @@
       </div>
     </div>
     <!-- 3D -->
-    <div id="layout-3d-three" style="display: none">
+    <div id="layout-3d-three" style="display: block">
 
     </div>
 
     <div id="main">
       <canvas id="canvas"></canvas>
-      <div id="app-menu">
-        <div class="fl">
-          <div class="app-logo">
-            <a href="https://akbarskeramic.ru/" class="flex-center" data-tooltip="АК Барс Керамик">
-              <img src="imgs/logo-white-akbars.svg" alt="Акбарс Керамик">
-            </a>
-          </div>
-          <div class="app-menu-item flex-center" data-chapter="layout" data-tooltip="Планировка">
-            <img src="img/icons/home-active.svg" alt="">
-          </div>
-          <div class="app-menu-item flex-center" data-chapter="bricks" data-tooltip="Кладка">
-            <img src="imgs/bricks.svg" alt="">
-          </div>
-          <div class="app-menu-item flex-center" data-chapter="bricks-format" data-tooltip="Формат кирпичей">
-            <img src="imgs/bricks-format.svg" alt="">
-          </div>
-          <div class="app-menu-item flex-center" data-chapter="seam" data-tooltip="Тип шва">
-            <img src="imgs/bricks-types.svg" alt="">
-          </div>
-          <div class="app-menu-item flex-center" data-chapter="bricklaying" data-tooltip="Тип кладки">
-            <img src="imgs/bricks-laying.svg" alt="">
-          </div>
 
-
-          <div class="save-pdf flex-center" data-tooltip="Скачать PDF">
-            <img src="imgs/pdf-download.svg" alt="">
-          </div>
-        </div>
-        <div class="fr">
-          <div class="app-chapter" id="layout">
-            <div class="inner">
-              <h2>Планировка</h2>
-
-              <div class="group-items layout-home">
-                <div class="layout-group-item active" id="layout-type-1">
-                  <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
-                  <h3>Планировка 1 (<span class="val">155 m<sup>2</sup></span>)</h3>
-                </div>
-                <div class="layout-group-item" id="layout-type-2">
-                  <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
-                  <h3>Планировка 2 (<span class="val">246 m<sup>2</sup></span>)</h3>
-                </div>
-                <div class="layout-group-item" id="layout-type-3">
-                  <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
-                  <h3>Планировка 3 (<span class="val">302 m<sup>2</sup></span>)</h3>
-                </div>
-                <div class="layout-group-item" id="layout-type-4">
-                  <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
-                  <h3>Планировка 4 (<span class="val">348 m<sup>2</sup></span>)</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="app-chapter" id="bricks">
-            <div class="inner">
-              <h2>Формируемая кладка</h2>
-
-              <div id="chosen-bricks">
-                <div class="no-bricks flex-center">Выберите кладку кирпичей</div>
-              </div>
-              <h2>Облицовочный кирпич</h2>
-              <div class="group-items bricks-list custom-scroll" data-settings="bricks">
-                <div class="brick-item bricks1 active" data-value="bricks1">
-                  <img src="/bricks/preview/bricks1.png">
-                  <h2>Шоколад дикий <br>камень</h2>
-                </div>
-                <div class="brick-item bricks2" data-value="bricks2">
-                  <img src="/bricks/preview/bricks2.png">
-                  <h2>Шоколад гладкий</h2>
-                </div>
-                <div class="brick-item bricks3" data-value="bricks3">
-                  <img src="/bricks/preview/bricks3.png">
-                  <h2>Терракот галич <br>с песком</h2>
-                </div>
-                <div class="brick-item bricks4" data-value="bricks4">
-                  <img src="/bricks/preview/bricks4.png">
-                  <h2>Солома Скала</h2>
-                </div>
-                <div class="brick-item bricks5" data-value="bricks5">
-                  <img src="/bricks/preview/bricks5.png">
-                  <h2>Солома Рустик</h2>
-                </div>
-                <div class="brick-item bricks6" data-value="bricks6">
-                  <img src="/bricks/preview/bricks6.png">
-                  <h2>Солова Руст</h2>
-                </div>
-                <div class="brick-item bricks7" data-value="bricks7">
-                  <img src="/bricks/preview/bricks7.png">
-                  <h2>Солома дикий <br> камень</h2>
-                </div>
-                <div class="brick-item bricks8" data-value="bricks8">
-                  <img src="/bricks/preview/bricks8.png">
-                  <h2>Солома гладкий</h2>
-                </div>
-                <div class="brick-item bricks9" data-value="bricks9">
-                  <img src="/bricks/preview/bricks9.png">
-                  <h2>Солома бархат</h2>
-                </div>
-                <div class="brick-item bricks10" data-value="bricks10">
-                  <img src="/bricks/preview/bricks10.png">
-                  <h2>Солома гладкий <br>графитовый</h2>
-                </div>
-                <div class="brick-item bricks11" data-value="bricks11">
-                  <img src="/bricks/preview/bricks11.png">
-                  <h2>Терракот галич <br> с песком</h2>
-                </div>
-                <div class="brick-item bricks12" data-value="bricks12">
-                  <img src="/bricks/preview/bricks12.png">
-                  <h2>Красный галич <br> с песком</h2>
-                </div>
-                <div class="brick-item bricks13" data-value="bricks13">
-                  <img src="/bricks/preview/bricks13.png">
-                  <h2>Бордо галич <br>с песком</h2>
-                </div>
-                <div class="brick-item bricks14" data-value="bricks14">
-                  <img src="/bricks/preview/bricks14.png">
-                  <h2>Челны шоколад</h2>
-                </div>
-                <div class="brick-item bricks15" data-value="bricks15">
-                  <img src="/bricks/preview/bricks15.png">
-                  <h2>Челны шоколад <br> дикий камень</h2>
-                </div>
-                <div class="brick-item bricks16" data-value="bricks16">
-                  <img src="/bricks/preview/bricks16.png">
-                  <h2>Челны солома</h2>
-                </div>
-                <div class="brick-item bricks17" data-value="bricks17">
-                  <img src="/bricks/preview/bricks17.png">
-                  <h2>Челны солома ореховый</h2>
-                </div>
-                <div class="brick-item bricks18" data-value="bricks18">
-                  <img src="/bricks/preview/bricks18.png">
-                  <h2>Челны абрикос</h2>
-                </div>
-                <div class="brick-item bricks19" data-value="bricks19">
-                  <img src="/bricks/preview/bricks19.png">
-                  <h2>Млечный путь</h2>
-                </div>
-                <div class="brick-item bricks20" data-value="bricks20">
-                  <img src="/bricks/preview/bricks20.png">
-                  <h2>Красный</h2>
-                </div>
-                <div class="brick-item bricks21" data-value="bricks21">
-                  <img src="/bricks/preview/bricks21.png">
-                  <h2>Красный челны</h2>
-                </div>
-                <div class="brick-item bricks22" data-value="bricks22">
-                  <img src="/bricks/preview/bricks22.png">
-                  <h2>Красный бархат</h2>
-                </div>
-                <div class="brick-item bricks23" data-value="bricks23">
-                  <img src="/bricks/preview/bricks23.png">
-                  <h2>Бордо</h2>
-                </div>
-                <div class="brick-item bricks24" data-value="bricks24">
-                  <img src="/bricks/preview/bricks24.png">
-                  <h2>Бордо дикий <br>камень</h2>
-                </div>
-                <div class="brick-item bricks25" data-value="bricks25">
-                  <img src="/bricks/preview/bricks25.png">
-                  <h2>Новый <br>бежевый</h2>
-                </div>
-                <div class="brick-item bricks26" data-value="bricks26">
-                  <img src="/bricks/preview/bricks26.png">
-                  <h2>Новый <br>красный</h2>
-                </div>
-
-
-              </div>
-            </div>
-          </div>
-          <div class="app-chapter" id="bricks-format">
-            <div class="inner">
-              <h2>Формат кирпича</h2>
-              <div class="group-items format" data-settings="format">
-                <div class="group-item active" data-value="0.26">
-                  <div class="img"><img src="/imgs/bricks-format1.svg" alt=""></div>
-                  <h3>250*120*65 мм</h3>
-                </div>
-                <div class="group-item" data-value="0.352">
-                  <div class="img"><img src="/imgs/bricks-format2.svg" alt=""></div>
-                  <h3>250*120*88 мм</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="app-chapter" id="seam">
-            <div class="inner">
-              <h2>Тип шва</h2>
-              <div class="group-items seam" data-settings="seam">
-                <div class="group-item active" data-value="3.2">
-                  <div class="img"><img src="/imgs/bricks-type1.svg" alt=""></div>
-                  <h3>8 мм</h3>
-                </div>
-                <div class="group-item" data-value="4">
-                  <div class="img"><img src="/imgs/bricks-type2.svg" alt=""></div>
-                  <h3>10 мм</h3>
-                </div>
-                <div class="group-item" data-value="4.8">
-                  <div class="img"><img src="/imgs/bricks-type3.svg" alt=""></div>
-                  <h3>12 мм</h3>
-                </div>
-              </div>
-              <h2>Цвет шва</h2>
-              <div class="group-items seam-list seam-color custom-scroll" data-settings="seam-color">
-                <div class="group-item active" data-value="white">
-                  <div class="img circled">
-                    <img src="/seams/white.jpg">
-                  </div>
-                  <h3>Белый</h3>
-                </div>
-                <div class="group-item" data-value="light-grey">
-                  <div class="img circled">
-                    <img src="/seams/light-grey.jpg">
-                  </div>
-                  <h3>Светло-серый</h3>
-                </div>
-                <div class="group-item" data-value="dark-grey">
-                  <div class="img circled">
-                    <img src="/seams/dark-grey.jpg">
-                  </div>
-                  <h3>Темно-серый</h3>
-                </div>
-                <div class="group-item" data-value="light-brown">
-                  <div class="img circled">
-                    <img src="/seams/light-brown.jpg">
-                  </div>
-                  <h3>Бежевый</h3>
-                </div>
-                <div class="group-item" data-value="terrakot">
-                  <div class="img circled">
-                    <img src="/seams/terrakot.jpg">
-                  </div>
-                  <h3>Терракот</h3>
-                </div>
-                <div class="group-item" data-value="chocolate">
-                  <div class="img circled">
-                    <img src="/seams/chocolate.jpg">
-                  </div>
-                  <h3>Шоколад</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="app-chapter" id="bricklaying">
-            <div class="inner">
-              <h2>Тип кладки</h2>
-              <div class="group-items bricklaying" data-settings="bricklaying">
-                <div class="group-item active" data-value="spoon">
-                  <div class="img"><img src="/imgs/bricks-laying1.svg" alt=""></div>
-                  <div class="txt">
-                    <h3>Ложковая</h3>
-                    <p>смещение 1/2</p>
-                  </div>
-                </div>
-                <div class="group-item" data-value="spoon1">
-                  <div class="img"><img src="/imgs/bricks-laying2.svg" alt=""></div>
-                  <div class="txt">
-                    <h3>Ложковая</h3>
-                    <p>смещение 1/4</p>
-                  </div>
-                </div>
-                <div class="group-item" data-value="spoon2">
-                  <div class="img"><img src="/imgs/bricks-laying2_2.svg" alt=""></div>
-                  <div class="txt">
-                    <h3>Ложковая</h3>
-                    <p>косое смещение 1/4</p>
-                  </div>
-                </div>
-                <div class="group-item" data-value="chain">
-                  <div class="img"><img src="/imgs/bricks-laying3.svg" alt=""></div>
-                  <h3>Цепная</h3>
-                </div>
-                <div class="group-item" data-value="chaotic">
-                  <div class="img"><img src="/imgs/bricks-laying3_2.svg" alt=""></div>
-                  <h3>Хаотичная</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="app-chapter" id="model">
-            <div class="inner">
-              <h2>Модель дома</h2>
-
-              <div class="group-items custom-scroll">
-                <button class="group-item" id="l2">
-                  <img src="/imgs/home-2.png">
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <datalist id="values">
         <option value="0" label="0"></option>
         <option value="25" label="25"></option>
@@ -391,7 +452,6 @@
         <option value="100" label="100"></option>
       </datalist>
     </div>
-
   </section>
 
 

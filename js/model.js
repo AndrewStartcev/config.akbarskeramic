@@ -16,9 +16,10 @@ const customColor = new THREE.Color(0x5221d1);
 const customColorRed = new THREE.Color(0xff0000);
 const showMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.5, color: customColor });
 const hideMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.3, color: customColorRed });
+
 // Сцена, камера и рендерер
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.5, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
 
 // Переменные для сохранения оригинальных материалов
@@ -33,11 +34,13 @@ function createTextureFromCanvas(canvas) {
   return texture;
 }
 
-
-// Функция для начальной настройки баннеров
 function startBanners() {
-  loadingBanner.style.display = "flex";
-  loadingText.innerText = "Загрузка 3D объектов";
+  loadingBanner.style.display = "block";
+}
+
+// Функция для обновления текста баннера
+function updateLoadingText(text) {
+  loadingText.innerText = text;
 }
 
 // Функция для отключения баннеров
@@ -74,19 +77,8 @@ function initElementsHome(object, elementsToInit, isVisible) {
   });
 }
 
-// Инициализация сцены, камеры и контролов
-function init() {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0xd8d8d8);
-  document.getElementById('layout-3d-three').appendChild(renderer.domElement);
-
-  const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
-  const skyMaterial = new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
-    side: THREE.BackSide
-  });
-  const sky = new THREE.Mesh(skyGeometry, skyMaterial);
-  scene.add(sky);
+function loadModelsAndTextures() {
+  updateLoadingText("Загрузка окружения...");
 
   // Загрузка модели "Buttom"
   const bottomLoader = new OBJLoader();
@@ -99,9 +91,10 @@ function init() {
       object.position.set(object.position.x, -2, object.position.z);
       object.name = "Buttom";
       scene.add(object);
-      stopBanners();
     });
   });
+
+  updateLoadingText("Загрузка дома...");
 
   // Загрузка модели "Home"
   const homeLoader = new OBJLoader();
@@ -119,13 +112,30 @@ function init() {
 
       scene.add(object);
 
-      console.log(originalMaterials)
+      stopBanners()
     });
   });
+}
 
-  camera.position.z = 8;
-  camera.position.x = 2;
-  camera.position.y = 2;
+// Инициализация сцены, камеры и контролов
+function init() {
+  updateLoadingText("Настройка сцены, света и фона...");
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0xd8d8d8);
+  document.getElementById('layout-3d-three').appendChild(renderer.domElement);
+
+  const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
+  const skyMaterial = new THREE.MeshBasicMaterial({
+    map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
+    side: THREE.BackSide
+  });
+  const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+  scene.add(sky);
+
+  loadModelsAndTextures();
+
+  camera.position.set(0, 2, 3);
 
   const ambientLightColor = new THREE.Color(lightingConfig.ambientLightColor);
   const ambientLight = new THREE.AmbientLight(ambientLightColor, lightingConfig.ambientLightIntensity);
@@ -164,6 +174,7 @@ function init() {
   animate();
 }
 
+// startBanners();
 init();
 
 // Функция для обновления текстуры стен
@@ -203,6 +214,7 @@ export function updateWallTexture() {
     }
   }
 }
+
 
 
 const elementInfo = {

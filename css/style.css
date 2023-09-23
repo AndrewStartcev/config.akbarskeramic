@@ -1,118 +1,439 @@
-:root {-webkit-font-smoothing: antialiased;}
-html, body {font-family: 'Walsheim-400', sans-serif; color: var(--white-color);}
-button.no-style {font-family: 'Walsheim-400', sans-serif !important;}
-.font-300 {font-family: 'Walsheim-300', sans-serif !important;}
-.font-700 {font-family: 'Walsheim-700', sans-serif !important;}
-.font-800 {font-family: 'Walsheim-800', sans-serif !important;}
-.font-900 {font-family: 'Walsheim-900', sans-serif !important;}
+:root {
+	-webkit-font-smoothing: antialiased;
+}
+html,
 body {
---violet-color: #5944b8;
---white-color: #f4f4f4;
---blue-color: #5221d1;
+	font-family: 'Walsheim-400', sans-serif;
+	color: var(--white-color);
+}
+button.no-style {
+	font-family: 'Walsheim-400', sans-serif !important;
+}
+.font-300 {
+	font-family: 'Walsheim-300', sans-serif !important;
+}
+.font-700 {
+	font-family: 'Walsheim-700', sans-serif !important;
+}
+.font-800 {
+	font-family: 'Walsheim-800', sans-serif !important;
+}
+.font-900 {
+	font-family: 'Walsheim-900', sans-serif !important;
+}
+body {
+	--violet-color: #5944b8;
+	--white-color: #f4f4f4;
+	--blue-color: #5221d1;
+}
+.loading-banner {
+  display: block;
+  position: fixed;
+	top: 0;
+	left: 0;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background: #5221d1;
+}
+.loading-title {
+  text-align: center;
+  color: #fff;
+	font-size: 60px;
+}
+.wrap-prelogo {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  display: block;
+}
+.loading-text {
+  position: absolute;
+  width: 100%;
+  bottom: 80px;
+  display: block;
+  color: #fff!important;
+  font-size: 18px;
+  text-align: center;
+}
+.loading-text span {
+  color: #fff!important;
 }
 
-.loading-banner {
+.prelogo {
+  width: 224px;
+  height: 208px;
+  overflow: hidden;
+  margin: 0 auto 30px auto;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+.prelogo img {
+  width: 224px;
+  height: 208px;
+}
+
+@media (max-width: 780px) {
+.loading-title {
+	font-size: 30px;
+}
+.wrap-prelogo {
+  top: 30%;
+}
+.loading-text {
+  bottom: 30px;
+  font-size: 16px;
+}
+
+.prelogo {
+  width: 124px;
+  height: 108px;
+}
+.prelogo img {
+  width: 124px;
+  height: 108px;
+}
+
+}
+@media (max-height: 400px) {
+.loading-title {
+	font-size: 30px;
+}
+.wrap-prelogo {
+  top: 10%;
+}
+.loading-text {
+  bottom: 20px;
+  font-size: 16px;
+}
+
+.prelogo {
+  width: 80px;
+  height: auto;
+}
+.prelogo img {
+  width: 80px;
+  height: auto;
+}
+
+}
+
+#askscreen {
+	display: none;
+	top: 0;
+	left: 0;
 	position: fixed;
+	z-index: 99999;
+	width: 100%;
+	height: 100vh;
+	background-color: #5221d1;
+}
+#askscreen img {
+	width: 100px;
+	height: 100px;
+	margin: 0;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+#askscreen h2 {
+	margin-top: 50px;
+	top: 45%;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+	font-weight: 100;
+}
+
+@media only screen and (max-device-width: 768px) and (orientation: portrait) {
+  #askscreen {
+    display: block !important;
+  }
+}
+.loading-dots {
+	margin-bottom: 10px;
+}
+.loading-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 50%;
+  animation: loading 1s infinite;
+  margin-right: 5px;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+
+#modes,
+#pdf {
+	position: fixed;
+	z-index: 10;
+	background: var(--white-color);
+	border-radius: 15px;
+	overflow: hidden;
+}
+#modes .mode,
+#pdf .mode {
+	color: #d8d8d8;
+	transition: 0.5s ease;
+	cursor: pointer;
+	display: block;
+	text-align: center;
+	font-weight: bold;
+}
+#modes .mode.active,
+#pdf .mode.active {
+	background: var(--violet-color);
+	color: var(--white-color);
+}
+
+#house,
+#layout-3d-three {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	top: 0;
+	background: #d8d8d8;
+}
+#house .inner,
+#layout-3d-three .inner {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background: #d8d8d8;
+	overflow: hidden;
+}
+#house .inner .container-3d {
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+#house .inner .container-3d::before {
+	content: '';
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	border: 2px solid #d8d8d8;
+}
+#house .inner .visualization,
+#house .inner .brick-layer {
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	display: flex;
-	background: #5221d1;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 30px;
-	z-index: 9999999;
 }
-.loading-banner__logo img {
-	width: 250px;
-	height: 250px;
-	object-fit: contain;
+#house .inner .visualization {
+	z-index: 2;
 }
-.loading-banner__text {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 15px;
+#house .inner .visualization img {
+	width: 100%;
+	height: 100%;
 }
-.loading-banner__text::before {
-	content: '';
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	background: url('../imgs/spinner.gif') center center / contain no-repeat
+#house .inner .brick-layer {
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+}
+#house .inner .brick-layer .house {
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
 
-#modes {position: fixed; z-index: 10; background: var(--white-color); border-radius: 15px; overflow: hidden;}
-#modes .mode {color: #d8d8d8; transition: 0.5s ease; cursor: pointer; display: block; text-align: center; font-weight: bold;}
-#modes .mode.active {background: var(--violet-color); color: var(--white-color);}
+#canvas {
+	width: 100vw;
+	height: 100vh;
+}
+#app-menu {
+	border-radius: 0px 20px 20px 0px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	z-index: 1000;
+	background: var(--blue-color);
+	clear: both;
+}
+#app-menu .fl {
+	height: 100%;
+	float: left;
+	background: var(--blue-color);
+}
+#app-menu .app-menu-item {
+	aspect-ratio: 1 / 1;
+	cursor: pointer;
+}
+#app-menu .app-menu-item img {
+	width: 60%;
+	display: block;
+}
+#app-menu .app-menu-item.chosen {
+	background: var(--violet-color);
+	border-radius: 20px 0px 0px 20px;
+}
+#app-menu .fr {
+	border-radius: 20px 0px 0px 20px;
+	height: 100%;
+	float: right;
+	background: var(--violet-color);
+	padding: 20px 0px;
+}
+#app-menu .app-chapter {
+	display: none;
+}
+#app-menu .app-chapter.active {
+	display: block;
+}
+#app-menu .app-chapter .inner {
+	overflow: hidden;
+}
+#app-menu .app-chapter .inner > h2 {
+	color: var(--white-color);
+	font-weight: bold;
+}
+#app-menu .app-chapter .inner .group-items {
+	position: relative;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-right: 20px;
+}
+#app-menu .app-chapter .inner .group-items.custom-scroll {
+	max-height: 450px;
+}
+#app-menu .app-chapter .inner .group-items .group-item {
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	clear: both;
+	width: 100%;
+	border-radius: 15px;
+}
+#app-menu .app-chapter .inner .group-items .group-item:last-child {
+	margin-bottom: 0px;
+}
+#app-menu .app-chapter .inner .group-items .group-item .img {
+	border-radius: 10px;
+	overflow: hidden;
+	float: left;
+}
+#app-menu .app-chapter .inner .group-items .group-item .img.circled {
+	border-radius: 50%;
+}
+#app-menu .app-chapter .inner .group-items .group-item > h3 {
+	float: left;
+}
+#app-menu .app-chapter .inner .group-items .group-item .txt {
+	float: left;
+}
+#app-menu .app-chapter .inner .group-items .group-item.active {
+	background: #4d4d4d;
+}
 
-#house, #layout-3d-three {display: none; position: fixed; width: 100%; height: 100%; z-index: 5; top: 0; background: #d8d8d8;}
-#house .inner, #layout-3d-three .inner {width: 100%; height: 100%; position: relative; background: #d8d8d8; overflow: hidden;}
-#house .inner .container-3d {display: block; position: relative; overflow: hidden;}
-#house .inner .container-3d::before {content: ""; position: absolute; z-index: 10; width: 100%; height: 100%; border: 2px solid #d8d8d8;}
-#house .inner .visualization, #house .inner .brick-layer {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
-#house .inner .visualization {z-index: 2;}
-#house .inner .visualization img {width: 100%; height: 100%;}
-#house .inner .brick-layer {z-index: 1;  width: 100%; height: 100%;}
-#house .inner .brick-layer .house {width: 100%; height: 100%; position: relative; }
-
-
-#canvas {width: 100vw; height: 100vh;}
-#app-menu {border-radius: 0px 20px 20px 0px; position: fixed; top: 0; left: 0; height: 100vh; z-index: 1000; background: var(--blue-color); clear: both;}
-#app-menu .fl {height: 100%; float: left; background: var(--blue-color);}
-#app-menu .app-menu-item {aspect-ratio: 1 / 1; cursor: pointer;}
-#app-menu .app-menu-item img {width: 60%; display: block;}
-#app-menu .app-menu-item.chosen {background: var(--violet-color); border-radius: 20px 0px 0px 20px;}
-#app-menu .fr {border-radius: 20px 0px 0px 20px; height: 100%; float: right; background: var(--violet-color); padding: 20px 0px;}
-#app-menu .app-chapter {display: none;}
-#app-menu .app-chapter.active {display: block;}
-#app-menu .app-chapter .inner {overflow: hidden;}
-#app-menu .app-chapter .inner > h2 {color: var(--white-color); font-weight: bold;}
-#app-menu .app-chapter .inner .group-items {position: relative; overflow-x: hidden; overflow-y: auto; padding-right: 20px;}
-#app-menu .app-chapter .inner .group-items.custom-scroll {max-height: 450px;}
-#app-menu .app-chapter .inner .group-items .group-item {position: relative; overflow: hidden; cursor: pointer; clear: both; width: 100%; border-radius: 15px;}
-#app-menu .app-chapter .inner .group-items .group-item:last-child {margin-bottom: 0px;}
-#app-menu .app-chapter .inner .group-items .group-item .img {border-radius: 10px; overflow: hidden; float: left;}
-#app-menu .app-chapter .inner .group-items .group-item .img.circled {border-radius: 50%;}
-#app-menu .app-chapter .inner .group-items .group-item > h3 {float: left;}
-#app-menu .app-chapter .inner .group-items .group-item .txt {float: left;}
-#app-menu .app-chapter .inner .group-items .group-item.active {background: #4d4d4d;}
-
-#app-menu .app-chapter .inner .group-items .layout-group-item {position: relative; overflow: hidden; cursor: pointer; clear: both; width: 100%; border-radius: 15px;}
-#app-menu .app-chapter .inner .group-items .layout-group-item:last-child {margin-bottom: 0px;}
-#app-menu .app-chapter .inner .group-items .layout-group-item .img {border-radius: 10px; overflow: hidden; float: left;}
-#app-menu .app-chapter .inner .group-items .layout-group-item .img.circled {border-radius: 50%;}
-#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {float: left;}
-#app-menu .app-chapter .inner .group-items .layout-group-item .txt {float: left;}
-#app-menu .app-chapter .inner .group-items .layout-group-item:hover {background: #838383;}
-#app-menu .app-chapter .inner .group-items .layout-group-item.active {background: #4d4d4d;}
-
-
+#app-menu .app-chapter .inner .group-items .layout-group-item {
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	clear: both;
+	width: 100%;
+	border-radius: 15px;
+}
+#app-menu .app-chapter .inner .group-items .layout-group-item:last-child {
+	margin-bottom: 0px;
+}
+#app-menu .app-chapter .inner .group-items .layout-group-item .img {
+	border-radius: 10px;
+	overflow: hidden;
+	float: left;
+}
+#app-menu .app-chapter .inner .group-items .layout-group-item .img.circled {
+	border-radius: 50%;
+}
+#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {
+	float: left;
+}
+#app-menu .app-chapter .inner .group-items .layout-group-item .txt {
+	float: left;
+}
+#app-menu .app-chapter .inner .group-items .layout-group-item:hover {
+	background: #838383;
+}
+#app-menu .app-chapter .inner .group-items .layout-group-item.active {
+	background: #4d4d4d;
+}
 
 .app-chapter .inner .group-items .group-item.active .img img {
 	filter: brightness(0.8);
-  }
+}
 
-.app-menu-item.flex-center.chosen img{
+.app-menu-item.flex-center.chosen img {
 	filter: brightness(0.8);
 }
 
-
-
-
-.brick-item {position: relative; overflow: hidden; cursor: pointer; clear: both; margin-bottom: 20px; height: 110px; width: 100%; border-radius: 15px; padding: 10px; padding: 0px; border: 2px solid #4d4d4d;box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px 0px;}
-.brick-item:last-child {margin-bottom: 0px;}
-.brick-item.active {border: 2px solid #f4f4f4;}
-.brick-item img {border-radius: 10px; object-fit: cover; width: 100%; height: 100%; position: relative;}
-.brick-item h2 {position: absolute; top: 0; left: 10px; z-index: 1; color: var(--white-color); font-size: 16px; height: 40px; line-height: 20px; width: 200px; margin: 20px; text-shadow: 1px 1px 2px #4d4d4d;}
-
-
-
+.brick-item {
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	clear: both;
+	margin-bottom: 20px;
+	height: 110px;
+	width: 100%;
+	border-radius: 15px;
+	padding: 10px;
+	padding: 0px;
+	border: 2px solid #4d4d4d;
+	box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px 0px;
+}
+.brick-item:last-child {
+	margin-bottom: 0px;
+}
+.brick-item.active {
+	border: 2px solid #f4f4f4;
+}
+.brick-item img {
+	border-radius: 10px;
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.brick-item h2 {
+	position: absolute;
+	top: 0;
+	left: 10px;
+	z-index: 1;
+	color: var(--white-color);
+	font-size: 16px;
+	height: 40px;
+	line-height: 20px;
+	width: 200px;
+	margin: 20px;
+	text-shadow: 1px 1px 2px #4d4d4d;
+}
 
 .brick-item::after {
-	content: "";
+	content: '';
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -120,104 +441,267 @@ body {
 	height: 100%;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
 	pointer-events: none; /* Allows clicks to pass through the pseudo-element */
-
 }
 
+.app-logo {
+	aspect-ratio: 1 / 1;
+	cursor: pointer;
+	width: 100%;
+	display: block;
+}
+.app-logo a {
+	width: 100%;
+	height: 100%;
+}
+.app-logo img {
+	width: 60%;
+	display: block;
+}
 
+.save-pdf {
+	aspect-ratio: 1 / 1;
+	cursor: pointer;
+	width: 100%;
+}
+.save-pdf img {
+	width: 60%;
+	display: block;
+}
 
-
-
-.app-logo {aspect-ratio: 1 / 1; cursor: pointer; width: 100%; display: block;}
-.app-logo a {width: 100%; height: 100%;}
-.app-logo img {width: 60%; display: block;}
-
-.save-pdf {aspect-ratio: 1 / 1; cursor: pointer; width: 100%;}
-.save-pdf img {width: 60%; display: block;}
-
-#chosen-bricks {position: relative;}
-.chosen-brick {height: 60px; clear: both; margin-bottom: 10px; position: relative;}
-.chosen-brick:last-child {margin-bottom: 0px;}
-.no-bricks {border-radius: 10px; width: 100%; height: 60px; text-align: center; padding: 15px; color: #848484; background: #FFF;}
-.chosen-brick:not(.active) img, .chosen-brick:not(.active) .info {display: none; }
-.chosen-brick.active img, .chosen-brick.active .info {display: block; object-fit: cover;}
-.chosen-brick img {width: 60px; height: 60px; margin-right: 20px; float: left; border-radius: 10px;}
-.chosen-brick .info {height: 60px; width: calc(100% - 80px); float: left;}
-.chosen-brick .info .title {clear: both; height: 30px;}
-.chosen-brick .info .title h2 {height: 30px; width: calc(100% - 40px); line-height: 15px; font-size: 12px; color: #FFF; float: left; margin-right: 10px;}
-.chosen-brick .info .title i.fa-times {width: 30px; height: 30px; font-size: 14px; text-align: right; cursor: pointer;}
-.chosen-brick .info .percentage {height: 30px; width: 100%; clear: both;}
-.chosen-brick .info .percentage b {float: left; width: 30px; height: 30px; line-height: 30px; text-align: right; font-size: 12px;}
-.chosen-brick .info .percentage .percent-line {float: left; width: calc(100% - 70px); margin-right: 20px; height: 30px;}
+#chosen-bricks {
+	position: relative;
+}
+.chosen-brick {
+	height: 60px;
+	clear: both;
+	margin-bottom: 10px;
+	position: relative;
+}
+.chosen-brick:last-child {
+	margin-bottom: 0px;
+}
+.no-bricks {
+	border-radius: 10px;
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	padding: 15px;
+	color: #848484;
+	background: #fff;
+}
+.chosen-brick:not(.active) img,
+.chosen-brick:not(.active) .info {
+	display: none;
+}
+.chosen-brick.active img,
+.chosen-brick.active .info {
+	display: block;
+	object-fit: cover;
+}
+.chosen-brick img {
+	width: 60px;
+	height: 60px;
+	margin-right: 20px;
+	float: left;
+	border-radius: 10px;
+}
+.chosen-brick .info {
+	height: 60px;
+	width: calc(100% - 80px);
+	float: left;
+}
+.chosen-brick .info .title {
+	clear: both;
+	height: 30px;
+}
+.chosen-brick .info .title h2 {
+	height: 30px;
+	width: calc(100% - 40px);
+	line-height: 15px;
+	font-size: 12px;
+	color: #fff;
+	float: left;
+	margin-right: 10px;
+}
+.chosen-brick .info .title i.fa-times {
+	width: 30px;
+	height: 30px;
+	font-size: 14px;
+	text-align: right;
+	cursor: pointer;
+}
+.chosen-brick .info .percentage {
+	height: 30px;
+	width: 100%;
+	clear: both;
+}
+.chosen-brick .info .percentage b {
+	float: left;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: right;
+	font-size: 12px;
+}
+.chosen-brick .info .percentage .percent-line {
+	float: left;
+	width: calc(100% - 70px);
+	margin-right: 20px;
+	height: 30px;
+}
 
 [data-tooltip] {
-    position: relative; /* Относительное позиционирование */
+	position: relative; /* Относительное позиционирование */
 }
 [data-tooltip]::after {
-    content: attr(data-tooltip); /* Выводим текст */
-    position: absolute; /* Абсолютное позиционирование */
-    width: 100px; /* Ширина подсказки */
-    left: 60px; top: 0; /* Положение подсказки */
-    background: #f4f4f4; /* Синий цвет фона */
-    color: #4d4d4d; /* Цвет текста */
-    padding: 0.5em; /* Поля вокруг текста */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
-    pointer-events: none; /* Подсказка */
-    opacity: 0; /* Подсказка невидима */
-    transition: 0.5s; /* Время появления подсказки */
-    border-radius: 5px;
-    z-index: 1000;
+	content: attr(data-tooltip); /* Выводим текст */
+	position: absolute; /* Абсолютное позиционирование */
+	width: 100px; /* Ширина подсказки */
+	left: 60px;
+	top: 0; /* Положение подсказки */
+	background: #f4f4f4; /* Синий цвет фона */
+	color: #4d4d4d; /* Цвет текста */
+	padding: 0.5em; /* Поля вокруг текста */
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
+	pointer-events: none; /* Подсказка */
+	opacity: 0; /* Подсказка невидима */
+	transition: 0.5s; /* Время появления подсказки */
+	border-radius: 5px;
+	z-index: 1000;
 }
 [data-tooltip]:hover::after {
 	opacity: 1; /* Показываем подсказку */
 	top: 2em; /* Положение подсказки */
 }
 
-
-
-
-#house .inner .brick-layer .house .face {background: #F8F8F8; position: absolute; background-repeat: repeat; background-position: center; transform-style: preserve-3d;}
-
-
+#house .inner .brick-layer .house .face {
+	background: #f8f8f8;
+	position: absolute;
+	background-repeat: repeat;
+	background-position: center;
+	transform-style: preserve-3d;
+}
 
 #house .inner .brick-layer .house .face-textures {
-    width: 150%;
-    height: 150%;
+	width: 150%;
+	height: 150%;
 }
 
+.st0 {
+	fill: #5221d1;
+}
+@media (max-width: 4096px) {
+	#pdf {
+		bottom: 40px;
+		right: 40px;
+		width: 60px;
+		height: 60px;
+	}
 
+	#pdf img {
+		width: 32px;
+		height: 32px;
+	}
+	#modes {
+		top: 40px;
+		right: 40px;
+	}
+	#modes .mode {
+		height: 60px;
+		width: 60px;
+		line-height: 60px;
+		font-size: 30px;
+	}
+	#app-menu .app-chapter .inner .group-items,
+	#chosen-bricks {
+		margin: 20px 40px;
+	}
 
+	#app-menu.opened .fr {
+		width: 400px;
+	}
+	#app-menu .fl {
+		width: 60px;
+		padding: 60px 0px;
+	}
+	#house {
+		width: calc(100% - 60px);
+		left: 60px;
+	}
 
-@media (max-width: 4096px){
-	#modes {top: 40px; right: 40px;}
-	#modes .mode {height: 60px; width: 60px; line-height: 60px; font-size: 30px;}
-	#app-menu .app-chapter .inner .group-items, #chosen-bricks {margin: 20px 40px;}
+	#app-menu .app-chapter .inner > h2 {
+		margin-left: 40px;
+		font-size: 24px;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item {
+		margin-bottom: 20px;
+		height: 80px;
+		padding: 10px;
+	}
 
-	#app-menu.opened .fr {width: 400px;}
-	#app-menu .fl {width: 60px; padding: 60px 0px;}
-	#house {width: calc(100% - 60px); left: 60px;}
+	#app-menu .app-chapter .inner .group-items .group-item .img {
+		width: 60px;
+		height: 60px;
+		margin-right: 20px;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item > h3 {
+		width: calc(100% - 80px);
+		height: 60px;
+		line-height: 60px;
+		font-size: 20px;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item .txt {
+		width: calc(100% - 80px);
+		height: 60px;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item .txt h3 {
+		height: 30px;
+		line-height: 30px;
+		font-size: 20px;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item .txt p {
+		height: 30px;
+		line-height: 30px;
+		font-size: 16px;
+	}
 
-	#app-menu .app-chapter .inner > h2 {margin-left: 40px; font-size: 24px;}
-	#app-menu .app-chapter .inner .group-items .group-item {margin-bottom: 20px; height: 80px; padding: 10px;}
-
-	#app-menu .app-chapter .inner .group-items .group-item .img {width: 60px; height: 60px; margin-right: 20px;}
-	#app-menu .app-chapter .inner .group-items .group-item > h3 {width: calc(100% - 80px); height: 60px; line-height: 60px; font-size: 20px;}
-	#app-menu .app-chapter .inner .group-items .group-item .txt {width: calc(100% - 80px); height: 60px;}
-	#app-menu .app-chapter .inner .group-items .group-item .txt h3 {height: 30px; line-height: 30px; font-size: 20px;}
-	#app-menu .app-chapter .inner .group-items .group-item .txt p {height: 30px; line-height: 30px; font-size: 16px;}
-
-		#app-menu .app-chapter .inner .group-items .layout-group-item {margin-bottom: 20px; height: 80px; padding: 10px;}
-		#app-menu .app-chapter .inner .group-items .layout-group-item .img {width: 60px; height: 60px; margin-right: 20px;}
-	#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {width: calc(100% - 80px); height: 60px; line-height: 60px; font-size: 20px;}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .txt {width: calc(100% - 80px); height: 60px;}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .txt h3 {height: 30px; line-height: 30px; font-size: 20px;}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .txt p {height: 30px; line-height: 30px; font-size: 16px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item {
+		margin-bottom: 20px;
+		height: 80px;
+		padding: 10px;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .img {
+		width: 60px;
+		height: 60px;
+		margin-right: 20px;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {
+		width: calc(100% - 80px);
+		height: 60px;
+		line-height: 60px;
+		font-size: 20px;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt {
+		width: calc(100% - 80px);
+		height: 60px;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt h3 {
+		height: 30px;
+		line-height: 30px;
+		font-size: 20px;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt p {
+		height: 30px;
+		line-height: 30px;
+		font-size: 16px;
+	}
 
 	.face.front .face-textures {
-		transform:  translateZ(0px) translateX(-104px) translateY(0px) rotateX(0deg) rotateY(359deg) rotateZ(0deg);
+		transform: translateZ(0px) translateX(-104px) translateY(0px) rotateX(0deg) rotateY(359deg) rotateZ(0deg);
 		background-size: 60%;
 	}
 	.face.side .face-textures {
-		transform:  translateZ(0px) translateX(0px) translateY(0px) rotateX(0deg) rotateY(5deg) rotateZ(0deg);
+		transform: translateZ(0px) translateX(0px) translateY(0px) rotateX(0deg) rotateY(5deg) rotateZ(0deg);
 		background-size: 60%;
 	}
 	.face.gate-right .face-textures {
@@ -237,27 +721,77 @@ body {
 		background-size: 281%;
 	}
 
+	.face.front {
+		width: 32%;
+		right: 47%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(6% 41%, 90% 31%, 90% 81%, 6% 79%);
+		perspective: 35px;
+		perspective-origin: 94% 71%;
+	}
+	.face.side {
+		width: 28%;
+		right: 19.5%;
+		z-index: 1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(8% 17%, 100% 19%, 100% 77.5%, 8% 81%);
+		perspective: 107px;
+		perspective-origin: 47% 66%;
+	}
 
+	.face.gate-right {
+		width: 22%;
+		right: 0%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(10% 59%, 100% 57%, 100% 75%, 10% 74.5%);
+		perspective: 238px;
+		perspective-origin: 10% 69%;
+	}
+	.face.gate-left {
+		width: 22%;
+		left: 0%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(0% 60.5%, 90% 61.1%, 90% 78%, 0% 78%);
+		perspective: 500px;
+		perspective-origin: 61% 50%;
+	}
 
-.face.front {width: 32%; right: 47%; z-index: -1; height: 100%; overflow: hidden; clip-path: polygon(6%  41%, 90% 31%,90% 81%, 6% 79%);perspective:35px; perspective-origin: 94% 71%;}
-.face.side {width: 28%; right: 19.5%; z-index: 1; height: 100%; overflow: hidden; clip-path: polygon(8% 17%, 100% 19%, 100% 77.5%, 8% 81%);perspective:107px; perspective-origin: 47% 66%;}
-
-.face.gate-right {width: 22%; right: 0%; z-index: -1; height: 100%; overflow: hidden;clip-path: polygon(10% 59%, 100% 57%, 100% 75%, 10% 74.5%);perspective:238px; perspective-origin: 10% 69%;}
-.face.gate-left {width: 22%; left: 0%; z-index: -1; height: 100%; overflow: hidden; clip-path: polygon(0% 60.5%, 90% 61.1%, 90% 78%, 0% 78%);perspective:500px; perspective-origin: 61% 50%;}
-
-.face.wall1{width: 6%; right: 46%; z-index: 0; height: 100%; overflow: hidden; clip-path: polygon(15% 31%, 91% 32.3%, 15% 39.2%);perspective:93px; perspective-origin: 37% 54%;}
-.face.wall2{width: 6%; left: 32%; z-index: 0; height: 100%; overflow: hidden; clip-path: polygon(10% 37%, 66% 38%, 66% 40%, 10% 45%); perspective:93px; perspective-origin:37% 54%;}
+	.face.wall1 {
+		width: 6%;
+		right: 46%;
+		z-index: 0;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(15% 31%, 91% 32.3%, 15% 39.2%);
+		perspective: 93px;
+		perspective-origin: 37% 54%;
+	}
+	.face.wall2 {
+		width: 6%;
+		left: 32%;
+		z-index: 0;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(10% 37%, 66% 38%, 66% 40%, 10% 45%);
+		perspective: 93px;
+		perspective-origin: 37% 54%;
+	}
 }
 
-
-@media (max-width: 1920px){
-
+@media (max-width: 1920px) {
 	.face.front .face-textures {
-		transform:  translateZ(0px) translateX(-104px) translateY(0px) rotateX(0deg) rotateY(359deg) rotateZ(0deg);
+		transform: translateZ(0px) translateX(-104px) translateY(0px) rotateX(0deg) rotateY(359deg) rotateZ(0deg);
 		background-size: 60%;
 	}
 	.face.side .face-textures {
-		transform:  translateZ(0px) translateX(0px) translateY(0px) rotateX(0deg) rotateY(5deg) rotateZ(0deg);
+		transform: translateZ(0px) translateX(0px) translateY(0px) rotateX(0deg) rotateY(5deg) rotateZ(0deg);
 		background-size: 60%;
 	}
 	.face.gate-right .face-textures {
@@ -277,27 +811,77 @@ body {
 		background-size: 281%;
 	}
 
+	.face.front {
+		width: 32%;
+		right: 47%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(6% 41%, 90% 31%, 90% 81%, 6% 79%);
+		perspective: 35px;
+		perspective-origin: 94% 71%;
+	}
+	.face.side {
+		width: 28%;
+		right: 19.5%;
+		z-index: 1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(8% 17%, 100% 19%, 100% 77.5%, 8% 81%);
+		perspective: 107px;
+		perspective-origin: 47% 66%;
+	}
 
+	.face.gate-right {
+		width: 22%;
+		right: 0%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(10% 59%, 100% 57%, 100% 75%, 10% 74.5%);
+		perspective: 238px;
+		perspective-origin: 10% 69%;
+	}
+	.face.gate-left {
+		width: 22%;
+		left: 0%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(0% 60.5%, 90% 61.1%, 90% 78%, 0% 78%);
+		perspective: 500px;
+		perspective-origin: 61% 50%;
+	}
 
-.face.front {width: 32%; right: 47%; z-index: -1; height: 100%; overflow: hidden; clip-path: polygon(6%  41%, 90% 31%,90% 81%, 6% 79%);perspective:35px; perspective-origin: 94% 71%;}
-.face.side {width: 28%; right: 19.5%; z-index: 1; height: 100%; overflow: hidden; clip-path: polygon(8% 17%, 100% 19%, 100% 77.5%, 8% 81%);perspective:107px; perspective-origin: 47% 66%;}
-
-.face.gate-right {width: 22%; right: 0%; z-index: -1; height: 100%; overflow: hidden;clip-path: polygon(10% 59%, 100% 57%, 100% 75%, 10% 74.5%);perspective:238px; perspective-origin: 10% 69%;}
-.face.gate-left {width: 22%; left: 0%; z-index: -1; height: 100%; overflow: hidden; clip-path: polygon(0% 60.5%, 90% 61.1%, 90% 78%, 0% 78%);perspective:500px; perspective-origin: 61% 50%;}
-
-.face.wall1{width: 6%; right: 46%; z-index: 0; height: 100%; overflow: hidden; clip-path: polygon(15% 31%, 91% 32.3%, 15% 39.2%);perspective:93px; perspective-origin: 37% 54%;}
-.face.wall2{width: 6%; left: 32%; z-index: 0; height: 100%; overflow: hidden; clip-path: polygon(10% 37%, 66% 38%, 66% 40%, 10% 45%); perspective:93px; perspective-origin:37% 54%;}
+	.face.wall1 {
+		width: 6%;
+		right: 46%;
+		z-index: 0;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(15% 31%, 91% 32.3%, 15% 39.2%);
+		perspective: 93px;
+		perspective-origin: 37% 54%;
+	}
+	.face.wall2 {
+		width: 6%;
+		left: 32%;
+		z-index: 0;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(10% 37%, 66% 38%, 66% 40%, 10% 45%);
+		perspective: 93px;
+		perspective-origin: 37% 54%;
+	}
 }
 
-
-@media (max-width: 1600px){
-
+@media (max-width: 1600px) {
 	.face.front .face-textures {
-		transform:  translateZ(0px) translateX(-104px) translateY(0px) rotateX(0deg) rotateY(359deg) rotateZ(0deg);
+		transform: translateZ(0px) translateX(-104px) translateY(0px) rotateX(0deg) rotateY(359deg) rotateZ(0deg);
 		background-size: 60%;
 	}
 	.face.side .face-textures {
-		transform:  translateZ(0px) translateX(0px) translateY(0px) rotateX(0deg) rotateY(5deg) rotateZ(0deg);
+		transform: translateZ(0px) translateX(0px) translateY(0px) rotateX(0deg) rotateY(5deg) rotateZ(0deg);
 		background-size: 60%;
 	}
 	.face.gate-right .face-textures {
@@ -317,59 +901,191 @@ body {
 		background-size: 281%;
 	}
 
+	.face.front {
+		width: 32%;
+		right: 47%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(6% 41%, 90% 31%, 90% 81%, 6% 79%);
+		perspective: 26px;
+		perspective-origin: 94% 71%;
+	}
+	.face.side {
+		width: 28%;
+		right: 19.5%;
+		z-index: 1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(8% 17%, 100% 19%, 100% 77.5%, 8% 81%);
+		perspective: 107px;
+		perspective-origin: 47% 66%;
+	}
 
+	.face.gate-right {
+		width: 22%;
+		right: 0%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(10% 59%, 100% 57%, 100% 75%, 10% 74.5%);
+		perspective: 238px;
+		perspective-origin: 10% 69%;
+	}
+	.face.gate-left {
+		width: 22%;
+		left: 0%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(0% 60.5%, 90% 61.1%, 90% 78%, 0% 78%);
+		perspective: 500px;
+		perspective-origin: 61% 50%;
+	}
 
-.face.front {width: 32%; right: 47%; z-index: -1; height: 100%; overflow: hidden; clip-path: polygon(6%  41%, 90% 31%,90% 81%, 6% 79%);perspective:26px; perspective-origin: 94% 71%;}
-.face.side {width: 28%; right: 19.5%; z-index: 1; height: 100%; overflow: hidden; clip-path: polygon(8% 17%, 100% 19%, 100% 77.5%, 8% 81%);perspective:107px; perspective-origin: 47% 66%;}
-
-.face.gate-right {width: 22%; right: 0%; z-index: -1; height: 100%; overflow: hidden;clip-path: polygon(10% 59%, 100% 57%, 100% 75%, 10% 74.5%);perspective:238px; perspective-origin: 10% 69%;}
-.face.gate-left {width: 22%; left: 0%; z-index: -1; height: 100%; overflow: hidden; clip-path: polygon(0% 60.5%, 90% 61.1%, 90% 78%, 0% 78%);perspective:500px; perspective-origin: 61% 50%;}
-
-.face.wall1{width: 6%; right: 46%; z-index: 0; height: 100%; overflow: hidden; clip-path: polygon(15% 31%, 91% 32.3%, 15% 39.2%);perspective:93px; perspective-origin: 37% 54%;}
-.face.wall2{width: 6%; left: 32%; z-index: 0; height: 100%; overflow: hidden; clip-path: polygon(10% 37%, 66% 38%, 66% 40%, 10% 45%); perspective:93px; perspective-origin:37% 54%;}
+	.face.wall1 {
+		width: 6%;
+		right: 46%;
+		z-index: 0;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(15% 31%, 91% 32.3%, 15% 39.2%);
+		perspective: 93px;
+		perspective-origin: 37% 54%;
+	}
+	.face.wall2 {
+		width: 6%;
+		left: 32%;
+		z-index: 0;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(10% 37%, 66% 38%, 66% 40%, 10% 45%);
+		perspective: 93px;
+		perspective-origin: 37% 54%;
+	}
 }
 
+@media (max-width: 700px) {
+	#app-menu .fl {
+		width: 50px;
+		padding: 50px 0px;
+	}
+	#app-menu.opened .fr {
+		width: calc(100% - 50px);
+	}
+	#house {
+		width: calc(100% - 50px);
+		left: 50px;
+	}
 
-@media (max-width: 700px){
-	#app-menu .fl {width: 50px; padding: 50px 0px;}
-	#app-menu.opened .fr {width: calc(100% - 50px);}
-	#house {width: calc(100% - 50px); left: 50px;}
+	#modes {
+		top: 20px;
+		right: 20px;
+	}
+	#modes .mode {
+		height: 40px;
+		width: 40px;
+		line-height: 40px;
+		font-size: 20px;
+	}
+	#app-menu .app-chapter .inner .group-items,
+	#chosen-bricks {
+		margin: 15px;
+	}
 
-	#modes {top: 20px; right: 20px;}
-	#modes .mode {height: 40px; width: 40px; line-height: 40px; font-size: 20px;}
-	#app-menu .app-chapter .inner .group-items, #chosen-bricks {margin: 15px;}
+	#app-menu .app-chapter .inner > h2 {
+		margin-left: 15px;
+		font-size: 18px;
+	}
 
-	#app-menu .app-chapter .inner > h2 {margin-left: 15px; font-size: 18px;}
+	.bricks-list::after {
+		content: '';
+		height: 100px;
+		display: block;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item {
+		margin-bottom: 10px;
+		height: 60px;
+	}
+	.bricks-list::after {
+		content: '';
+		height: 100px;
+		display: block;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item {
+		margin-bottom: 10px;
+		height: 60px;
+	}
 
-	.bricks-list::after {content: ""; height: 100px; display: block;}
-	#app-menu .app-chapter .inner .group-items .group-item {margin-bottom: 10px; height: 60px;}
-		.bricks-list::after {content: ""; height: 100px; display: block;}
-	#app-menu .app-chapter .inner .group-items .layout-group-item {margin-bottom: 10px; height: 60px;}
+	#app-menu .app-chapter .inner .group-items .group-item .img {
+		width: 40px;
+		height: 40px;
+		margin-right: 10px;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item > h3 {
+		width: calc(100% - 50px);
+		height: 40px;
+		line-height: 40px;
+		font-size: 18px;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item .txt {
+		width: calc(100% - 50px);
+		height: 40px;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item .txt h3 {
+		height: 20px;
+		line-height: 20px;
+		font-size: 16px;
+	}
+	#app-menu .app-chapter .inner .group-items .group-item .txt p {
+		height: 20px;
+		line-height: 20px;
+		font-size: 12px;
+	}
 
-	#app-menu .app-chapter .inner .group-items .group-item .img {width: 40px; height: 40px; margin-right: 10px;}
-	#app-menu .app-chapter .inner .group-items .group-item > h3 {width: calc(100% - 50px); height: 40px; line-height: 40px; font-size: 18px;}
-	#app-menu .app-chapter .inner .group-items .group-item .txt {width: calc(100% - 50px); height: 40px;}
-	#app-menu .app-chapter .inner .group-items .group-item .txt h3 {height: 20px; line-height: 20px; font-size: 16px;}
-	#app-menu .app-chapter .inner .group-items .group-item .txt p {height: 20px; line-height: 20px; font-size: 12px;}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .img {
+		width: 40px;
+		height: 40px;
+		margin-right: 10px;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {
+		width: calc(100% - 50px);
+		height: 40px;
+		line-height: 40px;
+		font-size: 18px;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt {
+		width: calc(100% - 50px);
+		height: 40px;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt h3 {
+		height: 20px;
+		line-height: 20px;
+		font-size: 16px;
+	}
+	#app-menu .app-chapter .inner .group-items .layout-group-item .txt p {
+		height: 20px;
+		line-height: 20px;
+		font-size: 12px;
+	}
 
-		#app-menu .app-chapter .inner .group-items .layout-group-item .img {width: 40px; height: 40px; margin-right: 10px;}
-	#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {width: calc(100% - 50px); height: 40px; line-height: 40px; font-size: 18px;}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .txt {width: calc(100% - 50px); height: 40px;}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .txt h3 {height: 20px; line-height: 20px; font-size: 16px;}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .txt p {height: 20px; line-height: 20px; font-size: 12px;}
-
-	.seam-list {max-height: calc(100vh - 350px) !important;}
-	.seam-list::after {content: ""; height: 50px; display: block;}
+	.seam-list {
+		max-height: calc(100vh - 350px) !important;
+	}
+	.seam-list::after {
+		content: '';
+		height: 50px;
+		display: block;
+	}
 }
 
-@media (max-width: 500px){
-
+@media (max-width: 500px) {
 	.face.front .face-textures {
-		transform:  translateZ(0px) translateX(-26px) translateY(0px) rotateX(0deg) rotateY(359deg) rotateZ(0deg);
+		transform: translateZ(0px) translateX(-26px) translateY(0px) rotateX(0deg) rotateY(359deg) rotateZ(0deg);
 		background-size: 20%;
 	}
 	.face.side .face-textures {
-		transform:  translateZ(0px) translateX(0px) translateY(0px) rotateX(0deg) rotateY(5deg) rotateZ(0deg);
+		transform: translateZ(0px) translateX(0px) translateY(0px) rotateX(0deg) rotateY(5deg) rotateZ(0deg);
 		background-size: 20%;
 	}
 	.face.gate-right .face-textures {
@@ -389,18 +1105,70 @@ body {
 		background-size: 102%;
 	}
 
+	.face.front {
+		width: 32%;
+		right: 47%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(6% 41%, 90% 31%, 90% 81%, 6% 79%);
+		perspective: 7px;
+		perspective-origin: 94% 71%;
+	}
+	.face.side {
+		width: 28%;
+		right: 19.5%;
+		z-index: 1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(8% 17%, 100% 19%, 100% 77.5%, 8% 81%);
+		perspective: 35px;
+		perspective-origin: 47% 66%;
+	}
 
+	.face.gate-right {
+		width: 22%;
+		right: 0%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(10% 59%, 100% 57%, 100% 75%, 10% 74.5%);
+		perspective: 75px;
+		perspective-origin: 10% 69%;
+	}
+	.face.gate-left {
+		width: 22%;
+		left: 0%;
+		z-index: -1;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(0% 60.5%, 90% 61.1%, 90% 78%, 0% 78%);
+		perspective: 500px;
+		perspective-origin: 61% 50%;
+	}
 
-.face.front {width: 32%; right: 47%; z-index: -1; height: 100%; overflow: hidden; clip-path: polygon(6%  41%, 90% 31%,90% 81%, 6% 79%);perspective:7px; perspective-origin: 94% 71%;}
-.face.side {width: 28%; right: 19.5%; z-index: 1; height: 100%; overflow: hidden; clip-path: polygon(8% 17%, 100% 19%, 100% 77.5%, 8% 81%);perspective:35px; perspective-origin: 47% 66%;}
-
-.face.gate-right {width: 22%; right: 0%; z-index: -1; height: 100%; overflow: hidden;clip-path: polygon(10% 59%, 100% 57%, 100% 75%, 10% 74.5%);perspective:75px; perspective-origin: 10% 69%;}
-.face.gate-left {width: 22%; left: 0%; z-index: -1; height: 100%; overflow: hidden; clip-path: polygon(0% 60.5%, 90% 61.1%, 90% 78%, 0% 78%);perspective:500px; perspective-origin: 61% 50%;}
-
-.face.wall1{width: 6%; right: 46%; z-index: 0; height: 100%; overflow: hidden; clip-path: polygon(15% 31%, 91% 32.3%, 15% 39.2%);perspective:25px; perspective-origin: 37% 54%;}
-.face.wall2{width: 6%; left: 32%; z-index: 0; height: 100%; overflow: hidden; clip-path: polygon(10% 37%, 66% 38%, 66% 40%, 10% 45%); perspective:21px; perspective-origin:37% 54%;}
+	.face.wall1 {
+		width: 6%;
+		right: 46%;
+		z-index: 0;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(15% 31%, 91% 32.3%, 15% 39.2%);
+		perspective: 25px;
+		perspective-origin: 37% 54%;
+	}
+	.face.wall2 {
+		width: 6%;
+		left: 32%;
+		z-index: 0;
+		height: 100%;
+		overflow: hidden;
+		clip-path: polygon(10% 37%, 66% 38%, 66% 40%, 10% 45%);
+		perspective: 21px;
+		perspective-origin: 37% 54%;
+	}
 }
-#modes .mode  {
+#modes .mode {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -413,29 +1181,4 @@ body {
 
 .mode.active svg path {
 	fill: #fff;
-}
-
-
-#app-menu .app-chapter .inner .group-items button.group-item {
-	box-shadow: none;
-	border: none;
-	padding: 0;
-	margin: 0;
-	margin-bottom: 20px;
-  height: 162px;
-	padding: 0;
-}
-.layout-home .img {
-	width: 30px!important;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.layout-home .img img {
-	width: 30px;
-	height: 30px;
-}
-.layout-home h3 {
-	width: calc(100% - 50px)!important;
-	font-size: 18px!important;
 }
