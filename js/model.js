@@ -336,3 +336,66 @@ function showObjectWithMaterial(object, material) {
 updateWallTexture()
 
 window.addEventListener('resize', onWindowResize);
+
+
+
+const items = document.querySelectorAll('#windows .item');
+
+const currentColor = new THREE.Color(0x000000); // Черный цвет по умолчанию
+
+// Функция для изменения цвета материала
+function changeMaterialColor(material, color) {
+  if (material) {
+    material.color.set(color);
+    material.needsUpdate = true;
+  }
+}
+
+// Обработчик события при щелчке на элементе
+function handleClickColor(event) {
+  // Сначала снимаем класс "active" у всех элементов
+  items.forEach(item => item.classList.remove('active'));
+
+  // Добавляем класс "active" к элементу, на котором было событие
+  event.currentTarget.classList.add('active');
+
+  // Получаем hex-цвет из data-color элемента
+  const hexColor = event.currentTarget.getAttribute('data-color');
+
+  // Преобразуем hex-цвет в Three.js Color
+  currentColor.setStyle(`#${hexColor}`);
+
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      // Обойдем все дочерние объекты homeObject
+      homeObject.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          // Проверяем, есть ли у объекта материалы
+          if (Array.isArray(child.material)) {
+            child.material.forEach((material) => {
+              // Используем регулярное выражение для поиска материалов с приставкой "-wall"
+              if (material.name && /-stavny(\.\d+)?$/.test(material.name)) {
+                changeMaterialColor(material, currentColor)
+                // wallTexture.encoding = THREE.sRGBEncoding;
+                // material.map = wallTexture;
+                // material.color = new THREE.Color(1, 1, 1);
+                // material.needsUpdate = true;
+              }
+            });
+          } else {
+            // Если у объекта только один материал
+            const material = child.material;
+            if (material.name && /-stavny(\.\d+)?$/.test(material.name)) {
+              changeMaterialColor(material, currentColor)
+            }
+          }
+        }
+      });
+    }
+  }
+}
+
+// Добавляем обработчик события к каждому элементу
+items.forEach(item => item.addEventListener('click', handleClickColor));

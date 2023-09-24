@@ -1182,3 +1182,121 @@ body {
 .mode.active svg path {
 	fill: #fff;
 }
+
+
+.wrap-item {
+      position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 20px;
+	margin: 20px 40px;
+	max-height: 90vh;
+}
+.item {
+  position: relative;
+  margin: 20px 10px;
+  padding: 0;
+  display: block;
+  height: 165px;
+  background-color: #fff;
+  width: 100%;
+  background-size: cover;
+  border-radius: 15px;
+  -webkit-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  background-position: center;
+}
+.item .title_item {
+  position: relative;
+  opacity: 0;
+  left: 0;
+  top: 10px;
+  width: 180px;
+  padding: 5px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 10px #000;
+  display: block;
+  border-radius: 10px;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.item:hover {
+  cursor: pointer;
+}
+ .item:hover .title_item {
+  opacity: 1;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.btn-item {
+  background: #fff;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  text-align: center;
+  line-height: 30px;
+  height: 40px;
+  border-radius: 50%;
+  text-transform: lowercase;
+  transition: all 0.2s;
+}
+ .item.active .btn-item {
+  background: #5221d1;
+}
+
+checked {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.checked:after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 14px;
+  display: inline-block;
+  width: 12px;
+  height: 24px;
+  border: solid #fff;
+  border-width: 0 6px 6px 0;
+  transform: rotate(45deg);
+  display: none;
+  animation: checkedAfter 0.2s ease;
+  transition: all 0.2s;
+}
+.item.active .btn-item .checked:after {
+  display: block;
+}
+.item.active .btn-item {
+  box-shadow: none;
+}
+.item.active .btn-item {
+  border: 0 solid transparent;
+  animation: checked 0.2s ease;
+  transition: all 0.2s;
+}
+@keyframes checked {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes checkedAfter {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
