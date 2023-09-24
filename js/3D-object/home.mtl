@@ -1,4 +1,4 @@
-# Blender 3.6.2 MTL File: 'home.blend'
+# Blender 3.6.2 MTL File: 'untitled.blend'
 # www.blender.org
 
 newmtl Garage-cherepicza.004
@@ -29,7 +29,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd Map/Сottage 5_brick.jpg
+map_Kd Map/Home Around/Сottage 1_brick.jpg
 
 newmtl Garage-stavny.004
 Ns 1000.000000
@@ -129,12 +129,12 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd Map/Сottage 5_brick.jpg
+map_Kd Map/Home Around/Сottage 1_brick.jpg
 
 newmtl L-1-stavny.004
 Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.061246 0.035601 0.030713
+Kd 0.061246 0.033105 0.029557
 Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
@@ -179,7 +179,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd Map/Сottage 5_brick.jpg
+map_Kd Map/Home Around/Сottage 1_brick.jpg
 
 newmtl L-2-stavny.004
 Ns 1000.000000
@@ -221,6 +221,36 @@ Ni 1.450000
 d 1.000000
 illum 1
 
+newmtl Roof-cherepicza.001
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Map/Home Around/Cherepicza.jpg
+
+newmtl Roof-cherepicza.004
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Map/Home Around/Cherepicza.jpg
+
+newmtl Roof-pallet.002
+Ns 260.868317
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd Map/Home Around/Сottage 1_brick.jpg
+
 newmtl Roof-pallet.005
 Ns 260.868317
 Ka 1.000000 1.000000 1.000000
@@ -231,32 +261,22 @@ d 1.000000
 illum 1
 map_Kd Map/Home Around/Сottage 1_brick.jpg
 
-newmtl Roof-pallet.006
-Ns 260.868317
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 1
-map_Kd Map/Home Around/Сottage 1_brick.jpg
-
-newmtl Roof_-cherepicza.003
+newmtl Roof-stavny
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
+Kd 0.020289 0.012983 0.012286
+Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
-illum 1
-map_Kd Map/Home Around/Cherepicza.jpg
+illum 2
 
-newmtl Roof_-cherepicza.004
+newmtl Roof-stavny.001
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
+Kd 0.020289 0.012983 0.012286
+Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
-illum 1
-map_Kd Map/Home Around/Cherepicza.jpg
+illum 2

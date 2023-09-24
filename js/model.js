@@ -50,7 +50,7 @@ function stopBanners() {
 
 // Функция для обновления положения камеры
 function updateCameraPosition() {
-  const minCameraY = -1;
+  const minCameraY = -5;
   if (camera.position.y < minCameraY) {
     camera.position.y = minCameraY;
   }
@@ -339,56 +339,82 @@ window.addEventListener('resize', onWindowResize);
 
 
 
-const items = document.querySelectorAll('#windows .item');
 
-const currentColor = new THREE.Color(0x000000); // Черный цвет по умолчанию
+const itemsWondows = document.querySelectorAll('#windows .item');
+const currentColor = new THREE.Color(0x000000);
+itemsWondows.forEach(item => item.addEventListener('click', handleClickColor));
 
-// Функция для изменения цвета материала
-function changeMaterialColor(material, color) {
-  if (material) {
-    material.color.set(color);
-    material.needsUpdate = true;
-  }
-}
-
-// Обработчик события при щелчке на элементе
 function handleClickColor(event) {
-  // Сначала снимаем класс "active" у всех элементов
-  items.forEach(item => item.classList.remove('active'));
-
-  // Добавляем класс "active" к элементу, на котором было событие
+  itemsWondows.forEach(item => item.classList.remove('active'));
   event.currentTarget.classList.add('active');
-
-  // Получаем hex-цвет из data-color элемента
   const hexColor = event.currentTarget.getAttribute('data-color');
-
-  // Преобразуем hex-цвет в Three.js Color
   currentColor.setStyle(`#${hexColor}`);
 
   if (scene) {
     const homeObject = scene.getObjectByName("Home");
 
     if (homeObject) {
-      // Обойдем все дочерние объекты homeObject
       homeObject.traverse(function (child) {
         if (child instanceof THREE.Mesh) {
-          // Проверяем, есть ли у объекта материалы
           if (Array.isArray(child.material)) {
             child.material.forEach((material) => {
-              // Используем регулярное выражение для поиска материалов с приставкой "-wall"
               if (material.name && /-stavny(\.\d+)?$/.test(material.name)) {
-                changeMaterialColor(material, currentColor)
-                // wallTexture.encoding = THREE.sRGBEncoding;
-                // material.map = wallTexture;
-                // material.color = new THREE.Color(1, 1, 1);
-                // material.needsUpdate = true;
+                material.color.set(currentColor);
+                material.needsUpdate = true;
               }
             });
           } else {
-            // Если у объекта только один материал
             const material = child.material;
             if (material.name && /-stavny(\.\d+)?$/.test(material.name)) {
-              changeMaterialColor(material, currentColor)
+              material.color.set(currentColor);
+              material.needsUpdate = true;
+            }
+          }
+        }
+      });
+    }
+  }
+}
+const itemsDodo = document.querySelectorAll('#dado .item');
+itemsDodo.forEach(item => item.addEventListener('click', handleClickTexture));
+
+function handleClickTexture(event) {
+  itemsDodo.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const textureUrl = event.currentTarget.getAttribute('data-textures');
+
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      homeObject.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach((material) => {
+              if (material.name && /-pallet(\.\d+)?$/.test(material.name)) {
+                const texture = new THREE.TextureLoader().load(textureUrl);
+                texture.wrapS = textureConfig.wrapS;
+                texture.wrapT = textureConfig.wrapT;
+                texture.repeat.set(0.8, 0.8);
+                texture.encoding = THREE.sRGBEncoding;
+                material.map = texture;
+                material.magFilter = THREE.LinearFilter;
+                material.minFilter = THREE.LinearMipmapLinearFilter;
+                material.needsUpdate = true;
+              }
+            });
+          } else {
+            const material = child.material;
+            if (material.name && /-pallet(\.\d+)?$/.test(material.name)) {
+              const texture = new THREE.TextureLoader().load(textureUrl);
+              texture.wrapS = textureConfig.wrapS;
+              texture.wrapT = textureConfig.wrapT;
+              texture.repeat.set(0.8, 0.8);
+              texture.encoding = THREE.sRGBEncoding;
+              material.map = texture;
+              material.magFilter = THREE.LinearFilter;
+              material.minFilter = THREE.LinearMipmapLinearFilter;
+              material.needsUpdate = true;
             }
           }
         }
@@ -397,5 +423,51 @@ function handleClickColor(event) {
   }
 }
 
-// Добавляем обработчик события к каждому элементу
-items.forEach(item => item.addEventListener('click', handleClickColor));
+
+const itemsCher = document.querySelectorAll('#cher .item');
+itemsCher.forEach(item => item.addEventListener('click', handleClickTextureCher));
+
+function handleClickTextureCher(event) {
+  itemsCher.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const textureUrl = event.currentTarget.getAttribute('data-textures');
+
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      homeObject.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach((material) => {
+              if (material.name && /-cherepicza(\.\d+)?$/.test(material.name)) {
+                const texture = new THREE.TextureLoader().load(textureUrl);
+                texture.wrapS = textureConfig.wrapS;
+                texture.wrapT = textureConfig.wrapT;
+                texture.repeat.set(1, 1);
+                texture.encoding = THREE.sRGBEncoding;
+                material.map = texture;
+                material.magFilter = THREE.LinearFilter;
+                material.minFilter = THREE.LinearMipmapLinearFilter;
+                material.needsUpdate = true;
+              }
+            });
+          } else {
+            const material = child.material;
+            if (material.name && /-cherepicza(\.\d+)?$/.test(material.name)) {
+              const texture = new THREE.TextureLoader().load(textureUrl);
+              texture.wrapS = textureConfig.wrapS;
+              texture.wrapT = textureConfig.wrapT;
+              texture.repeat.set(1, 1);
+              texture.encoding = THREE.sRGBEncoding;
+              material.map = texture;
+              material.magFilter = THREE.LinearFilter;
+              material.minFilter = THREE.LinearMipmapLinearFilter;
+              material.needsUpdate = true;
+            }
+          }
+        }
+      });
+    }
+  }
+}
