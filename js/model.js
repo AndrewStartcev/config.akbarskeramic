@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+
 import { OBJLoader } from './three/examples/jsm/loaders/OBJLoader.js';
 import { MTLLoader } from './three/examples/jsm/loaders/MTLLoader.js';
 import { OrbitControls } from './three/examples/jsm/controls/OrbitControls.js';
@@ -50,7 +51,7 @@ function stopBanners() {
 
 // Функция для обновления положения камеры
 function updateCameraPosition() {
-  const minCameraY = -5;
+  const minCameraY = -2;
   if (camera.position.y < minCameraY) {
     camera.position.y = minCameraY;
   }
@@ -152,13 +153,15 @@ function init() {
   scene.add(directionalLight);
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.minDistance = 3;
-  controls.maxDistance = 10;
+  controls.minDistance = 2;
+  controls.maxDistance = 5;
+  controls.enablePan = false;
   controls.enableDamping = true;
   controls.dampingFactor = 0.1;
   controls.rotateSpeed = 0.5;
   controls.minPolarAngle = Math.PI / 4;
   controls.maxPolarAngle = Math.PI / 1.5;
+
 
   onWindowResize();
 

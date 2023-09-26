@@ -26,6 +26,10 @@ body {
 	--white-color: #f4f4f4;
 	--blue-color: #5221d1;
 }
+sub {
+	vertical-align: super;
+	font-size: 14px;
+}
 .loading-banner {
   display: block;
   position: fixed;
@@ -40,6 +44,8 @@ body {
   text-align: center;
   color: #fff;
 	font-size: 60px;
+	font-family: 'Comfortaa', cursive;
+	font-weight: normal;
 }
 .wrap-prelogo {
   position: absolute;
@@ -146,6 +152,8 @@ body {
 	position: absolute;
 	width: 100%;
 	text-align: center;
+	font-family: 'Comfortaa', cursive;
+	font-weight: normal;
 	font-size: 18px;
 	color: #fff;
 	font-weight: 100;
@@ -312,6 +320,8 @@ body {
 #app-menu .app-chapter .inner > h2 {
 	color: var(--white-color);
 	font-weight: bold;
+	font-family: 'Comfortaa', cursive;
+	font-weight: normal;
 }
 #app-menu .app-chapter .inner .group-items {
 	position: relative;
@@ -351,7 +361,7 @@ body {
 	background: #4d4d4d;
 }
 
-#app-menu .app-chapter .inner .group-items .layout-group-item {
+#app-menu #layout .inner .group-items .layout-group-item {
 	position: relative;
 	overflow: hidden;
 	cursor: pointer;
@@ -359,27 +369,27 @@ body {
 	width: 100%;
 	border-radius: 15px;
 }
-#app-menu .app-chapter .inner .group-items .layout-group-item:last-child {
+#app-menu #layout .inner .group-items .layout-group-item:last-child {
 	margin-bottom: 0px;
 }
-#app-menu .app-chapter .inner .group-items .layout-group-item .img {
+#app-menu #layout .inner .group-items .layout-group-item .img {
 	border-radius: 10px;
 	overflow: hidden;
 	float: left;
 }
-#app-menu .app-chapter .inner .group-items .layout-group-item .img.circled {
+#app-menu #layout .inner .group-items .layout-group-item .img.circled {
 	border-radius: 50%;
 }
-#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {
+#app-menu #layout .inner .group-items .layout-group-item > h3 {
 	float: left;
 }
-#app-menu .app-chapter .inner .group-items .layout-group-item .txt {
+#app-menu #layout .inner .group-items .layout-group-item .txt {
 	float: left;
 }
-#app-menu .app-chapter .inner .group-items .layout-group-item:hover {
+#app-menu #layout .inner .group-items .layout-group-item:hover {
 	background: #838383;
 }
-#app-menu .app-chapter .inner .group-items .layout-group-item.active {
+#app-menu #layout .inner .group-items .layout-group-item.active {
 	background: #4d4d4d;
 }
 
@@ -648,7 +658,9 @@ body {
 		width: calc(100% - 80px);
 		height: 60px;
 		line-height: 60px;
-		font-size: 20px;
+		font-size: 18px;
+		font-family: 'Comfortaa', cursive;
+		font-weight: normal;
 	}
 	#app-menu .app-chapter .inner .group-items .group-item .txt {
 		width: calc(100% - 80px);
@@ -657,7 +669,9 @@ body {
 	#app-menu .app-chapter .inner .group-items .group-item .txt h3 {
 		height: 30px;
 		line-height: 30px;
-		font-size: 20px;
+		font-size: 18px;
+		font-family: 'Comfortaa', cursive;
+		font-weight: normal;
 	}
 	#app-menu .app-chapter .inner .group-items .group-item .txt p {
 		height: 30px;
@@ -665,32 +679,40 @@ body {
 		font-size: 16px;
 	}
 
-	#app-menu .app-chapter .inner .group-items .layout-group-item {
+	#app-menu #layout .inner .group-items .layout-group-item {
 		margin-bottom: 20px;
 		height: 80px;
 		padding: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .img {
-		width: 60px;
-		height: 60px;
+	#app-menu #layout .inner .group-items .layout-group-item .img {
+		width: 40px;
+		height: 40px;
 		margin-right: 20px;
+		border-radius: 0;
 	}
-	#app-menu .app-chapter .inner .group-items .layout-group-item > h3 {
+	#app-menu #layout .inner .group-items .layout-group-item > h3 {
+		width: calc(100% - 60px);
+		height: 40px;
+		line-height: 40px;
+		font-size: 18px;
+		font-family: 'Comfortaa', cursive;
+		font-weight: normal;
+	}
+	#app-menu #layout .inner .group-items .layout-group-item .txt {
 		width: calc(100% - 80px);
 		height: 60px;
-		line-height: 60px;
-		font-size: 20px;
 	}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .txt {
-		width: calc(100% - 80px);
-		height: 60px;
-	}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .txt h3 {
+	#app-menu #layout .inner .group-items .layout-group-item .txt h3 {
 		height: 30px;
 		line-height: 30px;
-		font-size: 20px;
+		font-size: 18px;
+		font-family: 'Comfortaa', cursive;
+		font-weight: normal;
 	}
-	#app-menu .app-chapter .inner .group-items .layout-group-item .txt p {
+	#app-menu #layout .inner .group-items .layout-group-item .txt p {
 		height: 30px;
 		line-height: 30px;
 		font-size: 16px;
