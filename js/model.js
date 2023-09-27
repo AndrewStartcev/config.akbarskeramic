@@ -35,10 +35,6 @@ function createTextureFromCanvas(canvas) {
   return texture;
 }
 
-function startBanners() {
-  loadingBanner.style.display = "block";
-}
-
 // Функция для обновления текста баннера
 function updateLoadingText(text) {
   loadingText.innerText = text;
@@ -474,3 +470,43 @@ function handleClickTextureCher(event) {
     }
   }
 }
+
+const saveButton = document.getElementById("save-screenshot");
+
+saveButton.addEventListener("click", () => {
+  // Создаем renderer
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  // Создаем копию текущей камеры и устанавливаем ее позицию
+  const cameraCopy = camera.clone();
+  cameraCopy.position.copy(camera.position);
+
+  // Создаем render target
+  const renderTarget = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight);
+
+  // Устанавливаем render target для renderer
+  renderer.setRenderTarget(renderTarget);
+
+  // Отрисовываем сцену на render target
+  renderer.render(scene, cameraCopy);
+
+  // Получаем скриншот с render target
+  const screenshot = renderer.domElement.toDataURL('image/jpeg');
+
+  // Создаем ссылку для скачивания скриншота
+  const downloadLink = document.createElement("a");
+  downloadLink.href = screenshot;
+  downloadLink.download = "screenshot.jpg";
+
+  // Добавляем ссылку на страницу и эмулируем клик для скачивания
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+
+  // Удаляем ссылку после скачивания
+  document.body.removeChild(downloadLink);
+
+  // Очищаем render target и renderer
+  renderTarget.dispose();
+  renderer.dispose();
+});
