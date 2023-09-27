@@ -1355,3 +1355,67 @@ checked {
 .sidebar-export__item:hover svg path {
 	fill: white
 }
+.sidebar-social {
+	position: fixed;
+	bottom: 200px;
+	right: 40px;
+	z-index: 999;
+
+	border-radius: 15px;
+  overflow: hidden;
+}
+.sidebar-social__item {
+	cursor: pointer;
+	padding: 14px;
+	background: white;
+	transition: all 0.2s ease;
+
+}
+.sidebar-social__item svg {
+	width: 32px;
+	height: 32px;
+
+}
+.sidebar-social__item svg path {
+	fill: var(--blue-color);
+	transition: all 0.2s ease;
+}
+.sidebar-social__item:hover {
+	background: var(--blue-color);
+}
+.sidebar-social__item:hover svg path {
+	fill: white
+}
+
+@media (max-width: 700px) {
+	.sidebar-export {
+		bottom: 20px;
+		right: 20px;
+	}
+	.sidebar-export__item {
+		padding: 4px;
+		width: 40px;
+		height: 40px;
+	}
+	.sidebar-export__item svg {
+		width: 25px;
+		height: 25px;
+	}
+
+	.sidebar-social {
+		bottom: 120px;
+		right: 20px;
+	}
+	.sidebar-social__item {
+		padding: 4px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.sidebar-social__item svg {
+		width: 25px;
+		height: 25px;
+	}
+}
