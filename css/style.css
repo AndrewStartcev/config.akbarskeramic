@@ -1326,7 +1326,32 @@ checked {
 
 .sidebar-export {
 	position: fixed;
-	bottom: 30px;
-	right: 30px;
+	bottom: 40px;
+	right: 40px;
 	z-index: 999;
+
+	border-radius: 15px;
+  overflow: hidden;
+}
+.sidebar-export__item {
+	cursor: pointer;
+	padding: 14px;
+	background: white;
+	transition: all 0.2s ease;
+
+}
+.sidebar-export__item svg {
+	width: 32px;
+	height: 32px;
+
+}
+.sidebar-export__item svg path {
+	fill: var(--blue-color);
+	transition: all 0.2s ease;
+}
+.sidebar-export__item:hover {
+	background: var(--blue-color);
+}
+.sidebar-export__item:hover svg path {
+	fill: white
 }
