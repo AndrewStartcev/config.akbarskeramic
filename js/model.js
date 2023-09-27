@@ -84,11 +84,11 @@ function loadModelsAndTextures() {
   // Загрузка модели "Buttom"
   const bottomLoader = new OBJLoader();
   const bottomMtlLoader = new MTLLoader();
-  bottomMtlLoader.load('./js/3D-object/module.mtl', (materials) => {
+  bottomMtlLoader.load('./js/3D-object/module (old).mtl', (materials) => {
     materials.preload();
     bottomLoader.setMaterials(materials);
 
-    bottomLoader.load('./js/3D-object/module.obj', function (object) {
+    bottomLoader.load('./js/3D-object/module (old).obj', function (object) {
       object.position.set(object.position.x, -2, object.position.z);
       object.name = "Buttom";
       scene.add(object);
@@ -154,7 +154,7 @@ function init() {
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.minDistance = 2;
-  controls.maxDistance = 5;
+  controls.maxDistance = 10;
   controls.enablePan = false;
   controls.enableDamping = true;
   controls.dampingFactor = 0.1;
