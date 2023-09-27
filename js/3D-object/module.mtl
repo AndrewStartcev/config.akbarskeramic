@@ -1,7 +1,7 @@
-# Blender 3.6.2 MTL File: '1 этаж.blend'
+# Blender 3.6.2 MTL File: 'scena.blend'
 # www.blender.org
 
-newmtl BrickZab_01
+newmtl BrickZab_01.003
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
@@ -11,7 +11,7 @@ d 1.000000
 illum 3
 map_Kd hrt/BavarCoraDub.jpg
 
-newmtl GrassSim
+newmtl GrassSim.001
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
@@ -21,7 +21,7 @@ d 1.000000
 illum 3
 map_Kd hrt/NGrass.jpg
 
-newmtl GrassSimGazon
+newmtl GrassSimGazon.003
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
@@ -31,37 +31,27 @@ d 1.000000
 illum 3
 map_Kd hrt/NGrass.jpg
 
-newmtl Levnevka
+newmtl PinBigLev.009
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
-Kd 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 3
+Ni 34.899998
+illum 1
+map_Kd hrt/PineBirchAtlas.png
+map_d hrt/PineBirchAtlas.png
 
-newmtl PinBigLev
+newmtl PinBigLevStolb.009
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.500000
-d 1.000000
 illum 3
 map_Kd hrt/PineBirchAtlas.png
+map_d hrt/PineBirchAtlas.png
 
-newmtl PinBigLevStolb
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 3
-map_Kd hrt/DarkKor.jpg
-
-newmtl RockDek
+newmtl RockDek.003
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
@@ -71,7 +61,7 @@ d 1.000000
 illum 3
 map_Kd hrt/StoneSad.jpg
 
-newmtl Skam
+newmtl Skam.003
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
@@ -81,7 +71,7 @@ d 1.000000
 illum 3
 map_Kd hrt/Skam.jpg
 
-newmtl TratuarStatic_01.001
+newmtl TratuarStatic_01.003
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
@@ -91,17 +81,17 @@ d 1.000000
 illum 3
 map_Kd hrt/TratColor_1.jpg
 
-newmtl Uzor_01
+newmtl Uzor_01.003
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.500000
-d 1.000000
 illum 3
-map_Kd hrt/MuskInBrickSmall.png
+map_Kd hrt/Lov01.png
+map_d hrt/Lov01.png
 
-newmtl WoodRed.000
+newmtl WoodRed.005
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
@@ -110,33 +100,3 @@ Ni 1.500000
 d 1.000000
 illum 3
 map_Kd hrt/WoodLight.jpg
-
-newmtl grasszab_mat
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 3
-map_Kd hrt/Moray.jpg
-
-newmtl smallvrata
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 3
-
-newmtl uzor_vrata
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 3
-map_Kd hrt/WoodLightNo.jpg
