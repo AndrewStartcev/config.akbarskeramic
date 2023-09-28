@@ -21,7 +21,7 @@ const hideMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0
 // Сцена, камера и рендерер
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer();
 
 // Переменные для сохранения оригинальных материалов
 const originalMaterials = {};
@@ -87,6 +87,25 @@ function loadModelsAndTextures() {
     bottomLoader.load('./js/3D-object/module (old).obj', function (object) {
       object.position.set(object.position.x, -2, object.position.z);
       object.name = "Buttom";
+      object.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach((material) => {
+              if (material.map) {
+                // Установка текстурного фильтра
+                material.map.magFilter = THREE.LinearFilter;
+                material.map.minFilter = THREE.LinearMipmapLinearFilter;
+              }
+            });
+          } else {
+            if (child.material.map) {
+              // Установка текстурного фильтра
+              child.material.map.magFilter = THREE.LinearFilter;
+              child.material.map.minFilter = THREE.LinearMipmapLinearFilter;
+            }
+          }
+        }
+      });
       scene.add(object);
     });
   });
@@ -101,11 +120,31 @@ function loadModelsAndTextures() {
     homeLoader.setMaterials(materials);
 
     homeLoader.load('./js/3D-object/home.obj', function (object) {
-      object.position.set(object.position.x, -2, object.position.z);
+      object.position.set(object.position.x, -2.01, object.position.z);
       object.name = "Home";
 
       initElementsHome(object, ["L-2", "Roof", "Garage", "Hall"], false)
       initElementsHome(object, ["L-1", "Roof1",], true)
+
+      object.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach((material) => {
+              if (material.map) {
+                // Установка текстурного фильтра
+                material.map.magFilter = THREE.LinearFilter;
+                material.map.minFilter = THREE.LinearMipmapLinearFilter;
+              }
+            });
+          } else {
+            if (child.material.map) {
+              // Установка текстурного фильтра
+              child.material.map.magFilter = THREE.LinearFilter;
+              child.material.map.minFilter = THREE.LinearMipmapLinearFilter;
+            }
+          }
+        }
+      });
 
       scene.add(object);
 
@@ -118,9 +157,20 @@ function loadModelsAndTextures() {
 function init() {
   updateLoadingText("Настройка сцены, света и фона...");
 
+
+  renderer = new THREE.WebGLRenderer({
+    preserveDrawingBuffer: true,
+    antialias: true
+  });
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);;
   renderer.setClearColor(0xd8d8d8);
-  document.getElementById('layout-3d-three').appendChild(renderer.domElement);
+
+  const container = document.getElementById('layout-3d-three');
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+  container.appendChild(renderer.domElement);
 
   const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
   const skyMaterial = new THREE.MeshBasicMaterial({
@@ -173,7 +223,6 @@ function init() {
   animate();
 }
 
-// startBanners();
 init();
 
 // Функция для обновления текстуры стен
@@ -400,6 +449,8 @@ function handleClickTexture(event) {
                 material.magFilter = THREE.LinearFilter;
                 material.minFilter = THREE.LinearMipmapLinearFilter;
                 material.needsUpdate = true;
+                texture.magFilter = THREE.LinearFilter;
+                texture.minFilter = THREE.LinearMipmapLinearFilter;
               }
             });
           } else {
@@ -414,6 +465,8 @@ function handleClickTexture(event) {
               material.magFilter = THREE.LinearFilter;
               material.minFilter = THREE.LinearMipmapLinearFilter;
               material.needsUpdate = true;
+              texture.magFilter = THREE.LinearFilter;
+              texture.minFilter = THREE.LinearMipmapLinearFilter;
             }
           }
         }
@@ -472,41 +525,51 @@ function handleClickTextureCher(event) {
 }
 
 const saveButton = document.getElementById("save-screenshot");
+const imagePopup = document.getElementById("image-popup");
+const popupImage = document.getElementById("popup-image");
+const downloadButton = document.getElementById("download-button");
+const cancelButton = document.getElementById("cancel-button");
+const closeButton = document.getElementById("close-button");
 
-saveButton.addEventListener("click", () => {
-  // Создаем renderer
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+let imageDataUrl = null; // Для хранения URL изображения
 
-  // Создаем копию текущей камеры и устанавливаем ее позицию
-  const cameraCopy = camera.clone();
-  cameraCopy.position.copy(camera.position);
+saveButton.addEventListener('click', () => {
+  try {
+    const strMime = "image/png";
+    imageDataUrl = renderer.domElement.toDataURL(strMime);
 
-  // Создаем render target
-  const renderTarget = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight);
+    // Отображаем изображение во всплывающем окне
+    popupImage.src = imageDataUrl;
+    imagePopup.classList.add('active')
+  } catch (e) {
+    console.log(e);
+    return;
+  }
+});
 
-  // Устанавливаем render target для renderer
-  renderer.setRenderTarget(renderTarget);
+// Обработчик для кнопки "Скачать"
+downloadButton.addEventListener('click', () => {
+  if (imageDataUrl) {
+    // Создаем ссылку для скачивания и инициируем скачивание
+    const a = document.createElement('a');
+    a.href = imageDataUrl;
+    a.download = "screenshot.jpg";
+    a.click();
+  }
+});
 
-  // Отрисовываем сцену на render target
-  renderer.render(scene, cameraCopy);
+// Обработчик для кнопки "Отмена"
+cancelButton.addEventListener('click', () => {
+  // Закрываем всплывающее окно и очищаем данные изображения
+  imagePopup.classList.remove('active')
+  popupImage.src = "";
+  imageDataUrl = null;
+});
 
-  // Получаем скриншот с render target
-  const screenshot = renderer.domElement.toDataURL('image/jpeg');
-
-  // Создаем ссылку для скачивания скриншота
-  const downloadLink = document.createElement("a");
-  downloadLink.href = screenshot;
-  downloadLink.download = "screenshot.jpg";
-
-  // Добавляем ссылку на страницу и эмулируем клик для скачивания
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-
-  // Удаляем ссылку после скачивания
-  document.body.removeChild(downloadLink);
-
-  // Очищаем render target и renderer
-  renderTarget.dispose();
-  renderer.dispose();
+// Обработчик для кнопки "Закрыть"
+closeButton.addEventListener('click', () => {
+  // Закрываем всплывающее окно и очищаем данные изображения
+  imagePopup.classList.remove('active')
+  popupImage.src = "";
+  imageDataUrl = null;
 });

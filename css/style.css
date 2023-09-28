@@ -30,6 +30,12 @@ sub {
 	vertical-align: super;
 	font-size: 14px;
 }
+
+.custom-scroll {
+	overflow-x: hidden;
+	overflow-y: auto;
+
+}
 .loading-banner {
   display: block;
   position: fixed;
@@ -285,7 +291,7 @@ sub {
 	clear: both;
 }
 #app-menu .fl {
-	height: 100%;
+	height: 100vh;
 	float: left;
 	background: var(--blue-color);
 }
@@ -303,7 +309,7 @@ sub {
 }
 #app-menu .fr {
 	border-radius: 20px 0px 0px 20px;
-	height: 100%;
+	height: 100vh;
 	float: right;
 	background: var(--violet-color);
 	padding: 20px 0px;
@@ -316,6 +322,7 @@ sub {
 }
 #app-menu .app-chapter .inner {
 	overflow: hidden;
+	height: calc(100vh - 40px);
 }
 #app-menu .app-chapter .inner > h2 {
 	color: var(--white-color);
@@ -330,7 +337,9 @@ sub {
 	padding-right: 20px;
 }
 #app-menu .app-chapter .inner .group-items.custom-scroll {
-	max-height: 450px;
+	height: 100%;
+	/* max-height: calc(100vh - 220px);
+	max-height: 450px; */
 }
 #app-menu .app-chapter .inner .group-items .group-item {
 	position: relative;
@@ -1418,4 +1427,122 @@ checked {
 		width: 25px;
 		height: 25px;
 	}
+}
+
+
+@media (max-height: 560px) {
+	#app-menu .fl {
+		padding: 5px 0;
+	}
+	.sidebar-export {
+		bottom: 20px;
+		right: 20px;
+	}
+	.sidebar-export__item {
+		padding: 4px;
+		width: 40px;
+		height: 40px;
+	}
+	.sidebar-export__item svg {
+		width: 25px;
+		height: 25px;
+	}
+
+	.sidebar-social {
+		bottom: 120px;
+		right: 20px;
+	}
+	.sidebar-social__item {
+		padding: 4px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.sidebar-social__item svg {
+		width: 25px;
+		height: 25px;
+	}
+}
+
+@media (max-height: 400px) {
+	.sidebar-export {
+		display: flex;
+		align-items: center;
+	}
+	.sidebar-export__item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.sidebar-social {
+		bottom: 80px;
+		right: 20px;
+	}
+}
+
+/* Стили для всплывающего окна */
+#image-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  padding: 15px;
+	border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  max-width: 80%;
+  max-height: 80%;
+  text-align: center;
+	visibility: hidden;
+  transform: translate(-50%, -50%);
+}
+#image-popup.active {
+	visibility: visible;
+}
+#popup-image {
+  max-width: 100%;
+  max-height: 100%;
+  margin-bottom: 10px;
+}
+
+/* Стили для кнопок внутри всплывающего окна */
+#download-button,
+#cancel-button{
+  background-color: #5221d1;
+  color: white;
+  border: none;
+	font-size: 18px;
+  padding: 15px 25px;
+  margin-right: 10px;
+  cursor: pointer;
+	border-radius: 8px;
+}
+
+#download-button:hover,
+#cancel-button:hover {
+  background-color: #5944b8;
+}
+/* Стили для кнопки закрытия */
+#close-button {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  padding: 0;
+	background: #5221d1;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+}
+
+#close-button:hover {
+  background: #5944b8;
 }
