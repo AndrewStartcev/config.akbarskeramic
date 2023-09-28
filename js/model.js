@@ -164,7 +164,7 @@ function init() {
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);;
-  renderer.setClearColor(0xd8d8d8);
+  renderer.setClearColor(0xFFFFFF);
 
   const container = document.getElementById('layout-3d-three');
   while (container.firstChild) {
@@ -172,13 +172,13 @@ function init() {
   }
   container.appendChild(renderer.domElement);
 
-  const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
-  const skyMaterial = new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
-    side: THREE.BackSide
-  });
-  const sky = new THREE.Mesh(skyGeometry, skyMaterial);
-  scene.add(sky);
+  // const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
+  // const skyMaterial = new THREE.MeshBasicMaterial({
+  //   map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
+  //   side: THREE.BackSide
+  // });
+  // const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+  // scene.add(sky);
 
   loadModelsAndTextures();
 
