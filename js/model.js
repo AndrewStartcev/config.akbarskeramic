@@ -12,13 +12,6 @@ const canvas = document.getElementById("canvas");
 const loadingBanner = document.getElementById("loading-banner");
 const loadingText = document.getElementById("loading-text");
 
-
-// Получите ссылки на HTML-элементы
-const positionXElement = document.getElementById("positionX");
-const positionYElement = document.getElementById("positionY");
-const positionZElement = document.getElementById("positionZ");
-const zoomValueElement = document.getElementById("zoomValue");
-
 // Материалы
 const customColor = new THREE.Color(0x5221d1);
 const customColorRed = new THREE.Color(0xff0000);
@@ -27,7 +20,9 @@ const hideMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0
 
 // Сцена, камера и рендерер
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.5, 1000);
+const initialCameraPosition = new THREE.Vector3(-2.07, -1.94, 3.66); // Начальная позиция камеры
+const lookAtPosition = new THREE.Vector3(0, -10, -10); // Позиция, на которую камера смотрит
 var renderer = new THREE.WebGLRenderer();
 
 // Переменные для сохранения оригинальных материалов
@@ -51,21 +46,6 @@ function updateLoadingText(text) {
 function stopBanners() {
   loadingBanner.style.display = "none";
 }
-
-// Функция для обновления положения камеры
-// function updateCameraPosition() {
-//   // Получаем текущую позицию камеры
-//   const currentPosition = camera.position.clone();
-
-//   // Вычисляем дистанцию от камеры до центра сцены
-//   const distanceToCenter = currentPosition.distanceTo(new THREE.Vector3(0, 0, 0));
-
-//   // Вычисляем новую высоту (Y) камеры
-//   const newY = 5 - distanceToCenter * 1; // Меняйте коэффициент 0.2 по вашему усмотрению
-
-//   // Устанавливаем новую позицию камеры
-//   camera.position.setY(newY);
-// }
 
 // Обработчик события изменения размеров окна
 function onWindowResize() {
@@ -167,6 +147,7 @@ function loadModelsAndTextures() {
   });
 }
 
+
 // Инициализация сцены, камеры и контролов
 function init() {
   updateLoadingText("Настройка сцены, света и фона...");
@@ -195,53 +176,35 @@ function init() {
 
   scene.add(directionalLight);
 
+  camera.position.copy(initialCameraPosition);
+  camera.lookAt(lookAtPosition);
 
-  // const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
-  // const skyMaterial = new THREE.MeshBasicMaterial({
-  //   map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
-  //   side: THREE.BackSide
-  // });
-  // const sky = new THREE.Mesh(skyGeometry, skyMaterial);
-  // scene.add(sky);
-  camera.position.set(-2.99, -5, 5.99);
   loadModelsAndTextures();
-
-
 
   const controls = new OrbitControls(camera, renderer.domElement);
 
   controls.minPolarAngle = 0; // Ограничение по углу наклона вверх
-  controls.maxPolarAngle = Math.PI / 2;  // Ограничение по углу наклона вниз
-  controls.minAzimuthAngle = -Math.PI / 4;  // Ограничение по повороту влево
-  controls.maxAzimuthAngle = Math.PI / 4; // Ограничение по повороту вправо
-  controls.minDistance = 4;  // Ограничение по дистанции
+  controls.maxPolarAngle = Math.PI / 1.9;  // Ограничение по углу наклона вниз
+  controls.minDistance = 3;  // Ограничение по дистанции
   controls.maxDistance = 10;  // Ограничение по дистанции
   controls.enablePan = false; // Отключение перемещения камеры (панорамирования)
   controls.enableDamping = true; // Включение затухания для более плавных движений
-  controls.dampingFactor = 0.1; // Включение затухания для более плавных движений
+  controls.dampingFactor = 0.5; // Включение затухания для более плавных движений
   controls.rotateSpeed = 0.5; // Скорость вращения
-
-
-  // camera.lookAt(0, 0, 0);
 
   onWindowResize();
 
   const animate = () => {
-    positionXElement.textContent = camera.position.x.toFixed(2);
-    positionYElement.textContent = camera.position.y.toFixed(2);
-    positionZElement.textContent = camera.position.z.toFixed(2);
+
+
     requestAnimationFrame(animate);
 
-    // updateCameraPosition();
     controls.update();
-
-    // Обновите значения HTML-элементов
 
 
 
     renderer.render(scene, camera);
   };
-
   animate();
 }
 

@@ -338,6 +338,7 @@ sub {
 }
 #app-menu .app-chapter .inner .group-items.custom-scroll {
 	height: 100%;
+	padding-bottom: 50px;
 	/* max-height: calc(100vh - 220px);
 	max-height: 450px; */
 }
@@ -634,6 +635,7 @@ sub {
 	#app-menu .app-chapter .inner .group-items,
 	#chosen-bricks {
 		margin: 20px 40px;
+
 	}
 
 	#app-menu.opened .fr {
