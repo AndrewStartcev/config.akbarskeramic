@@ -7,10 +7,17 @@ import { lightingConfig } from './3D-object/config/lightingConfig.js';
 import { textureConfig } from './3D-object/config/textureConfig.js';
 
 // HTML элементы
+const container = document.getElementById('layout-3d-three');
 const canvas = document.getElementById("canvas");
 const loadingBanner = document.getElementById("loading-banner");
 const loadingText = document.getElementById("loading-text");
 
+
+// Получите ссылки на HTML-элементы
+const positionXElement = document.getElementById("positionX");
+const positionYElement = document.getElementById("positionY");
+const positionZElement = document.getElementById("positionZ");
+const zoomValueElement = document.getElementById("zoomValue");
 
 // Материалы
 const customColor = new THREE.Color(0x5221d1);
@@ -20,7 +27,7 @@ const hideMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0
 
 // Сцена, камера и рендерер
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 1000);
 var renderer = new THREE.WebGLRenderer();
 
 // Переменные для сохранения оригинальных материалов
@@ -46,12 +53,19 @@ function stopBanners() {
 }
 
 // Функция для обновления положения камеры
-function updateCameraPosition() {
-  const minCameraY = -2;
-  if (camera.position.y < minCameraY) {
-    camera.position.y = minCameraY;
-  }
-}
+// function updateCameraPosition() {
+//   // Получаем текущую позицию камеры
+//   const currentPosition = camera.position.clone();
+
+//   // Вычисляем дистанцию от камеры до центра сцены
+//   const distanceToCenter = currentPosition.distanceTo(new THREE.Vector3(0, 0, 0));
+
+//   // Вычисляем новую высоту (Y) камеры
+//   const newY = 5 - distanceToCenter * 1; // Меняйте коэффициент 0.2 по вашему усмотрению
+
+//   // Устанавливаем новую позицию камеры
+//   camera.position.setY(newY);
+// }
 
 // Обработчик события изменения размеров окна
 function onWindowResize() {
@@ -157,7 +171,6 @@ function loadModelsAndTextures() {
 function init() {
   updateLoadingText("Настройка сцены, света и фона...");
 
-
   renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
     antialias: true
@@ -166,23 +179,7 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);;
   renderer.setClearColor(0xFFFFFF);
 
-  const container = document.getElementById('layout-3d-three');
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
-  }
   container.appendChild(renderer.domElement);
-
-  // const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
-  // const skyMaterial = new THREE.MeshBasicMaterial({
-  //   map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
-  //   side: THREE.BackSide
-  // });
-  // const sky = new THREE.Mesh(skyGeometry, skyMaterial);
-  // scene.add(sky);
-
-  loadModelsAndTextures();
-
-  camera.position.set(0, 2, 3);
 
   const ambientLightColor = new THREE.Color(lightingConfig.ambientLightColor);
   const ambientLight = new THREE.AmbientLight(ambientLightColor, lightingConfig.ambientLightIntensity);
@@ -198,24 +195,49 @@ function init() {
 
   scene.add(directionalLight);
 
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.minDistance = 2;
-  controls.maxDistance = 10;
-  controls.enablePan = false;
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.1;
-  controls.rotateSpeed = 0.5;
-  controls.minPolarAngle = Math.PI / 4;
-  controls.maxPolarAngle = Math.PI / 1.5;
 
+  // const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
+  // const skyMaterial = new THREE.MeshBasicMaterial({
+  //   map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
+  //   side: THREE.BackSide
+  // });
+  // const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+  // scene.add(sky);
+  camera.position.set(-2.99, -5, 5.99);
+  loadModelsAndTextures();
+
+
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+
+  controls.minPolarAngle = 0; // Ограничение по углу наклона вверх
+  controls.maxPolarAngle = Math.PI / 2;  // Ограничение по углу наклона вниз
+  controls.minAzimuthAngle = -Math.PI / 4;  // Ограничение по повороту влево
+  controls.maxAzimuthAngle = Math.PI / 4; // Ограничение по повороту вправо
+  controls.minDistance = 4;  // Ограничение по дистанции
+  controls.maxDistance = 10;  // Ограничение по дистанции
+  controls.enablePan = false; // Отключение перемещения камеры (панорамирования)
+  controls.enableDamping = true; // Включение затухания для более плавных движений
+  controls.dampingFactor = 0.1; // Включение затухания для более плавных движений
+  controls.rotateSpeed = 0.5; // Скорость вращения
+
+
+  // camera.lookAt(0, 0, 0);
 
   onWindowResize();
 
   const animate = () => {
+    positionXElement.textContent = camera.position.x.toFixed(2);
+    positionYElement.textContent = camera.position.y.toFixed(2);
+    positionZElement.textContent = camera.position.z.toFixed(2);
     requestAnimationFrame(animate);
 
-    updateCameraPosition();
+    // updateCameraPosition();
     controls.update();
+
+    // Обновите значения HTML-элементов
+
+
 
     renderer.render(scene, camera);
   };
