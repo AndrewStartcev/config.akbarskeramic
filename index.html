@@ -132,31 +132,22 @@
             <img src="imgs/logo-white-akbars.svg" alt="Акбарс Керамик">
           </a>
         </div>
-        <div class="app-menu-item flex-center" data-chapter="layout" data-tooltip="Планировка">
+        <div class="tab-menu app-menu-item flex-center" data-chapter="layout" data-tooltip="Планировка">
           <img src="img/icons/home-active.svg" alt="">
         </div>
-        <div class="app-menu-item flex-center" data-chapter="bricks" data-tooltip="Кладка">
-          <img src="imgs/bricks.svg" alt="">
-        </div>
-        <div class="app-menu-item flex-center" data-chapter="bricks-format" data-tooltip="Формат кирпичей">
-          <img src="imgs/bricks-format.svg" alt="">
-        </div>
-        <div class="app-menu-item flex-center" data-chapter="seam" data-tooltip="Тип шва">
+        <div class="tab-menu app-menu-item flex-center" data-chapter="bricks-menu" data-tooltip="Кладка">
           <img src="imgs/bricks-types.svg" alt="">
         </div>
-        <div class="app-menu-item flex-center" data-chapter="bricklaying" data-tooltip="Тип кладки">
-          <img src="imgs/bricks-laying.svg" alt="">
-        </div>
-        <div class="app-menu-item flex-center" data-chapter="windows" data-tooltip="Окна">
+        <div class="tab-menu app-menu-item flex-center" data-chapter="windows" data-tooltip="Окна">
           <img class="icon" src="img/icons/window.svg" alt="" />
         </div>
-
-        <div class="app-menu-item flex-center" data-chapter="dado" data-tooltip="Цоколь">
-          <img class="icon" src="img/icons/house-active.svg" alt="" />
-        </div>
-        <div class="app-menu-item flex-center" data-chapter="cher" data-tooltip="Черепица">
+        <div class="tab-menu app-menu-item flex-center" data-chapter="cher-menu" data-tooltip="Черепица">
           <img class="icon" src="img/icons/roof-active.svg" alt="" />
         </div>
+        <div class="tab-menu app-menu-item flex-center" data-chapter="dado" data-tooltip="Цоколь">
+          <img class="icon" src="img/icons/house-active.svg" alt="" />
+        </div>
+
       </div>
       <div class="fr custom-scroll">
         <div class="app-chapter" id="layout">
@@ -165,25 +156,192 @@
 
             <div class="group-items layout-home">
               <div class="layout-group-item active" id="layout-type-1">
-                <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
-                <h3>Планировка 1 (<span class="val">155 m<sub>2</sub></span>)</h3>
+                <div class="img"><img src="img/icons/house-active.svg" alt=""></div>
+                <div>
+                  <h3>Планировка 1</h3>
+                  <p class="val">155 m<sub>2</sub></p>
+                </div>
               </div>
               <div class="layout-group-item" id="layout-type-2">
-                <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
-                <h3>Планировка 2 (<span class="val">246 m<sub>2</sub></span>)</h3>
+                <div class="img"><img src="img/icons/house-active.svg" alt=""></div>
+                <div>
+                  <h3>Планировка 2</h3>
+                  <p class="val">246 m<sub>2</sub></p>
+                </div>
               </div>
               <div class="layout-group-item" id="layout-type-3">
-                <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
-                <h3>Планировка 3 (<span class="val">302 m<sub>2</sub></span>)</h3>
+                <div class="img"><img src="img/icons/house-active.svg" alt=""></div>
+                <div>
+                  <h3>Планировка 3</h3>
+                  <p class="val">302 m<sub>2</sub></p>
+                </div>
               </div>
               <div class="layout-group-item" id="layout-type-4">
-                <div class="img"><img src="/img/icons/home-active.svg" alt=""></div>
-                <h3>Планировка 4 (<span class="val">348 m<sub>2</sub></span>)</h3>
+                <div class="img"><img src="img/icons/house-active.svg" alt=""></div>
+                <div>
+                  <h3>Планировка 4</h3>
+                  <p class="val">348 m<sub>2</sub></p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="app-chapter" id="bricks">
+        <div class="app-chapter" id="bricks-menu">
+          <div class="inner">
+            <h2>Настройка кладки</h2>
+            <div class="group-items">
+              <div class="tab-menu-dop layout-group-item" data-chapter="bricks">
+                <div class="img"><img src="imgs/bricks.svg" alt=""></div>
+                <h3>Кладка</h3>
+              </div>
+              <div class="tab-menu-dop layout-group-item" data-chapter="bricks-format">
+                <div class="img"><img src="imgs/bricks-format.svg" alt=""></div>
+                <h3>Формат кирпичей</h3>
+              </div>
+              <div class="tab-menu-dop layout-group-item" data-chapter="seam">
+                <div class="img"><img src="imgs/bricks-types.svg" alt=""></div>
+                <h3>Тип шва</h3>
+              </div>
+              <div class="tab-menu-dop layout-group-item" data-chapter="bricklaying">
+                <div class="img"><img src="imgs/bricks-laying.svg" alt=""></div>
+                <h3>Тип кладки</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter" id="windows">
+          <div class="inner">
+            <h2>Окна</h2>
+            <div class="wrap-item custom-scroll">
+              <div class="item active" style="background-image: url(img/okna/Windows_Korich.jpg);" data-color="221202">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/okna/Windows_Seryi.jpg);" data-color="3a3a38">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/okna/Windows_White.jpg);" data-color="DDD3C4">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/okna/Windows_Red.jpg);" data-color="540103">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/okna/Windows_Zelenyi.jpg);" data-color="053800">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter" id="cher-menu">
+          <div class="inner">
+            <div class="group-items">
+              <div class="tab-menu-dop layout-group-item" data-chapter="cher">
+                <div class="img"><img src="img/icons/roof-active.svg" alt=""></div>
+                <h3>Черепица</h3>
+              </div>
+              <div class="tab-menu-dop layout-group-item" data-chapter="stovepipe">
+                <div class="img"><img src="img/icons/chimney-active.svg" alt=""></div>
+                <h3>Дымоход</h3>
+              </div>
+              <div class="tab-menu-dop layout-group-item" data-chapter="water">
+                <div class="img"><img src="img/icons/water-active.svg" alt=""></div>
+                <h3>Водосток</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter" id="dado">
+          <div class="inner">
+            <h2>Цоколь</h2>
+            <div class="wrap-item custom-scroll">
+              <div class="item active" style="background-image: url(img/kladka_tsokol/Сottage_brick.jpg);"
+                data-textures="img/kladka_tsokol/Сottage_brick.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Antrazit.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Antrazit.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Bunt.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Bunt.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Eres.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Eres.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Gled.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Gled.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Grau.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Grau.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Pidra.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Pidra.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Rose.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Rose.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Schildpatt.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Schildpatt.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Tabakbraun.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Tabakbraun.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Stroeher.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Stroeher.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Weiss.jpg);"
+                data-textures="img/kladka_tsokol/Stroeher_Weiss.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="fd">
+        <div class="app-chapter app-chapter-dop" id="bricks">
           <div class="inner">
             <h2>Формируемая кладка</h2>
 
@@ -299,7 +457,7 @@
             </div>
           </div>
         </div>
-        <div class="app-chapter" id="bricks-format">
+        <div class="app-chapter app-chapter-dop" id="bricks-format">
           <div class="inner">
             <h2>Формат кирпича</h2>
             <div class="group-items format" data-settings="format">
@@ -314,7 +472,7 @@
             </div>
           </div>
         </div>
-        <div class="app-chapter" id="seam">
+        <div class="app-chapter app-chapter-dop" id="seam">
           <div class="inner">
             <h2>Тип шва</h2>
             <div class="group-items seam" data-settings="seam">
@@ -372,7 +530,7 @@
             </div>
           </div>
         </div>
-        <div class="app-chapter" id="bricklaying">
+        <div class="app-chapter app-chapter-dop" id="bricklaying">
           <div class="inner">
             <h2>Тип кладки</h2>
             <div class="group-items bricklaying" data-settings="bricklaying">
@@ -408,118 +566,7 @@
             </div>
           </div>
         </div>
-        <div class="app-chapter" id="windows">
-          <div class="inner">
-            <h2>Окна</h2>
-            <div class="wrap-item custom-scroll">
-              <div class="item active" style="background-image: url(img/okna/Windows_Korich.jpg);" data-color="221202">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/okna/Windows_Seryi.jpg);" data-color="3a3a38">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/okna/Windows_White.jpg);" data-color="DDD3C4">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/okna/Windows_Red.jpg);" data-color="540103">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/okna/Windows_Zelenyi.jpg);" data-color="053800">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="app-chapter" id="dado">
-          <div class="inner">
-            <h2>Цоколь</h2>
-            <div class="wrap-item custom-scroll">
-              <div class="item active" style="background-image: url(img/kladka_tsokol/Сottage_brick.jpg);"
-                data-textures="img/kladka_tsokol/Сottage_brick.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Antrazit.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Antrazit.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Bunt.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Bunt.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Eres.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Eres.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Gled.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Gled.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Grau.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Grau.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Pidra.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Pidra.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Rose.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Rose.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Schildpatt.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Schildpatt.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Tabakbraun.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Tabakbraun.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Stroeher.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Stroeher.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-              <div class="item" style="background-image: url(img/kladka_tsokol/Stroeher_Weiss.jpg);"
-                data-textures="img/kladka_tsokol/Stroeher_Weiss.jpg">
-                <div class="btn-item">
-                  <span class="checked"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="app-chapter" id="cher">
+        <div class="app-chapter app-chapter-dop" id="cher">
           <div class="inner">
             <h2>Черепица</h2>
             <div class="wrap-item custom-scroll">
@@ -579,6 +626,72 @@
               </div>
               <div class="item" style="background-image: url(img/cher/cherepitsa-10.jpg);"
                 data-textures="img/cher/cherepitsa-10.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter app-chapter-dop" id="stovepipe">
+          <div class="inner">
+            <h2>Дымоход</h2>
+            <div class="image-items custom-scroll">
+              <div class="image-item active" style="background-image: url(img/demohod/1.jpg);" data-color="221202">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="image-item" style="background-image: url(img/demohod/2.jpg);" data-color="3a3a38">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="image-item" style="background-image: url(img/demohod/3.jpg);" data-color="DDD3C4">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+
+              </div>
+              <div class="image-item" style="background-image: url(img/demohod/4.jpg);" data-color="540103">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="image-item" style="background-image: url(img/demohod/5.jpg);" data-color="540103">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter app-chapter-dop" id="water">
+          <div class="inner">
+            <h2>Водосток</h2>
+            <div class="image-items custom-scroll">
+              <div class="image-item active" style="background-image: url(img/water/1.jpg);" data-color="221202">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="image-item" style="background-image: url(img/water/2.jpg);" data-color="3a3a38">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="image-item" style="background-image: url(img/water/3.jpg);" data-color="DDD3C4">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+
+              </div>
+              <div class="image-item" style="background-image: url(img/water/4.jpg);" data-color="540103">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="image-item" style="background-image: url(img/water/5.jpg);" data-color="540103">
                 <div class="btn-item">
                   <span class="checked"></span>
                 </div>

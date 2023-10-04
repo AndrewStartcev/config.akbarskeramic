@@ -289,6 +289,7 @@ sub {
 	z-index: 1000;
 	background: var(--blue-color);
 	clear: both;
+	display: flex;
 }
 #app-menu .fl {
 	height: 100vh;
@@ -308,9 +309,14 @@ sub {
 	border-radius: 20px 0px 0px 20px;
 }
 #app-menu .fr {
-	border-radius: 20px 0px 0px 20px;
-	height: 100vh;
+	border-radius: 20px;
 	float: right;
+	background: var(--violet-color);
+	padding: 15px 0px;
+}
+#app-menu .fd {
+	border-radius: 0px 20px 20px 0px;
+	height: 100vh;
 	background: var(--violet-color);
 	padding: 20px 0px;
 }
@@ -371,7 +377,7 @@ sub {
 	background: #4d4d4d;
 }
 
-#app-menu #layout .inner .group-items .layout-group-item {
+#app-menu .inner .group-items .layout-group-item {
 	position: relative;
 	overflow: hidden;
 	cursor: pointer;
@@ -379,27 +385,27 @@ sub {
 	width: 100%;
 	border-radius: 15px;
 }
-#app-menu #layout .inner .group-items .layout-group-item:last-child {
+#app-menu .inner .group-items .layout-group-item:last-child {
 	margin-bottom: 0px;
 }
-#app-menu #layout .inner .group-items .layout-group-item .img {
+#app-menu .inner .group-items .layout-group-item .img {
 	border-radius: 10px;
 	overflow: hidden;
 	float: left;
 }
-#app-menu #layout .inner .group-items .layout-group-item .img.circled {
+#app-menu .inner .group-items .layout-group-item .img.circled {
 	border-radius: 50%;
 }
-#app-menu #layout .inner .group-items .layout-group-item > h3 {
+#app-menu .inner .group-items .layout-group-item > h3 {
 	float: left;
 }
-#app-menu #layout .inner .group-items .layout-group-item .txt {
+#app-menu .inner .group-items .layout-group-item .txt {
 	float: left;
 }
-#app-menu #layout .inner .group-items .layout-group-item:hover {
+#app-menu .inner .group-items .layout-group-item:hover {
 	background: #838383;
 }
-#app-menu #layout .inner .group-items .layout-group-item.active {
+#app-menu .inner .group-items .layout-group-item.active {
 	background: #4d4d4d;
 }
 
@@ -639,7 +645,13 @@ sub {
 	}
 
 	#app-menu.opened .fr {
+		width: 380px;
+	}
+	#app-menu.opened-dop .fd {
 		width: 400px;
+	}
+	#app-menu.opened-dop .fr {
+		border-radius: 20px 0 0 20px;
 	}
 	#app-menu .fl {
 		width: 60px;
@@ -690,40 +702,41 @@ sub {
 		font-size: 16px;
 	}
 
-	#app-menu #layout .inner .group-items .layout-group-item {
+	#app-menu  .inner .group-items .layout-group-item {
 		margin-bottom: 20px;
 		height: 80px;
 		padding: 10px;
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: center;
 	}
-	#app-menu #layout .inner .group-items .layout-group-item .img {
+	#app-menu .inner .group-items .layout-group-item .img {
 		width: 40px;
 		height: 40px;
 		margin-right: 20px;
 		border-radius: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
-	#app-menu #layout .inner .group-items .layout-group-item > h3 {
-		width: calc(100% - 60px);
+	#app-menu .inner .group-items .layout-group-item h3 {
 		height: 40px;
 		line-height: 40px;
 		font-size: 18px;
 		font-family: 'Comfortaa', cursive;
 		font-weight: normal;
 	}
-	#app-menu #layout .inner .group-items .layout-group-item .txt {
-		width: calc(100% - 80px);
+	#app-menu .inner .group-items .layout-group-item .txt {
 		height: 60px;
 	}
-	#app-menu #layout .inner .group-items .layout-group-item .txt h3 {
+	#app-menu .inner .group-items .layout-group-item .txt h3 {
 		height: 30px;
 		line-height: 30px;
 		font-size: 18px;
 		font-family: 'Comfortaa', cursive;
 		font-weight: normal;
 	}
-	#app-menu #layout .inner .group-items .layout-group-item .txt p {
+	#app-menu .inner .group-items .layout-group-item .txt p {
 		height: 30px;
 		line-height: 30px;
 		font-size: 16px;
@@ -1265,6 +1278,35 @@ sub {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
+.image-items {
+	position: relative;
+	margin: 20px 40px;
+	max-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.image-item {
+	flex: 0 0 auto;
+	position: relative;
+	width: 100%;
+  height: 180px;
+  padding: 5px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 10px #000;
+  display: block;
+  border-radius: 10px;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+	background-position: center center;
+	background-size: cover;
+}
+.image-item:hover {
+  cursor: pointer;
+}
+
 .btn-item {
   background: #fff;
   position: absolute;
@@ -1278,11 +1320,12 @@ sub {
   text-transform: lowercase;
   transition: all 0.2s;
 }
- .item.active .btn-item {
+.active >  .btn-item {
   background: #5221d1;
 }
 
-checked {
+
+.checked {
   width: 30px;
   height: 30px;
   position: absolute;
@@ -1306,13 +1349,13 @@ checked {
   animation: checkedAfter 0.2s ease;
   transition: all 0.2s;
 }
-.item.active .btn-item .checked:after {
+.active >  .btn-item .checked:after {
   display: block;
 }
-.item.active .btn-item {
+.active >  .btn-item {
   box-shadow: none;
 }
-.item.active .btn-item {
+.active > .btn-item {
   border: 0 solid transparent;
   animation: checked 0.2s ease;
   transition: all 0.2s;

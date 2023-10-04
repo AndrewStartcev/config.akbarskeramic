@@ -183,26 +183,48 @@ $(document).ready(function () {
 		}
 	}
 
-	$('#AKBARS').on('click', '.app-menu-item', function () {
+	$('#AKBARS').on('click', '.tab-menu', function () {
 		if ($(this).hasClass("chosen")) {
 			$(this).removeClass("chosen");
 		} else {
 			$('.app-menu-item').removeClass("chosen");
 			$(this).addClass("chosen");
 		}
-		openMenuChapter($(this).data("chapter"));
+		openMenuChapter($(this).data("chapter"), 'opened');
 	});
 
-	function openMenuChapter(chapter) {
+	$('#AKBARS').on('click', '.tab-menu-dop', function () {
+		if ($(this).hasClass("active")) {
+			$(this).removeClass("active");
+		} else {
+			$('.tab-menu-dop').removeClass("active");
+			$(this).addClass("active");
+		}
+		openMenuChapterDop($(this).data("chapter"), 'opened-dop');
+	});
+
+	function openMenuChapterDop(chapter, active) {
 		if ($('#' + chapter).hasClass("active") == true) {
-			$('#app-menu').removeClass("opened");
+			$('#app-menu').removeClass(active);
+			$('.app-chapter-dop').removeClass("active");
+		} else {
+			$('#app-menu').addClass(active);
+			$('.app-chapter-dop').removeClass("active");
+			$('#' + chapter).addClass("active");
+		}
+	}
+	function openMenuChapter(chapter, active) {
+		$('#app-menu').removeClass('opened-dop');
+		if ($('#' + chapter).hasClass("active") == true) {
+			$('#app-menu').removeClass(active);
 			$('.app-chapter').removeClass("active");
 		} else {
-			$('#app-menu').addClass("opened");
+			$('#app-menu').addClass(active);
 			$('.app-chapter').removeClass("active");
 			$('#' + chapter).addClass("active");
 		}
 	}
+
 	$('#AKBARS').on('click', '.group-item', function () {
 		var settings = $(this).closest(".group-items").data("settings"), value = $(this).data("value");
 		$(this).closest(".group-items").find(".group-item").removeClass("active");

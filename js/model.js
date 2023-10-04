@@ -20,7 +20,7 @@ const hideMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0
 
 // Сцена, камера и рендерер
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.5, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.8, 1000);
 const initialCameraPosition = new THREE.Vector3(-2.07, -1.94, 3.66); // Начальная позиция камеры
 const lookAtPosition = new THREE.Vector3(0, -10, -10); // Позиция, на которую камера смотрит
 var renderer = new THREE.WebGLRenderer();
@@ -117,8 +117,8 @@ function loadModelsAndTextures() {
       object.position.set(object.position.x, -2.01, object.position.z);
       object.name = "Home";
 
-      initElementsHome(object, ["L-2", "Roof", "Garage", "Hall"], false)
-      initElementsHome(object, ["L-1", "Roof1",], true)
+      initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2'], false)
+      initElementsHome(object, ["L-1", "Roof1", 'V-1'], true)
 
       object.traverse(function (child) {
         if (child instanceof THREE.Mesh) {
@@ -185,7 +185,7 @@ function init() {
 
   controls.minPolarAngle = 0; // Ограничение по углу наклона вверх
   controls.maxPolarAngle = Math.PI / 1.9;  // Ограничение по углу наклона вниз
-  controls.minDistance = 3;  // Ограничение по дистанции
+  controls.minDistance = 2;  // Ограничение по дистанции
   controls.maxDistance = 10;  // Ограничение по дистанции
   controls.enablePan = false; // Отключение перемещения камеры (панорамирования)
   controls.enableDamping = true; // Включение затухания для более плавных движений
@@ -196,7 +196,7 @@ function init() {
 
   const animate = () => {
 
-
+    directionalLight.position.copy(camera.position);
     requestAnimationFrame(animate);
 
     controls.update();
@@ -257,13 +257,17 @@ const elementInfo = {
   'Roof': { visible: false },
   'Hall': { visible: false },
   'Garage': { visible: false },
+  'V-1': { visible: false },
+  'V-2': { visible: false },
+  'V-h': { visible: false },
+  'V-g': { visible: false },
 };
 
 const buttons = [
-  { buttonId: "layout-type-1", elementsToShow: ["L-1", "Roof1"], elementsToHide: ["L-2", "Roof", "Hall", "Garage"] },
-  { buttonId: "layout-type-2", elementsToShow: ["L-2", "Roof"], elementsToHide: ["Roof1", "Hall", "Garage"] },
-  { buttonId: "layout-type-3", elementsToShow: ["L-2", "Roof", "Hall"], elementsToHide: ["Roof1", "Garage"] },
-  { buttonId: "layout-type-4", elementsToShow: ["L-2", "Roof", "Hall", "Garage"], elementsToHide: ["Roof1"] },
+  { buttonId: "layout-type-1", elementsToShow: ["L-1", "Roof1", "V-1"], elementsToHide: ["L-2", "Roof", "Hall", "Garage", 'V-h', 'V-g', 'V-2'] },
+  { buttonId: "layout-type-2", elementsToShow: ["L-2", "Roof", 'V-2'], elementsToHide: ["Roof1", "Hall", "Garage", "V-1", 'V-h', 'V-g',] },
+  { buttonId: "layout-type-3", elementsToShow: ["L-2", "Roof", 'V-2', "Hall", "V-h"], elementsToHide: ["Roof1", "Garage", "V-1", 'V-g',] },
+  { buttonId: "layout-type-4", elementsToShow: ["L-2", "Roof", 'V-2', "Hall", "Garage", "V-h", 'V-g'], elementsToHide: ["Roof1", "V-1"] },
 ];
 
 buttons.forEach(button => {
@@ -373,16 +377,29 @@ window.addEventListener('resize', onWindowResize);
 
 
 
-const itemsWondows = document.querySelectorAll('#windows .item');
-const currentColor = new THREE.Color(0x000000);
-itemsWondows.forEach(item => item.addEventListener('click', handleClickColor));
-
-function handleClickColor(event) {
-  itemsWondows.forEach(item => item.classList.remove('active'));
+const itemsWindows = document.querySelectorAll('#windows .item');
+itemsWindows.forEach(item => item.addEventListener('click', function (event) {
+  itemsWindows.forEach(item => item.classList.remove('active'));
   event.currentTarget.classList.add('active');
   const hexColor = event.currentTarget.getAttribute('data-color');
-  currentColor.setStyle(`#${hexColor}`);
+  changeColor(hexColor, 'stavny')
+}));
+const itemsStovepipe = document.querySelectorAll('#stovepipe .image-item');
+itemsStovepipe.forEach(item => item.addEventListener('click', function (event) {
+  itemsStovepipe.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const hexColor = event.currentTarget.getAttribute('data-color');
+  changeColor(hexColor, 'stovepipe')
+}));
+const itemsWater = document.querySelectorAll('#water .image-item');
+itemsWater.forEach(item => item.addEventListener('click', function (event) {
+  itemsWater.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const hexColor = event.currentTarget.getAttribute('data-color');
+  changeColor(hexColor, 'water')
+}));
 
+function changeColor(color, materialName) {
   if (scene) {
     const homeObject = scene.getObjectByName("Home");
 
@@ -391,15 +408,15 @@ function handleClickColor(event) {
         if (child instanceof THREE.Mesh) {
           if (Array.isArray(child.material)) {
             child.material.forEach((material) => {
-              if (material.name && /-stavny(\.\d+)?$/.test(material.name)) {
-                material.color.set(currentColor);
+              if (material.name && new RegExp(`-${materialName}(\\.\\d+)?$`).test(material.name)) {
+                material.color.set(`#${color}`);
                 material.needsUpdate = true;
               }
             });
           } else {
             const material = child.material;
-            if (material.name && /-stavny(\.\d+)?$/.test(material.name)) {
-              material.color.set(currentColor);
+            if (material.name && new RegExp(`-${materialName}(\\.\\d+)?$`).test(material.name)) {
+              material.color.set(`#${color}`);
               material.needsUpdate = true;
             }
           }
@@ -408,6 +425,8 @@ function handleClickColor(event) {
     }
   }
 }
+
+
 const itemsDodo = document.querySelectorAll('#dado .item');
 itemsDodo.forEach(item => item.addEventListener('click', handleClickTexture));
 
@@ -508,6 +527,8 @@ function handleClickTextureCher(event) {
     }
   }
 }
+
+
 
 const saveButton = document.getElementById("save-screenshot");
 const imagePopup = document.getElementById("image-popup");
