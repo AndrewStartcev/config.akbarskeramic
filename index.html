@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/style.css?ver=1.3" />
+  <link rel="stylesheet" href="css/style.css?ver=1.4" />
 
   <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
 
@@ -343,13 +343,15 @@
       <div class="fd">
         <div class="app-chapter app-chapter-dop" id="bricks">
           <div class="inner">
-            <h2>Формируемая кладка</h2>
+            <div class="top-inner">
+              h2>Формируемая кладка</h2>
 
-            <div id="chosen-bricks">
-              <div class="no-bricks flex-center">Выберите кладку кирпичей</div>
+              <div id="chosen-bricks">
+                <div class="no-bricks flex-center">Выберите кладку кирпичей</div>
+              </div>
+              <h2>Облицовочный кирпич</h2>
             </div>
-            <h2>Облицовочный кирпич</h2>
-            <div class="group-items bricks-list custom-scroll" data-settings="bricks">
+            <div class="bottom-inner group-items bricks-list custom-scroll" data-settings="bricks">
               <div class="brick-item bricks1 active" data-value="bricks1">
                 <img src="/bricks/preview/bricks1.png">
                 <h2>Шоколад дикий <br>камень</h2>
@@ -474,23 +476,28 @@
         </div>
         <div class="app-chapter app-chapter-dop" id="seam">
           <div class="inner">
-            <h2>Тип шва</h2>
-            <div class="group-items seam" data-settings="seam">
-              <div class="group-item active" data-value="3.2">
-                <div class="img"><img src="/imgs/bricks-type1.svg" alt=""></div>
-                <h3>8 мм</h3>
+            <div class="top-inner">
+
+
+              <h2>Тип шва</h2>
+              <div class="group-items seam" data-settings="seam">
+                <div class="group-item active" data-value="3.2">
+                  <div class="img"><img src="/imgs/bricks-type1.svg" alt=""></div>
+                  <h3>8 мм</h3>
+                </div>
+                <div class="group-item" data-value="4">
+                  <div class="img"><img src="/imgs/bricks-type2.svg" alt=""></div>
+                  <h3>10 мм</h3>
+                </div>
+                <div class="group-item" data-value="4.8">
+                  <div class="img"><img src="/imgs/bricks-type3.svg" alt=""></div>
+                  <h3>12 мм</h3>
+                </div>
               </div>
-              <div class="group-item" data-value="4">
-                <div class="img"><img src="/imgs/bricks-type2.svg" alt=""></div>
-                <h3>10 мм</h3>
-              </div>
-              <div class="group-item" data-value="4.8">
-                <div class="img"><img src="/imgs/bricks-type3.svg" alt=""></div>
-                <h3>12 мм</h3>
-              </div>
+              <h2>Цвет шва</h2>
             </div>
-            <h2>Цвет шва</h2>
-            <div class="group-items seam-list seam-color custom-scroll" data-settings="seam-color">
+            <div class="bottom-inner group-items bricks-list seam-list seam-color custom-scroll"
+              data-settings="seam-color">
               <div class="group-item active" data-value="white">
                 <div class="img circled">
                   <img src="/seams/white.jpg">
@@ -658,7 +665,7 @@
                   <span class="checked"></span>
                 </div>
               </div>
-              <div class="image-item" style="background-image: url(img/demohod/5.jpg);" data-color="540103">
+              <div class="image-item" style="background-image: url(img/demohod/5.jpg);" data-color="053800">
                 <div class="btn-item">
                   <span class="checked"></span>
                 </div>
@@ -691,7 +698,7 @@
                   <span class="checked"></span>
                 </div>
               </div>
-              <div class="image-item" style="background-image: url(img/water/5.jpg);" data-color="540103">
+              <div class="image-item" style="background-image: url(img/water/5.jpg);" data-color="053800">
                 <div class="btn-item">
                   <span class="checked"></span>
                 </div>
@@ -700,7 +707,7 @@
           </div>
         </div>
       </div>
-      <button class="close-menu"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <button class="close-button"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
             d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z"
             fill="#fff"></path>
@@ -770,7 +777,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
-  <script type="module" src="js/main.js?ver=1.3" defer></script>
+  <script type="module" src="js/main.js?ver=1.4" defer></script>
 </body>
 
 </html>

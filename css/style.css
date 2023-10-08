@@ -344,9 +344,13 @@ sub {
 }
 #app-menu .app-chapter .inner .group-items.custom-scroll {
 	height: 100%;
-	padding-bottom: 50px;
+	padding-bottom: 448px;
 	/* max-height: calc(100vh - 220px);
 	max-height: 450px; */
+}
+#app-menu  #seam .inner .group-items.custom-scroll {
+	height: 100%;
+	padding-bottom: 388px;
 }
 #app-menu .app-chapter .inner .group-items .group-item {
 	position: relative;
@@ -1593,7 +1597,7 @@ sub {
 }
 
 /* Стили для кнопки закрытия */
-.close-menu {
+.close-button {
   position: absolute;
 	width: 40px;
 	height: auto;
@@ -1611,10 +1615,10 @@ sub {
 	justify-content: center;
 	align-items: center;
 }
-.close-menu svg {
+.close-button svg {
 	width: 20px;
 	height: 20px;
 }
-#app-menu.opened .close-menu, #app-menu.opened-dop .close-menu {
+#app-menu.opened .close-button, #app-menu.opened-dop .close-button {
 	display: flex;
 }

@@ -1,7 +1,12 @@
 import fontBase64Data from '../pdf/GTWalsheimPro-Regular-normal.js';
 import { updateWallTexture } from './model.js';
+$(document).ready(function () {
+
+});
 
 $(document).ready(function () {
+
+
 	window.site = "";
 	window.versio = "v1.0";
 	$('#canvas').width = window.width;
@@ -539,7 +544,7 @@ $(document).ready(function () {
 });
 
 
-$('body').on('click', function (event) {
+$('#layout-3d-three').on('click', function (event) {
 	// Проверяем, был ли клик вне элемента #app-menu
 	if (!$(event.target).closest('#app-menu').length) {
 		// Закрываем все меню и убираем активные классы
@@ -551,7 +556,7 @@ $('body').on('click', function (event) {
 	}
 });
 
-$('#AKBARS').on('click', '.close-menu', function () {
+$('#AKBARS').on('click', '.close-button', function () {
 	// Закрываем все меню и убираем активные классы
 	$('.app-menu-item').removeClass("chosen");
 	$('.tab-menu-dop').removeClass("active");
