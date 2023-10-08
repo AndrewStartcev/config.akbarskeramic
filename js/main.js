@@ -537,3 +537,25 @@ $(document).ready(function () {
 
 	defaultBrickShow();
 });
+
+
+$('body').on('click', function (event) {
+	// Проверяем, был ли клик вне элемента #app-menu
+	if (!$(event.target).closest('#app-menu').length) {
+		// Закрываем все меню и убираем активные классы
+		$('.app-menu-item').removeClass("chosen");
+		$('.tab-menu-dop').removeClass("active");
+		$('.app-chapter').removeClass("active");
+		$('#app-menu').removeClass('opened');
+		$('#app-menu').removeClass('opened-dop');
+	}
+});
+
+$('#AKBARS').on('click', '.close-menu', function () {
+	// Закрываем все меню и убираем активные классы
+	$('.app-menu-item').removeClass("chosen");
+	$('.tab-menu-dop').removeClass("active");
+	$('.app-chapter').removeClass("active");
+	$('#app-menu').removeClass('opened');
+	$('#app-menu').removeClass('opened-dop');
+});

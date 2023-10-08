@@ -1,102 +1,82 @@
-# Blender 3.6.2 MTL File: 'scena.blend'
+# Blender 3.6.2 MTL File: 'home.blend'
 # www.blender.org
 
-newmtl BrickZab_01.003
-Ns 0.000000
+newmtl Garage-stavny.005
+Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Kd 0.061246 0.035601 0.030713
+Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
-Ni 1.500000
+Ni 1.450000
 d 1.000000
-illum 3
-map_Kd hrt/BavarCoraDub.jpg
+illum 1
 
-newmtl GrassSim.001
-Ns 0.000000
+newmtl Garage-stovepipe.002
+Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Kd 0.061246 0.035601 0.030713
+Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
-Ni 1.500000
+Ni 1.450000
 d 1.000000
-illum 3
-map_Kd hrt/NGrass.jpg
+illum 1
 
-newmtl GrassSimGazon.003
-Ns 0.000000
+newmtl Hall-wall.004
+Ns 200.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
-Ni 1.500000
+Ni 1.450000
 d 1.000000
-illum 3
-map_Kd hrt/NGrass.jpg
+illum 1
+map_Kd C:/Users/andre/OneDrive/Рабочий стол/home (3)/home/Map/Home Around/WALL_041.JPG
 
-newmtl PinBigLev.009
+newmtl Roof-cherepicza.001
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
-Ni 34.899998
+Ni 1.450000
+d 1.000000
 illum 1
-map_Kd hrt/PineBirchAtlas.png
-map_d hrt/PineBirchAtlas.png
+map_Kd C:/Users/andre/OneDrive/Рабочий стол/home (3)/home/Map/Home Around/Cherepicza.jpg
 
-newmtl PinBigLevStolb.009
-Ns 0.000000
+newmtl Roof-pallet.003
+Ns 260.868317
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-illum 3
-map_Kd hrt/PineBirchAtlas.png
-map_d hrt/PineBirchAtlas.png
-
-newmtl RockDek.003
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
+Ni 1.450000
 d 1.000000
-illum 3
-map_Kd hrt/StoneSad.jpg
+illum 1
+map_Kd Map/Home Around/Сottage 1_brick.jpg
 
-newmtl Skam.003
-Ns 0.000000
+newmtl Roof-water.001
+Ns 1000.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Kd 0.061246 0.035601 0.030713
+Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
-Ni 1.500000
+Ni 1.450000
 d 1.000000
-illum 3
-map_Kd hrt/Skam.jpg
+illum 1
 
-newmtl TratuarStatic_01.003
-Ns 0.000000
+newmtl Roof_-cherepicza.003
+Ns 250.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
-Ni 1.500000
+Ni 1.450000
 d 1.000000
-illum 3
-map_Kd hrt/TratColor_1.jpg
+illum 1
+map_Kd Map/Home Around/Cherepicza.jpg
 
-newmtl Uzor_01.003
-Ns 0.000000
+newmtl carniz.001
+Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-illum 3
-map_Kd hrt/Lov01.png
-map_d hrt/Lov01.png
-
-newmtl WoodRed.005
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
+Ni 1.450000
 d 1.000000
-illum 3
-map_Kd hrt/WoodLight.jpg
+illum 2
+map_Kd Map/Home Around/Planks_tile_light-1.jpg

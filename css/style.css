@@ -1591,3 +1591,30 @@ sub {
 #close-button:hover {
   background: #5944b8;
 }
+
+/* Стили для кнопки закрытия */
+.close-menu {
+  position: absolute;
+	width: 40px;
+	height: auto;
+  top: 25px;
+  right: -35px;
+  cursor: pointer;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	background: #5221d1;
+	padding: 10px;
+	border-radius: 0 20px 20px 0;
+	z-index: -1;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+.close-menu svg {
+	width: 20px;
+	height: 20px;
+}
+#app-menu.opened .close-menu, #app-menu.opened-dop .close-menu {
+	display: flex;
+}
