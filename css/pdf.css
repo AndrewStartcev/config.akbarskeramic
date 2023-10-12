@@ -1,9 +1,123 @@
-@media print {
-    /* body {
-        display: none;
-    } */
 
-    /* #pdf {
-        display: block;
-    } */
+#yourHtmlElement {
+    width: 794px; /* Ширина A4 в пикселях (приблизительно) */
+
+    margin: 0 auto; /* Центрирование блока по горизонтали */ /* Фон блока */
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    overflow: auto;
+}
+
+.generator-pdf__page {
+    display: flex;
+    flex-direction: column;
+    background: #FFF;
+    gap: 10px;
+    height: 1122px;
+}
+.generator-pdf__header {
+    background: #5D1CD4;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.generator-pdf__header img {
+    max-width: 282px;
+}
+.generator-pdf .text {
+    padding: 0 20px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+}
+.generator-pdf__screenshot .img {
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    object-position: bottom;
+    background-size: cover;
+    background-position: center center;
+}
+
+
+.generator-pdf__table {
+    padding: 0 10px;
+}
+
+.generator-pdf__head {
+    background: #5D1CD4;
+    padding: 6px 15px;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 500;
+}
+.generator-pdf__head.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.generator-pdf__head.row span {
+    text-align: center;
+    flex: 0 0 calc(33.333% - 18px);
+}
+.generator-pdf__content {
+    background: rgba(93, 28, 212, 0.10);
+    padding: 10px;
+}
+
+.generator-pdf__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.generator-pdf__item {
+    flex: 0 0 calc(33.333% - 18px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+
+}
+.generator-pdf__item img {
+    width: 100%;
+    height: 40px;
+    border-radius: 80px;
+    object-fit: cover;
+}
+.generator-pdf__item .img{
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    object-position: bottom;
+    background-size: cover;
+    background-position: center center;
+}
+.generator-pdf__item.-big img {
+    height: 120px;
+    border-radius: 20px;
+}
+.generator-pdf__item p {
+color: #000;
+font-size: 16px;
+font-weight: 500;
+}
+.generator-pdf__text-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.generator-pdf__text-row .text {
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
 }

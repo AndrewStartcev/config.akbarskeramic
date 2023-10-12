@@ -582,70 +582,103 @@ closeButton.addEventListener('click', () => {
   popupImage.src = "";
   imageDataUrl = null;
 });
-
-$('#AKBARS').on('click', '.save-pdf', function () {
-  createPDF();
-});
 window.jsPDF = window.jspdf.jsPDF;
 const doc = new jsPDF({
   orientation: 'p',
   unit: 'mm',
   format: 'a4',
 });;
+document.addEventListener("DOMContentLoaded", function () {
+
+
+  $('#AKBARS').on('click', '.save-pdf', function () {
+
+    let TypeofBricks = $('.group-items.bricklaying .group-item.active h3').html();
+    if ($('.group-items.bricklaying .group-item.active .txt p').html() != null) {
+      TypeofBricks = TypeofBricks + "(" + $('.group-items.bricklaying .group-item.active .txt p').html() + ")";
+    }
+    const FormatofBricks = $('.group-items.format .group-item.active h3').html();
+    const SeamSizeBricks = $('.group-items.seam .group-item.active h3').html();
+    const SeamColorBricks = $('.group-items.seam-color .group-item.active h3').html();
+    const SeamColorImg = $('.group-items.seam-color .group-item.active img').attr('src');
+
+    let BricksNames = [];
+    let BricksPercentages = [];
+    $('#chosen-bricks .chosen-brick.active').each(function () {
+      BricksNames.push({
+        name: $(this).find("h2").text(),
+        procent: $(this).find(".percentage b span").text(),
+        img: $(this).find("img").attr('src')
+      });
+
+    });
+
+
+    //  ===================
+    $('#pdf-FormatofBricks').text(FormatofBricks)
+    $('#pdf-TypeofBricks').text(TypeofBricks)
+
+    // doc.text(10, 175, "Размер шва: " + SeamSizeBricks);
+    // doc.text(10, 180, "Цвет шва: " + SeamColorBricks);
+    // doc.text(10, 190, "Выбранная кладка: ");
+
+    $('#pdf-TypeofBricks').text(TypeofBricks)
+    $('#shof-text').text(SeamColorBricks + '(' + SeamSizeBricks + ')')
+    $('#Shof .img').css(SeamColorImg)
+
+    for (let i = 0; i < BricksNames.length; i++) {
+      const text = BricksNames[i].name + " - " + BricksPercentages[i].procent + " %";
+      const imgSrc = BricksNames[i].img;
+
+      // Создаем новый элемент div и задаем ему класс
+      const itemDiv = $('<div>').addClass('generator-pdf__item');
+
+      // Создаем изображение и устанавливаем атрибут src
+      const img = $('<div class="img">').css(imgSrc);
+
+      // Создаем абзац и устанавливаем в него текст
+      const p = $('<p>').text(text);
+
+      // Добавляем изображение и абзац в элемент div
+      itemDiv.append(img).append(p);
+
+      // Добавляем элемент div в начало контейнера с ID "pdf-Bricks"
+      $('#pdf-Bricks').prepend(itemDiv);
+    }
+
+    const strMime = "image/png";
+    imageDataUrl = renderer.domElement.toDataURL(strMime);
+    $('.generator-pdf__screenshot .img').css('background-image', 'url(' + imageDataUrl + ')');
+
+    createPDF();
+  });
+});
+
 
 // Функция для загрузки HTML-контента и добавления его в PDF
 function createPDF() {
-  // Структурированные данные для отчета
-  const reportData = {
-    content: [
-      { text: 'Отчет о продажах', style: 'header' },
-      { text: 'Данные о продажах:', style: 'subheader' },
-      {
-        table: {
-          widths: ['33%', '33%', '33%'], // Разделяем горизонтально на три равные части
-          body: [
-            ['Блок 1', 'Блок 2', 'Блок 3'],
-            ['Содержимое блока 1', 'Содержимое блока 2', 'Содержимое блока 3']
-          ]
-        }
-      }
-    ],
-    styles: {
-      header: {
-        fontSize: 18,
-        bold: true,
-        margin: [0, 0, 0, 10]
-      },
-      subheader: {
-        fontSize: 14,
-        bold: true,
-        margin: [0, 10, 0, 5]
-      }
-    }
-  };
-  // Создаем PDF-документ
-  const pdfDoc = pdfMake.createPdf(reportData);
 
-  // Генерируем и скачиваем PDF
-  pdfDoc.download('sales_report.pdf');
+
+
+  // Получаем снимок экрана из HTML
+  var element = document.getElementById('yourHtmlElement'); // Замените 'yourHtmlElement' на ID или селектор вашего HTML-элемента
+
+  // Преобразуем снимок экрана в изображение
+  html2canvas(element, {
+    scale: 5, // Увеличьте разрешение
+    logging: true, // Включите логирование, чтобы отслеживать процесс
+  }).then(function (canvas) {
+    var imgData = canvas.toDataURL('image/jpeg', 1.5); // Преобразуем в изображение
+    doc.addImage(imgData, 'JPEG', 0, 0, 210, 297);
+
+    // Сохраняем PDF
+    doc.save('отчет.pdf');
+  });
 }
 
 
 function generatePDF() {
-  let TypeofBricks = $('.group-items.bricklaying .group-item.active h3').html();
-  if ($('.group-items.bricklaying .group-item.active .txt p').html() != null) {
-    TypeofBricks = TypeofBricks + "(" + $('.group-items.bricklaying .group-item.active .txt p').html() + ")";
-  }
-  const FormatofBricks = $('.group-items.format .group-item.active h3').html();
-  const SeamSizeBricks = $('.group-items.seam .group-item.active h3').html();
-  const SeamColorBricks = $('.group-items.seam-color .group-item.active h3').html();
 
-  let BricksNames = [];
-  let BricksPercentages = [];
-  $('#chosen-bricks .chosen-brick.active').each(function () {
-    BricksNames.push($(this).find("h2").text());
-    BricksPercentages.push($(this).find(".percentage b span").text());
-  });
 
   window.jsPDF = window.jspdf.jsPDF;
   const doc = new jsPDF({
@@ -666,6 +699,7 @@ function generatePDF() {
   const akbarsvk = new Image();
   const akbarstg = new Image();
   const akbarsmail = new Image();
+
   akbarsmail.src = '../pdf/akbarsmail.png';
   akbarslogo.src = '../pdf/logoakbarspdf.jpg';
   akbarsvk.src = '../pdf/akbarsvk.png';

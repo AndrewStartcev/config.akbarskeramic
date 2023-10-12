@@ -34,20 +34,6 @@
 </head>
 
 <body id="AKBARS">
-  <style>
-    #pdfContent {
-      position: absolute;
-      z-index: 99999;
-    }
-  </style>
-  <div id="pdfContent">
-    <h1 style="color: #000">Контент для PDF</h1>
-  </div>
-
-
-
-
-
   <div class="loading-banner" id="loading-banner">
     <div class="wrap-prelogo">
       <div class="prelogo">
@@ -359,7 +345,7 @@
         <div class="app-chapter app-chapter-dop" id="bricks">
           <div class="inner">
             <div class="top-inner">
-              h2>Формируемая кладка</h2>
+              <h2>Формируемая кладка</h2>
 
               <div id="chosen-bricks">
                 <div class="no-bricks flex-center">Выберите кладку кирпичей</div>
@@ -787,15 +773,93 @@
     <button id="cancel-button">Отмена</button>>
   </div>
 
+  <div id="yourHtmlElement" class="generator-pdf">
+    <div class="generator-pdf__page">
+      <div class="generator-pdf__header">
+        <div class="logo"><img src="pdf/logoakbarspng.png" alt=""></div>
+      </div>
+      <div class="generator-pdf__screenshot">
+        <p class="text">3D Конфигуратор дома:</p>
+        <div class="img"></div>
+      </div>
+      <div class="generator-pdf__table">
+        <div class="generator-pdf__head">Кладка:</div>
+        <div class="generator-pdf__content">
+          <div class="generator-pdf__text-row">
+            <div class="text">
+              Формат кирпича: <div id="pdf-FormatofBricks"></div>
+            </div>
+            <div class="text">
+              Тип кладки: <div id="pdf-TypeofBricks"></div>
+            </div>
+          </div>
+          <div class="generator-pdf__items" id="pdf-Bricks">
+            <div class="generator-pdf__item" id="Shof">
+              <div class="img"></div>
+              <p>Шов:
+                <span id="shof-text">Белый (12мм)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="generator-pdf__table">
+        <div class="generator-pdf__head row">
+          <span>Водосток:</span><span>Дымовая труба:</span><span>Окна:</span>
+        </div>
+        <div class="generator-pdf__content">
+          <div class="generator-pdf__items">
+            <div class="generator-pdf__item">
+              <img src="bricks/preview/bricks1.png" alt="">
+              <p>Баварская кладка кора дуба</p>
+            </div>
+            <div class="generator-pdf__item">
+              <img src="bricks/preview/bricks1.png" alt="">
+              <p>Баварская кладка кора дуба</p>
+            </div>
+            <div class="generator-pdf__item">
+              <img src="bricks/preview/bricks1.png" alt="">
+              <p>Баварская кладка кора дуба</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="generator-pdf__table">
+        <div class="generator-pdf__head row">
+          <span>Водосток:</span><span>Дымовая труба:</span><span>Окна:</span>
+        </div>
+        <div class="generator-pdf__content">
+          <div class="generator-pdf__items">
+            <div class="generator-pdf__item -big">
+              <img src="bricks/preview/bricks1.png" alt="">
+              <p>Баварская кладка кора дуба</p>
+            </div>
+            <div class="generator-pdf__item -big">
+              <img src="bricks/preview/bricks1.png" alt="">
+              <p>Баварская кладка кора дуба</p>
+            </div>
+            <div class="generator-pdf__item -big">
+              <img src="bricks/preview/bricks1.png" alt="">
+              <p>Баварская кладка кора дуба</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.71/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.71/vfs_fonts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script src="
+  https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js
+  "></script>
+
 
   <script type="module" src="js/main.js?ver=1.4" defer></script>
 </body>
