@@ -1,4 +1,4 @@
-import fontBase64Data from '../pdf/GTWalsheimPro-Regular-normal.js';
+
 import { updateWallTexture } from './model.js';
 $(document).ready(function () {
 
@@ -320,101 +320,7 @@ $(document).ready(function () {
 
 
 
-	function generatePDF() {
-		let TypeofBricks = $('.group-items.bricklaying .group-item.active h3').html();
-		if ($('.group-items.bricklaying .group-item.active .txt p').html() != null) {
-			TypeofBricks = TypeofBricks + "(" + $('.group-items.bricklaying .group-item.active .txt p').html() + ")";
-		}
-		const FormatofBricks = $('.group-items.format .group-item.active h3').html();
-		const SeamSizeBricks = $('.group-items.seam .group-item.active h3').html();
-		const SeamColorBricks = $('.group-items.seam-color .group-item.active h3').html();
 
-		let BricksNames = [];
-		let BricksPercentages = [];
-		$('#chosen-bricks .chosen-brick.active').each(function () {
-			BricksNames.push($(this).find("h2").text());
-			BricksPercentages.push($(this).find(".percentage b span").text());
-		});
-
-		window.jsPDF = window.jspdf.jsPDF;
-		const doc = new jsPDF({
-			orientation: 'p',
-			unit: 'mm',
-			format: 'a4',
-		});
-		const canvasWidthPDF = doc.internal.pageSize.getWidth() - 20;
-
-		doc.addFileToVFS('customFont.ttf', fontBase64Data);
-		doc.addFont('customFont.ttf', 'custom', 'normal');
-		doc.setFont('custom');
-		doc.setFontSize(14);
-		doc.setTextColor(0, 0, 0);
-
-		const akbarslogo = new Image();
-		const akbarslogobottom = new Image();
-		const akbarsvk = new Image();
-		const akbarstg = new Image();
-		const akbarsmail = new Image();
-		akbarsmail.src = '../pdf/akbarsmail.png';
-		akbarslogo.src = '../pdf/logoakbarspdf.jpg';
-		akbarsvk.src = '../pdf/akbarsvk.png';
-		akbarstg.src = '../pdf/akbarstg.png';
-		akbarslogobottom.src = '../pdf/logoakbarspng.png';
-		doc.addImage(akbarslogo, 'JPEG', 10, 10, 100, 19);
-		doc.link(10, 10, 100, 19, { url: 'https://akbarskeramic.ru/' });
-
-		doc.text(10, 35, "Вы выбрали следующую кладку на нашем сайте:");
-
-		createTexture();
-		const imgFromCanvas = dataUrl;
-		const blob = base64ToBlob(imgFromCanvas, 'image/jpeg');
-		const reader = new FileReader();
-
-		reader.onloadend = function () {
-			const base64Jpg = reader.result;
-			doc.addImage(base64Jpg, 'JPEG', 10, 40, canvasWidthPDF, Math.round(canvasWidthPDF * canvas.height / canvas.width));
-
-
-			doc.text(10, 140, "Формат кирпичей: " + FormatofBricks);
-			doc.text(10, 145, "Размер шва: " + SeamSizeBricks);
-			doc.text(10, 150, "Цвет шва: " + SeamColorBricks);
-			doc.text(10, 155, "Перевязка: " + TypeofBricks);
-			doc.text(10, 165, "Выбранная кладка: ");
-			for (let i = 0; i < BricksNames.length; i++) {
-				const text = BricksNames[i] + " - " + BricksPercentages[i] + " %";
-				const x = 10;
-				const y = 175 + i * 5;
-				doc.text(x, y, text);
-			}
-
-
-
-			doc.setFillColor(89, 68, 184); // Purple
-			doc.rect(0, 250, 210, 50, 'F'); // 'F' for filled rectangle
-			doc.addImage(akbarslogobottom, 'PNG', 10, 260, 100, 19);
-			doc.link(10, 260, 100, 19, { url: 'https://akbarskeramic.ru/' });
-
-			doc.addImage(akbarsvk, 'PNG', 10, 280, 10, 10);
-			doc.link(10, 280, 10, 10, { url: 'https://vk.com/abceramic' });
-
-			doc.addImage(akbarstg, 'PNG', 25, 280, 10, 10);
-			doc.link(25, 280, 10, 10, { url: 'https://t.me/akbarskeraramik' });
-
-			doc.addImage(akbarsmail, 'PNG', 40, 280, 10, 10);
-			doc.link(40, 280, 10, 10, { url: 'mailto:info-kirpich@akbarskeramic.ru' });
-
-
-			doc.setTextColor(256, 256, 256);
-			doc.text(60, 284, "8 (800) 511-81-06");
-			doc.link(60, 279, 50, 5, { url: 'tel:+78005118106' });
-			doc.text(60, 289, "akbarskeramic.ru");
-			doc.link(60, 284, 50, 5, { url: 'https://akbarskeramic.ru/' });
-
-
-			doc.save('example.pdf');
-		};
-		reader.readAsDataURL(blob);
-	}
 
 	function base64ToBlob(base64Data, contentType) {
 		const sliceSize = 512;
@@ -433,9 +339,7 @@ $(document).ready(function () {
 		return blob;
 	}
 
-	$('#AKBARS').on('click', '.save-pdf', function () {
-		generatePDF();
-	});
+
 
 	$('#AKBARS').on('click', '.brick-item', function () {
 		var img = "bricks/bricks/" + $(this).data("value") + ".png", title = $(this).find("h2").html();

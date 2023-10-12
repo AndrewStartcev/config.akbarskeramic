@@ -1,3 +1,4 @@
+import fontBase64Data from '../pdf/GTWalsheimPro-Regular-normal.js';
 import * as THREE from 'three';
 
 import { OBJLoader } from './three/examples/jsm/loaders/OBJLoader.js';
@@ -581,3 +582,170 @@ closeButton.addEventListener('click', () => {
   popupImage.src = "";
   imageDataUrl = null;
 });
+
+$('#AKBARS').on('click', '.save-pdf', function () {
+  createPDF();
+});
+window.jsPDF = window.jspdf.jsPDF;
+const doc = new jsPDF({
+  orientation: 'p',
+  unit: 'mm',
+  format: 'a4',
+});;
+
+// Функция для загрузки HTML-контента и добавления его в PDF
+function createPDF() {
+  // Структурированные данные для отчета
+  const reportData = {
+    content: [
+      { text: 'Отчет о продажах', style: 'header' },
+      { text: 'Данные о продажах:', style: 'subheader' },
+      {
+        table: {
+          widths: ['33%', '33%', '33%'], // Разделяем горизонтально на три равные части
+          body: [
+            ['Блок 1', 'Блок 2', 'Блок 3'],
+            ['Содержимое блока 1', 'Содержимое блока 2', 'Содержимое блока 3']
+          ]
+        }
+      }
+    ],
+    styles: {
+      header: {
+        fontSize: 18,
+        bold: true,
+        margin: [0, 0, 0, 10]
+      },
+      subheader: {
+        fontSize: 14,
+        bold: true,
+        margin: [0, 10, 0, 5]
+      }
+    }
+  };
+  // Создаем PDF-документ
+  const pdfDoc = pdfMake.createPdf(reportData);
+
+  // Генерируем и скачиваем PDF
+  pdfDoc.download('sales_report.pdf');
+}
+
+
+function generatePDF() {
+  let TypeofBricks = $('.group-items.bricklaying .group-item.active h3').html();
+  if ($('.group-items.bricklaying .group-item.active .txt p').html() != null) {
+    TypeofBricks = TypeofBricks + "(" + $('.group-items.bricklaying .group-item.active .txt p').html() + ")";
+  }
+  const FormatofBricks = $('.group-items.format .group-item.active h3').html();
+  const SeamSizeBricks = $('.group-items.seam .group-item.active h3').html();
+  const SeamColorBricks = $('.group-items.seam-color .group-item.active h3').html();
+
+  let BricksNames = [];
+  let BricksPercentages = [];
+  $('#chosen-bricks .chosen-brick.active').each(function () {
+    BricksNames.push($(this).find("h2").text());
+    BricksPercentages.push($(this).find(".percentage b span").text());
+  });
+
+  window.jsPDF = window.jspdf.jsPDF;
+  const doc = new jsPDF({
+    orientation: 'p',
+    unit: 'mm',
+    format: 'a4',
+  });
+  const canvasWidthPDF = doc.internal.pageSize.getWidth() - 20;
+
+  doc.addFileToVFS('customFont.ttf', fontBase64Data);
+  doc.addFont('customFont.ttf', 'custom', 'normal');
+  doc.setFont('custom');
+  doc.setFontSize(14);
+  doc.setTextColor(0, 0, 0);
+
+  const akbarslogo = new Image();
+  const akbarslogobottom = new Image();
+  const akbarsvk = new Image();
+  const akbarstg = new Image();
+  const akbarsmail = new Image();
+  akbarsmail.src = '../pdf/akbarsmail.png';
+  akbarslogo.src = '../pdf/logoakbarspdf.jpg';
+  akbarsvk.src = '../pdf/akbarsvk.png';
+  akbarstg.src = '../pdf/akbarstg.png';
+  akbarslogobottom.src = '../pdf/logoakbarspng.png';
+
+
+  doc.addImage(akbarslogo, 'JPEG', 10, 10, 100, 19);
+  doc.link(10, 10, 100, 19, { url: 'https://akbarskeramic.ru/' });
+
+  doc.text(10, 35, "3D Конфигуратор дома:");
+
+  let imageDataUrl = null; // Для хранения URL изображения
+
+  const strMime = "image/png";
+  imageDataUrl = renderer.domElement.toDataURL(strMime);
+
+  const imgFromCanvas = imageDataUrl;
+  const blob = base64ToBlob(imgFromCanvas, 'image/png');
+  const reader = new FileReader();
+
+  reader.onloadend = function () {
+    const base64Jpg = reader.result;
+    doc.addImage(base64Jpg, 'JPEG', 0, 40, canvasWidthPDF + 20, (canvasWidthPDF * canvas.height / canvas.width));
+
+    doc.text(10, 170, "Формат кирпичей: " + FormatofBricks);
+    doc.text(10, 175, "Размер шва: " + SeamSizeBricks);
+    doc.text(10, 180, "Цвет шва: " + SeamColorBricks);
+    doc.text(10, 185, "Перевязка: " + TypeofBricks);
+    doc.text(10, 190, "Выбранная кладка: ");
+    for (let i = 0; i < BricksNames.length; i++) {
+      const text = BricksNames[i] + " - " + BricksPercentages[i] + " %";
+      const x = 10;
+      const y = 190 + i * 5;
+      doc.text(x, y, text);
+    }
+
+
+
+    doc.setFillColor(89, 68, 184); // Purple
+    doc.rect(0, 250, 210, 50, 'F'); // 'F' for filled rectangle
+    doc.addImage(akbarslogobottom, 'PNG', 10, 260, 100, 19);
+    doc.link(10, 260, 100, 19, { url: 'https://akbarskeramic.ru/' });
+
+    doc.addImage(akbarsvk, 'PNG', 10, 280, 10, 10);
+    doc.link(10, 280, 10, 10, { url: 'https://vk.com/abceramic' });
+
+    doc.addImage(akbarstg, 'PNG', 25, 280, 10, 10);
+    doc.link(25, 280, 10, 10, { url: 'https://t.me/akbarskeraramik' });
+
+    doc.addImage(akbarsmail, 'PNG', 40, 280, 10, 10);
+    doc.link(40, 280, 10, 10, { url: 'mailto:info-kirpich@akbarskeramic.ru' });
+
+
+    doc.setTextColor(256, 256, 256);
+    doc.text(60, 284, "8 (800) 511-81-06");
+    doc.link(60, 279, 50, 5, { url: 'tel:+78005118106' });
+    doc.text(60, 289, "akbarskeramic.ru");
+    doc.link(60, 284, 50, 5, { url: 'https://akbarskeramic.ru/' });
+
+
+    doc.save('example.pdf');
+  };
+  reader.readAsDataURL(blob);
+}
+
+
+function base64ToBlob(base64Data, contentType) {
+  const sliceSize = 512;
+  const byteCharacters = atob(base64Data.split(',')[1]);
+  const byteArrays = [];
+  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    const slice = byteCharacters.slice(offset, offset + sliceSize);
+    const byteNumbers = new Array(slice.length);
+    for (let i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    byteArrays.push(byteArray);
+  }
+  const blob = new Blob(byteArrays, { type: contentType });
+  return blob;
+}
