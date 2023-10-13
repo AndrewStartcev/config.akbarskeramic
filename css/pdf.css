@@ -5,9 +5,9 @@
     margin: 0 auto; /* Центрирование блока по горизонтали */ /* Фон блока */
     position: absolute;
     top: 0;
-    right: 0;
-    z-index: 9999;
+    right: 150px;
     overflow: auto;
+    z-index: -1;
 }
 
 .generator-pdf__page {
@@ -19,13 +19,25 @@
 }
 .generator-pdf__header {
     background: #5D1CD4;
-    padding: 10px;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.generator-pdf__footer {
+    margin-top: auto;
+    background: #5D1CD4;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
 .generator-pdf__header img {
-    max-width: 282px;
+    max-width: 260px;
 }
 .generator-pdf .text {
     padding: 0 20px;
@@ -35,7 +47,7 @@
 }
 .generator-pdf__screenshot .img {
     width: 100%;
-    height: 430px;
+    height: 400px;
     object-fit: cover;
     object-position: bottom;
     background-size: cover;
@@ -92,20 +104,24 @@
 }
 .generator-pdf__item .img{
     width: 100%;
-    height: 430px;
+    height: 40px;
+    border-radius: 80px;
     object-fit: cover;
     object-position: bottom;
     background-size: cover;
     background-position: center center;
 }
-.generator-pdf__item.-big img {
+.generator-pdf__item.not-text .img {
+    height: 66px;
+}
+.generator-pdf__item.-big .img {
     height: 120px;
     border-radius: 20px;
 }
 .generator-pdf__item p {
-color: #000;
-font-size: 16px;
-font-weight: 500;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
 }
 .generator-pdf__text-row {
     display: flex;
@@ -120,4 +136,20 @@ font-weight: 500;
     justify-content: flex-start;
     align-items: center;
     gap: 5px;
+}
+
+.pdf-spinner {
+    display: none;
+}
+.spinner-animation {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+    transform: rotate(0deg);
+    }
+    100% {
+    transform: rotate(360deg);
+    }
 }

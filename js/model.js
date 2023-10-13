@@ -582,12 +582,14 @@ closeButton.addEventListener('click', () => {
   popupImage.src = "";
   imageDataUrl = null;
 });
+
 window.jsPDF = window.jspdf.jsPDF;
 const doc = new jsPDF({
   orientation: 'p',
   unit: 'mm',
   format: 'a4',
 });;
+
 document.addEventListener("DOMContentLoaded", function () {
 
 
@@ -603,46 +605,48 @@ document.addEventListener("DOMContentLoaded", function () {
     const SeamColorImg = $('.group-items.seam-color .group-item.active img').attr('src');
 
     let BricksNames = [];
-    let BricksPercentages = [];
     $('#chosen-bricks .chosen-brick.active').each(function () {
       BricksNames.push({
         name: $(this).find("h2").text(),
         procent: $(this).find(".percentage b span").text(),
-        img: $(this).find("img").attr('src')
+        img: $(this).data('preview')
       });
 
     });
 
+    const roofingImg = getBackgroundImageUrl('#cher .item.active');
+    const dadoImg = getBackgroundImageUrl('#dado .item.active');
+    const drainImg = getBackgroundImageUrl('#water .image-item.active');
+    const smokestackImg = getBackgroundImageUrl('#stovepipe .image-item.active');
+    const windowsImg = getBackgroundImageUrl('#windows .item.active');
+
+    $('#pdf-roofing .img').css('background-image', 'url(' + roofingImg + ')');
+    $('#pdf-dado .img').css('background-image', 'url(' + dadoImg + ')');
+    $('#pdf-drain .img').css('background-image', 'url(' + drainImg + ')');
+    $('#pdf-smokestack .img').css('background-image', 'url(' + smokestackImg + ')');
+    $('#pdf-windows .img').css('background-image', 'url(' + windowsImg + ')');
 
     //  ===================
     $('#pdf-FormatofBricks').text(FormatofBricks)
     $('#pdf-TypeofBricks').text(TypeofBricks)
 
-    // doc.text(10, 175, "Размер шва: " + SeamSizeBricks);
-    // doc.text(10, 180, "Цвет шва: " + SeamColorBricks);
-    // doc.text(10, 190, "Выбранная кладка: ");
 
     $('#pdf-TypeofBricks').text(TypeofBricks)
     $('#shof-text').text(SeamColorBricks + '(' + SeamSizeBricks + ')')
-    $('#Shof .img').css(SeamColorImg)
+    $('#Shof .img').css('background-image', 'url(' + SeamColorImg + ')');
+
+    $('#pdf-Bricks').children().not('#Shof').remove();
 
     for (let i = 0; i < BricksNames.length; i++) {
-      const text = BricksNames[i].name + " - " + BricksPercentages[i].procent + " %";
+      const text = BricksNames[i].name + " - " + BricksNames[i].procent + " %";
       const imgSrc = BricksNames[i].img;
 
-      // Создаем новый элемент div и задаем ему класс
       const itemDiv = $('<div>').addClass('generator-pdf__item');
-
-      // Создаем изображение и устанавливаем атрибут src
-      const img = $('<div class="img">').css(imgSrc);
-
-      // Создаем абзац и устанавливаем в него текст
+      const img = $('<div>').addClass('img').css('background-image', 'url(' + imgSrc + ')');
       const p = $('<p>').text(text);
 
-      // Добавляем изображение и абзац в элемент div
       itemDiv.append(img).append(p);
 
-      // Добавляем элемент div в начало контейнера с ID "pdf-Bricks"
       $('#pdf-Bricks').prepend(itemDiv);
     }
 
@@ -652,13 +656,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     createPDF();
   });
+
+  function getBackgroundImageUrl(element) {
+    var styleAttribute = $(element).attr('style');
+
+    var styles = styleAttribute.split(';');
+
+    var backgroundImageStyle = styles.find(function (style) {
+      return style.includes('background-image');
+    });
+
+    // Извлечь URL из стиля
+    var backgroundImageUrl = backgroundImageStyle.split('url(')[1].split(')')[0];
+
+    return backgroundImageUrl;
+  }
+
 });
 
 
 // Функция для загрузки HTML-контента и добавления его в PDF
 function createPDF() {
-
-
 
   // Получаем снимок экрана из HTML
   var element = document.getElementById('yourHtmlElement'); // Замените 'yourHtmlElement' на ID или селектор вашего HTML-элемента
@@ -666,120 +684,13 @@ function createPDF() {
   // Преобразуем снимок экрана в изображение
   html2canvas(element, {
     scale: 5, // Увеличьте разрешение
-    logging: true, // Включите логирование, чтобы отслеживать процесс
+    logging: false, // Включите логирование, чтобы отслеживать процесс
   }).then(function (canvas) {
     var imgData = canvas.toDataURL('image/jpeg', 1.5); // Преобразуем в изображение
     doc.addImage(imgData, 'JPEG', 0, 0, 210, 297);
 
     // Сохраняем PDF
-    doc.save('отчет.pdf');
+    doc.save('Akbarskeramic 3D Configuration.pdf');
+
   });
-}
-
-
-function generatePDF() {
-
-
-  window.jsPDF = window.jspdf.jsPDF;
-  const doc = new jsPDF({
-    orientation: 'p',
-    unit: 'mm',
-    format: 'a4',
-  });
-  const canvasWidthPDF = doc.internal.pageSize.getWidth() - 20;
-
-  doc.addFileToVFS('customFont.ttf', fontBase64Data);
-  doc.addFont('customFont.ttf', 'custom', 'normal');
-  doc.setFont('custom');
-  doc.setFontSize(14);
-  doc.setTextColor(0, 0, 0);
-
-  const akbarslogo = new Image();
-  const akbarslogobottom = new Image();
-  const akbarsvk = new Image();
-  const akbarstg = new Image();
-  const akbarsmail = new Image();
-
-  akbarsmail.src = '../pdf/akbarsmail.png';
-  akbarslogo.src = '../pdf/logoakbarspdf.jpg';
-  akbarsvk.src = '../pdf/akbarsvk.png';
-  akbarstg.src = '../pdf/akbarstg.png';
-  akbarslogobottom.src = '../pdf/logoakbarspng.png';
-
-
-  doc.addImage(akbarslogo, 'JPEG', 10, 10, 100, 19);
-  doc.link(10, 10, 100, 19, { url: 'https://akbarskeramic.ru/' });
-
-  doc.text(10, 35, "3D Конфигуратор дома:");
-
-  let imageDataUrl = null; // Для хранения URL изображения
-
-  const strMime = "image/png";
-  imageDataUrl = renderer.domElement.toDataURL(strMime);
-
-  const imgFromCanvas = imageDataUrl;
-  const blob = base64ToBlob(imgFromCanvas, 'image/png');
-  const reader = new FileReader();
-
-  reader.onloadend = function () {
-    const base64Jpg = reader.result;
-    doc.addImage(base64Jpg, 'JPEG', 0, 40, canvasWidthPDF + 20, (canvasWidthPDF * canvas.height / canvas.width));
-
-    doc.text(10, 170, "Формат кирпичей: " + FormatofBricks);
-    doc.text(10, 175, "Размер шва: " + SeamSizeBricks);
-    doc.text(10, 180, "Цвет шва: " + SeamColorBricks);
-    doc.text(10, 185, "Перевязка: " + TypeofBricks);
-    doc.text(10, 190, "Выбранная кладка: ");
-    for (let i = 0; i < BricksNames.length; i++) {
-      const text = BricksNames[i] + " - " + BricksPercentages[i] + " %";
-      const x = 10;
-      const y = 190 + i * 5;
-      doc.text(x, y, text);
-    }
-
-
-
-    doc.setFillColor(89, 68, 184); // Purple
-    doc.rect(0, 250, 210, 50, 'F'); // 'F' for filled rectangle
-    doc.addImage(akbarslogobottom, 'PNG', 10, 260, 100, 19);
-    doc.link(10, 260, 100, 19, { url: 'https://akbarskeramic.ru/' });
-
-    doc.addImage(akbarsvk, 'PNG', 10, 280, 10, 10);
-    doc.link(10, 280, 10, 10, { url: 'https://vk.com/abceramic' });
-
-    doc.addImage(akbarstg, 'PNG', 25, 280, 10, 10);
-    doc.link(25, 280, 10, 10, { url: 'https://t.me/akbarskeraramik' });
-
-    doc.addImage(akbarsmail, 'PNG', 40, 280, 10, 10);
-    doc.link(40, 280, 10, 10, { url: 'mailto:info-kirpich@akbarskeramic.ru' });
-
-
-    doc.setTextColor(256, 256, 256);
-    doc.text(60, 284, "8 (800) 511-81-06");
-    doc.link(60, 279, 50, 5, { url: 'tel:+78005118106' });
-    doc.text(60, 289, "akbarskeramic.ru");
-    doc.link(60, 284, 50, 5, { url: 'https://akbarskeramic.ru/' });
-
-
-    doc.save('example.pdf');
-  };
-  reader.readAsDataURL(blob);
-}
-
-
-function base64ToBlob(base64Data, contentType) {
-  const sliceSize = 512;
-  const byteCharacters = atob(base64Data.split(',')[1]);
-  const byteArrays = [];
-  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-    const slice = byteCharacters.slice(offset, offset + sliceSize);
-    const byteNumbers = new Array(slice.length);
-    for (let i = 0; i < slice.length; i++) {
-      byteNumbers[i] = slice.charCodeAt(i);
-    }
-    const byteArray = new Uint8Array(byteNumbers);
-    byteArrays.push(byteArray);
-  }
-  const blob = new Blob(byteArrays, { type: contentType });
-  return blob;
 }

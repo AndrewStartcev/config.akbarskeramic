@@ -39,12 +39,14 @@ $(document).ready(function () {
 	}
 
 	checkBrickAmount();
+	updateWallTexture();
 
 	$(window).resize(function () {
 		setCanvasViewport();
 		resizeCanvas();
 		checkBrickAmount();
 		drawBricks();
+
 	});
 
 	function shuffle(array) {
@@ -348,7 +350,7 @@ $(document).ready(function () {
 		} else {
 			if ($('#chosen-bricks .no-bricks').length == 1) { $('#chosen-bricks .no-bricks').remove(); }
 			$(this).hide();
-			$('#chosen-bricks').append('<div class="chosen-brick active"><img src="' + img + '"><div class="info"><div class="title"><h2>' + title + '</h2><i class="fa fa-times" data-brick="' + $(this).data("value") + '"></i></div><div class="percentage"><input class="percent-line" type="range" min="0" value="0" max="100" step="1" list="values"><b><span></span>%</b></div></div></div>');
+			$('#chosen-bricks').append('<div class="chosen-brick active" data-preview="bricks/preview/' + $(this).data("value") + '.png"><img src="' + img + '"><div class="info"><div class="title"><h2>' + title + '</h2><i class="fa fa-times" data-brick="' + $(this).data("value") + '"></i></div><div class="percentage"><input class="percent-line" type="range" min="0" value="0" max="100" step="1" list="values"><b><span></span>%</b></div></div></div>');
 			setPercentage();
 			getTextures();
 			drawBricks();
