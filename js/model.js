@@ -68,20 +68,51 @@ function initElementsHome(object, elementsToInit, isVisible) {
     }
   });
 }
+let activeLandscape = "Land-1"; // Изначально активный ландшафт
+let activeFenceVariant = 1; // Изначально активный вариант забора
 
+function showFenceForLandscape(object, landscape, fenceVariant) {
+  object.traverse((child) => {
+    if (child instanceof THREE.Mesh) {
+      if (child.name === landscape || child.name === landscape + '-zabor-' + fenceVariant) {
+        child.visible = true;
+      } else {
+        child.visible = false;
+      }
+    }
+  });
+}
 function loadModelsAndTextures() {
-  updateLoadingText("Загрузка окружения...");
+
+  updateLoadingText("Загрузка моделей...");
+
+  let modelsLoaded = 0; // Счетчик для отслеживания загруженных моделей
+
+  function checkLoadingComplete() {
+    modelsLoaded++;
+    if (modelsLoaded === 1) {
+      updateLoadingText("Загрузка окружения...");
+    }
+    if (modelsLoaded === 2) {
+      // Обе модели загружены, запускаем stopBanners
+      stopBanners();
+    }
+  }
 
   // Загрузка модели "Buttom"
   const bottomLoader = new OBJLoader();
   const bottomMtlLoader = new MTLLoader();
   bottomMtlLoader.load('./js/3D-object/module.mtl', (materials) => {
+
     materials.preload();
     bottomLoader.setMaterials(materials);
 
     bottomLoader.load('./js/3D-object/module.obj', function (object) {
-      object.position.set(object.position.x, -2, object.position.z);
+
       object.name = "Buttom";
+
+      showFenceForLandscape(object, activeLandscape, activeFenceVariant);
+
       object.traverse(function (child) {
         if (child instanceof THREE.Mesh) {
           if (Array.isArray(child.material)) {
@@ -101,16 +132,23 @@ function loadModelsAndTextures() {
           }
         }
       });
+
+      object.position.set(object.position.x, -2, object.position.z);
+
       scene.add(object);
+
+      checkLoadingComplete();
     });
   });
 
-  updateLoadingText("Загрузка дома...");
+
 
   // Загрузка модели "Home"
   const homeLoader = new OBJLoader();
   const homeMtlLoader = new MTLLoader();
   homeMtlLoader.load('./js/3D-object/home.mtl', (materials) => {
+    updateLoadingText("Загрузка дома...");
+
     materials.preload();
     homeLoader.setMaterials(materials);
 
@@ -119,7 +157,7 @@ function loadModelsAndTextures() {
       object.name = "Home";
 
       initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2'], false)
-      initElementsHome(object, ["L-1", "Roof1", 'V-1'], true)
+
 
       object.traverse(function (child) {
         if (child instanceof THREE.Mesh) {
@@ -142,10 +180,11 @@ function loadModelsAndTextures() {
       });
 
       scene.add(object);
-
-      stopBanners()
+      checkLoadingComplete();
     });
   });
+
+
 }
 
 
@@ -197,7 +236,7 @@ function init() {
 
   const animate = () => {
 
-    directionalLight.position.copy(camera.position);
+    // directionalLight.position.copy(camera.position);
     requestAnimationFrame(animate);
 
     controls.update();
@@ -531,6 +570,33 @@ function handleClickTextureCher(event) {
   }
 }
 
+const itemsLand = document.querySelectorAll('#land .item');
+itemsLand.forEach(item => item.addEventListener('click', handleClickModelLand));
+
+function handleClickModelLand(event) {
+  itemsLand.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  activeLandscape = event.currentTarget.getAttribute('data-model');
+
+  if (scene) {
+    const object = scene.getObjectByName("Buttom");
+    showFenceForLandscape(object, activeLandscape, activeFenceVariant);
+  }
+}
+
+const itemsTypeZabor = document.querySelectorAll('#type-zabor .item');
+itemsTypeZabor.forEach(item => item.addEventListener('click', handleClickModelTypeZabor));
+
+function handleClickModelTypeZabor(event) {
+  itemsLand.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  activeFenceVariant = event.currentTarget.getAttribute('data-model');
+
+  if (scene) {
+    const object = scene.getObjectByName("Buttom");
+    showFenceForLandscape(object, activeLandscape, activeFenceVariant);
+  }
+}
 
 
 const saveButton = document.getElementById("save-screenshot");
