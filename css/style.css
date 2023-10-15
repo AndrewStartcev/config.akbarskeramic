@@ -634,7 +634,7 @@ sub {
 	}
 	#modes {
 		top: 40px;
-		right: 40px;
+		right: 20px;
 	}
 	#modes .mode {
 		height: 60px;
@@ -1385,7 +1385,7 @@ sub {
 .sidebar-export {
 	position: fixed;
 	bottom: 40px;
-	right: 40px;
+	right: 20px;
 	z-index: 999;
 
 	border-radius: 15px;
@@ -1416,7 +1416,7 @@ sub {
 .sidebar-social {
 	position: fixed;
 	bottom: 200px;
-	right: 40px;
+	right: 20px;
 	z-index: 999;
 
 	border-radius: 15px;
@@ -1621,4 +1621,15 @@ sub {
 }
 #app-menu.opened .close-button, #app-menu.opened-dop .close-button {
 	display: flex;
+}
+
+#app-menu {
+	zoom: 0.92;
+	top: 50%;
+	left: 20px;
+	transform: translateY(-50%);
+	border-radius: 20px;
+}
+#app-menu .fl {
+border-radius: 20px;
 }

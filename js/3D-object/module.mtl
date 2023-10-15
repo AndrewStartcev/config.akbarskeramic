@@ -1,46 +1,6 @@
 # Blender 3.6.2 MTL File: 'scena.blend'
 # www.blender.org
 
-newmtl BrickZab_01.001
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 1
-map_Kd hrt/BavarCoraDub.jpg
-
-newmtl BrickZab_01.002
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 1
-map_Kd hrt/BavarCoraDub.jpg
-
-newmtl BrickZab_01.004
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 1
-map_Kd hrt/BavarCoraDub.jpg
-
-newmtl BrickZab_01.005
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 1
-map_Kd hrt/BavarCoraDub.jpg
-
 newmtl GrassSimGazon.001
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
@@ -90,6 +50,36 @@ Ni 1.450000
 d 1.000000
 illum 1
 map_Kd hrt/TratColor_1.jpg
+
+newmtl Land2-paving.03
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd hrt/1.jpg
+
+newmtl Land3-paving.02
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd hrt/1.jpg
+
+newmtl Land4-paving.04
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd hrt/1.jpg
 
 newmtl PinBigLev
 Ns 1000.000000
@@ -291,36 +281,6 @@ d 1.000000
 illum 1
 map_Kd hrt/Skam.jpg
 
-newmtl TratuarStatic_01.001
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 1
-map_Kd hrt/ProfnoReflect_01.jpg
-
-newmtl TratuarStatic_01.002
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 1
-map_Kd hrt/ProfnoReflect_01.jpg
-
-newmtl Traur
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 1
-map_Kd hrt/ProfnoReflect_01.jpg
-
 newmtl Uzor_01.001
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
@@ -441,6 +401,46 @@ d 1.000000
 illum 1
 map_Kd hrt/grass_grass_0075_02_tiled_s.jpg
 
+newmtl land1-zabor.00
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd hrt/BavarCoraDub.jpg
+
+newmtl land2-zabor.01
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd hrt/BavarCoraDub.jpg
+
+newmtl land3-zabor.02
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd hrt/BavarCoraDub.jpg
+
+newmtl land4-zabor.04
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd hrt/BavarCoraDub.jpg
+
 newmtl smallvrata.001
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
@@ -514,9 +514,9 @@ illum 1
 newmtl uzor_vrata.004
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.069759 0.068202 0.072936
 Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
 Ni 1.500000
-d 1.000000
+d 0.980000
 illum 1
+map_Kd hrt/MuskInBrickSmall.png

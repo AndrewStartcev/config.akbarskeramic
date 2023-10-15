@@ -64,6 +64,7 @@ function initElementsHome(object, elementsToInit, isVisible) {
     const element = object.getObjectByName(elementName);
     if (element) {
       element.visible = isVisible;
+      element.castShadow = true;
       originalMaterials[elementName] = element.material;
     }
   });
@@ -76,6 +77,7 @@ function showFenceForLandscape(object, landscape, fenceVariant) {
     if (child instanceof THREE.Mesh) {
       if (child.name === landscape || child.name === landscape + '-zabor-' + fenceVariant) {
         child.visible = true;
+        child.castShadow = true;
       } else {
         child.visible = false;
       }
@@ -134,7 +136,7 @@ function loadModelsAndTextures() {
       });
 
       object.position.set(object.position.x, -2, object.position.z);
-
+      object.castShadow = true;
       scene.add(object);
 
       checkLoadingComplete();
@@ -178,7 +180,7 @@ function loadModelsAndTextures() {
           }
         }
       });
-
+      object.castShadow = true;
       scene.add(object);
       checkLoadingComplete();
     });
@@ -186,7 +188,6 @@ function loadModelsAndTextures() {
 
 
 }
-
 
 // Инициализация сцены, камеры и контролов
 function init() {
@@ -196,6 +197,7 @@ function init() {
     preserveDrawingBuffer: true,
     antialias: true
   });
+  renderer.shadowMap.enabled = true;
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);;
   renderer.setClearColor(0xFFFFFF);
@@ -208,6 +210,17 @@ function init() {
 
   const directionalLightColor = new THREE.Color(lightingConfig.directionalLightColor);
   const directionalLight = new THREE.DirectionalLight(directionalLightColor, lightingConfig.directionalLightIntensity);
+  directionalLight.castShadow = true;
+  // Разрешение карты теней (чем выше, тем качественнее, но и требовательнее по ресурсам)
+  directionalLight.shadow.mapSize.width = 1024;
+  directionalLight.shadow.mapSize.height = 1024;
+
+  // Расстояние отката теней (чем больше, тем дальше тени будут бросаться)
+  directionalLight.shadow.camera.near = 0.5;
+  directionalLight.shadow.camera.far = 200;
+
+  // Коэффициент смещения теней (может потребоваться настройка)
+  directionalLight.shadow.bias = -0.005;
   directionalLight.position.set(
     lightingConfig.directionalLightPosition.x,
     lightingConfig.directionalLightPosition.y,
@@ -236,12 +249,10 @@ function init() {
 
   const animate = () => {
 
-    // directionalLight.position.copy(camera.position);
+    directionalLight.position.copy(camera.position);
     requestAnimationFrame(animate);
 
     controls.update();
-
-
 
     renderer.render(scene, camera);
   };
@@ -287,8 +298,6 @@ export function updateWallTexture() {
     }
   }
 }
-
-
 
 const elementInfo = {
   'L-1': { visible: true },
@@ -415,8 +424,6 @@ function showObjectWithMaterial(object, material) {
 updateWallTexture()
 
 window.addEventListener('resize', onWindowResize);
-
-
 
 
 const itemsWindows = document.querySelectorAll('#windows .item');
@@ -570,6 +577,106 @@ function handleClickTextureCher(event) {
   }
 }
 
+const itemsPaving = document.querySelectorAll('#paving .item');
+itemsPaving.forEach(item => item.addEventListener('click', handleClickTexturePaving));
+
+function handleClickTexturePaving(event) {
+  itemsPaving.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const textureUrl = event.currentTarget.getAttribute('data-textures');
+
+  if (scene) {
+    const homeObject = scene.getObjectByName("Buttom");
+    console.log(homeObject)
+
+    if (homeObject) {
+      homeObject.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach((material) => {
+              console.log(material.name)
+              if (material.name && /-paving(\.\d+)*$/.test(material.name)) {
+                const texture = new THREE.TextureLoader().load(textureUrl);
+                texture.wrapS = textureConfig.wrapS;
+                texture.wrapT = textureConfig.wrapT;
+                texture.repeat.set(1, 1);
+                texture.encoding = THREE.sRGBEncoding;
+                material.map = texture;
+                material.magFilter = THREE.LinearFilter;
+                material.minFilter = THREE.LinearMipmapLinearFilter;
+                material.needsUpdate = true;
+              }
+            });
+          } else {
+            const material = child.material;
+            if (material.name && /-paving(\.\d+)*$/.test(material.name)) {
+              const texture = new THREE.TextureLoader().load(textureUrl);
+              texture.wrapS = textureConfig.wrapS;
+              texture.wrapT = textureConfig.wrapT;
+              texture.repeat.set(1, 1);
+              texture.encoding = THREE.sRGBEncoding;
+              material.map = texture;
+              material.magFilter = THREE.LinearFilter;
+              material.minFilter = THREE.LinearMipmapLinearFilter;
+              material.needsUpdate = true;
+            }
+          }
+        }
+      });
+    }
+  }
+}
+
+const itemsZabor = document.querySelectorAll('#zabor .item');
+itemsZabor.forEach(item => item.addEventListener('click', handleClickTexturesZabor));
+
+function handleClickTexturesZabor(event) {
+  itemsZabor.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const textureUrl = event.currentTarget.getAttribute('data-textures');
+
+  if (scene) {
+    const homeObject = scene.getObjectByName("Buttom");
+    console.log(homeObject)
+
+    if (homeObject) {
+      homeObject.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach((material) => {
+              console.log(material.name)
+              if (material.name && /-zabor(\.\d+)*$/.test(material.name)) {
+                const texture = new THREE.TextureLoader().load(textureUrl);
+                texture.wrapS = textureConfig.wrapS;
+                texture.wrapT = textureConfig.wrapT;
+                texture.repeat.set(1, 1);
+                texture.encoding = THREE.sRGBEncoding;
+                material.map = texture;
+                material.magFilter = THREE.LinearFilter;
+                material.minFilter = THREE.LinearMipmapLinearFilter;
+                material.needsUpdate = true;
+              }
+            });
+          } else {
+            const material = child.material;
+            if (material.name && /-zabor(\.\d+)*$/.test(material.name)) {
+              const texture = new THREE.TextureLoader().load(textureUrl);
+              texture.wrapS = textureConfig.wrapS;
+              texture.wrapT = textureConfig.wrapT;
+              texture.repeat.set(1, 1);
+              texture.encoding = THREE.sRGBEncoding;
+              material.map = texture;
+              material.magFilter = THREE.LinearFilter;
+              material.minFilter = THREE.LinearMipmapLinearFilter;
+              material.needsUpdate = true;
+            }
+          }
+        }
+      });
+    }
+  }
+}
+
 const itemsLand = document.querySelectorAll('#land .item');
 itemsLand.forEach(item => item.addEventListener('click', handleClickModelLand));
 
@@ -597,7 +704,6 @@ function handleClickModelTypeZabor(event) {
     showFenceForLandscape(object, activeLandscape, activeFenceVariant);
   }
 }
-
 
 const saveButton = document.getElementById("save-screenshot");
 const imagePopup = document.getElementById("image-popup");
