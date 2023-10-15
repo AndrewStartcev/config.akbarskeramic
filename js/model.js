@@ -193,13 +193,13 @@ function loadModelsAndTextures() {
 function init() {
   updateLoadingText("Настройка сцены, света и фона...");
 
-  const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
-  const skyMaterial = new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
-    side: THREE.BackSide
-  });
-  const sky = new THREE.Mesh(skyGeometry, skyMaterial);
-  scene.add(sky);
+  // const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
+  // const skyMaterial = new THREE.MeshBasicMaterial({
+  //   map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
+  //   side: THREE.BackSide
+  // });
+  // const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+  // scene.add(sky);
 
   renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
