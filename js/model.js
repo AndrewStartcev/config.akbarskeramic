@@ -1,4 +1,3 @@
-import fontBase64Data from '../pdf/GTWalsheimPro-Regular-normal.js';
 import * as THREE from 'three';
 
 import { OBJLoader } from './three/examples/jsm/loaders/OBJLoader.js';
@@ -159,6 +158,7 @@ function loadModelsAndTextures() {
       object.name = "Home";
 
       initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2'], false)
+      initElementsHome(object, ["L-1", "Roof1", "V-1"], true)
 
 
       object.traverse(function (child) {
@@ -189,9 +189,17 @@ function loadModelsAndTextures() {
 
 }
 
-// Инициализация сцены, камеры и контролов
+// =================== Инициализация сцены, камеры и контролов ==============
 function init() {
   updateLoadingText("Настройка сцены, света и фона...");
+
+  const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
+  const skyMaterial = new THREE.MeshBasicMaterial({
+    map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
+    side: THREE.BackSide
+  });
+  const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+  scene.add(sky);
 
   renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
@@ -261,7 +269,7 @@ function init() {
 
 init();
 
-// Функция для обновления текстуры стен
+// =================== Функция для обновления текстуры стен ==================
 export function updateWallTexture() {
   if (scene) {
     const homeObject = scene.getObjectByName("Home");
@@ -299,6 +307,44 @@ export function updateWallTexture() {
   }
 }
 
+function updateWallTextureURL(url) {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+
+    if (homeObject) {
+      // Обойдем все дочерние объекты homeObject
+      homeObject.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          // Проверяем, есть ли у объекта материалы
+          if (Array.isArray(child.material)) {
+            child.material.forEach((material) => {
+              // Используем регулярное выражение для поиска материалов с приставкой "-wall"
+              if (material.name && /-wall(\.\d+)?$/.test(material.name)) {
+                const wallTexture = url;
+                wallTexture.encoding = THREE.sRGBEncoding;
+                material.map = wallTexture;
+                material.color = new THREE.Color(1, 1, 1);
+                material.needsUpdate = true;
+              }
+            });
+          } else {
+            // Если у объекта только один материал
+            const material = child.material;
+            if (material.name && /-wall(\.\d+)?$/.test(material.name)) {
+              const wallTexture = url;
+              wallTexture.encoding = THREE.sRGBEncoding;
+              material.map = wallTexture;
+              material.color = new THREE.Color(1, 1, 1);
+              material.needsUpdate = true;
+            }
+          }
+        }
+      });
+    }
+  }
+}
+
+// ================ Реализация переключение планировки ===========
 const elementInfo = {
   'L-1': { visible: true },
   'Roof1': { visible: true },
@@ -311,7 +357,6 @@ const elementInfo = {
   'V-h': { visible: false },
   'V-g': { visible: false },
 };
-
 const buttons = [
   { buttonId: "layout-type-1", elementsToShow: ["L-1", "Roof1", "V-1"], elementsToHide: ["L-2", "Roof", "Hall", "Garage", 'V-h', 'V-g', 'V-2'] },
   { buttonId: "layout-type-2", elementsToShow: ["L-2", "Roof", 'V-2'], elementsToHide: ["Roof1", "Hall", "Garage", "V-1", 'V-h', 'V-g',] },
@@ -337,7 +382,6 @@ buttons.forEach(button => {
   buttonElement.addEventListener('mouseover', handleMouseOver(button.elementsToShow, button.elementsToHide));
   buttonElement.addEventListener('mouseout', handleMouseOut(button.elementsToShow, button.elementsToHide));
 });
-
 function handleMouseOver(elementsToShow, elementsToHide) {
   return () => {
     if (scene) {
@@ -362,7 +406,6 @@ function handleMouseOver(elementsToShow, elementsToHide) {
     }
   };
 }
-
 function handleMouseOut(elementsToShow, elementsToHide) {
   return () => {
     if (scene) {
@@ -387,12 +430,9 @@ function handleMouseOut(elementsToShow, elementsToHide) {
     }
   };
 }
-
 function handleClick(elementsToShow, elementsToHide) {
   if (scene) {
     const homeObject = scene.getObjectByName("Home");
-
-    console.log(homeObject)
 
     if (homeObject) {
       for (const elementName of elementsToShow) {
@@ -408,13 +448,11 @@ function handleClick(elementsToShow, elementsToHide) {
     }
   }
 }
-
 function hideObject(object) {
   if (object) {
     object.visible = false;
   }
 }
-
 function showObjectWithMaterial(object, material) {
   if (object) {
     object.material = material;
@@ -425,7 +463,7 @@ updateWallTexture()
 
 window.addEventListener('resize', onWindowResize);
 
-
+// ============= Смена текстур по data-textures и data-color ===============
 const itemsWindows = document.querySelectorAll('#windows .item');
 itemsWindows.forEach(item => item.addEventListener('click', function (event) {
   itemsWindows.forEach(item => item.classList.remove('active'));
@@ -447,6 +485,41 @@ itemsWater.forEach(item => item.addEventListener('click', function (event) {
   const hexColor = event.currentTarget.getAttribute('data-color');
   changeColor(hexColor, 'water')
 }));
+
+const itemsDodo = document.querySelectorAll('#dado .item');
+itemsDodo.forEach(item => item.addEventListener('click', function (event) {
+  itemsDodo.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const textureUrl = event.currentTarget.getAttribute('data-textures');
+
+  handleClickTexture(textureUrl, 'pallet', "Home")
+}));
+const itemsCher = document.querySelectorAll('#cher .item');
+itemsCher.forEach(item => item.addEventListener('click', function (event) {
+  itemsCher.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const textureUrl = event.currentTarget.getAttribute('data-textures');
+
+  handleClickTexture(textureUrl, 'cherepicza', "Home")
+}));
+
+const itemsPaving = document.querySelectorAll('#paving .item');
+itemsPaving.forEach(item => item.addEventListener('click', function (event) {
+  itemsPaving.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const textureUrl = event.currentTarget.getAttribute('data-textures');
+
+  handleClickTexture(textureUrl, 'paving', "Buttom")
+}));
+const itemsZabor = document.querySelectorAll('#zabor .item');
+itemsZabor.forEach(item => item.addEventListener('click', function (event) {
+  itemsZabor.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const textureUrl = event.currentTarget.getAttribute('data-textures');
+
+  handleClickTexture(textureUrl, 'zabor', "Buttom")
+}));
+
 
 function changeColor(color, materialName) {
   if (scene) {
@@ -474,29 +547,20 @@ function changeColor(color, materialName) {
     }
   }
 }
-
-
-const itemsDodo = document.querySelectorAll('#dado .item');
-itemsDodo.forEach(item => item.addEventListener('click', handleClickTexture));
-
-function handleClickTexture(event) {
-  itemsDodo.forEach(item => item.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  const textureUrl = event.currentTarget.getAttribute('data-textures');
-
+function handleClickTexture(textureUrl, materialName, objectName, size = 0.8) {
   if (scene) {
-    const homeObject = scene.getObjectByName("Home");
+    const homeObject = scene.getObjectByName(objectName);
 
     if (homeObject) {
       homeObject.traverse(function (child) {
         if (child instanceof THREE.Mesh) {
           if (Array.isArray(child.material)) {
             child.material.forEach((material) => {
-              if (material.name && /-pallet(\.\d+)?$/.test(material.name)) {
+              if (material.name && new RegExp(`-${materialName}(\\.\\d+)?$`).test(material.name)) {
                 const texture = new THREE.TextureLoader().load(textureUrl);
                 texture.wrapS = textureConfig.wrapS;
                 texture.wrapT = textureConfig.wrapT;
-                texture.repeat.set(0.8, 0.8);
+                texture.repeat.set(size, size);
                 texture.encoding = THREE.sRGBEncoding;
                 material.map = texture;
                 material.magFilter = THREE.LinearFilter;
@@ -508,11 +572,11 @@ function handleClickTexture(event) {
             });
           } else {
             const material = child.material;
-            if (material.name && /-pallet(\.\d+)?$/.test(material.name)) {
+            if (material.name && new RegExp(`-${materialName}(\\.\\d+)?$`).test(material.name)) {
               const texture = new THREE.TextureLoader().load(textureUrl);
               texture.wrapS = textureConfig.wrapS;
               texture.wrapT = textureConfig.wrapT;
-              texture.repeat.set(0.8, 0.8);
+              texture.repeat.set(size, size);
               texture.encoding = THREE.sRGBEncoding;
               material.map = texture;
               material.magFilter = THREE.LinearFilter;
@@ -528,158 +592,9 @@ function handleClickTexture(event) {
   }
 }
 
-
-const itemsCher = document.querySelectorAll('#cher .item');
-itemsCher.forEach(item => item.addEventListener('click', handleClickTextureCher));
-
-function handleClickTextureCher(event) {
-  itemsCher.forEach(item => item.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  const textureUrl = event.currentTarget.getAttribute('data-textures');
-
-  if (scene) {
-    const homeObject = scene.getObjectByName("Home");
-
-    if (homeObject) {
-      homeObject.traverse(function (child) {
-        if (child instanceof THREE.Mesh) {
-          if (Array.isArray(child.material)) {
-            child.material.forEach((material) => {
-              if (material.name && /-cherepicza(\.\d+)?$/.test(material.name)) {
-                const texture = new THREE.TextureLoader().load(textureUrl);
-                texture.wrapS = textureConfig.wrapS;
-                texture.wrapT = textureConfig.wrapT;
-                texture.repeat.set(1, 1);
-                texture.encoding = THREE.sRGBEncoding;
-                material.map = texture;
-                material.magFilter = THREE.LinearFilter;
-                material.minFilter = THREE.LinearMipmapLinearFilter;
-                material.needsUpdate = true;
-              }
-            });
-          } else {
-            const material = child.material;
-            if (material.name && /-cherepicza(\.\d+)?$/.test(material.name)) {
-              const texture = new THREE.TextureLoader().load(textureUrl);
-              texture.wrapS = textureConfig.wrapS;
-              texture.wrapT = textureConfig.wrapT;
-              texture.repeat.set(1, 1);
-              texture.encoding = THREE.sRGBEncoding;
-              material.map = texture;
-              material.magFilter = THREE.LinearFilter;
-              material.minFilter = THREE.LinearMipmapLinearFilter;
-              material.needsUpdate = true;
-            }
-          }
-        }
-      });
-    }
-  }
-}
-
-const itemsPaving = document.querySelectorAll('#paving .item');
-itemsPaving.forEach(item => item.addEventListener('click', handleClickTexturePaving));
-
-function handleClickTexturePaving(event) {
-  itemsPaving.forEach(item => item.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  const textureUrl = event.currentTarget.getAttribute('data-textures');
-
-  if (scene) {
-    const homeObject = scene.getObjectByName("Buttom");
-    console.log(homeObject)
-
-    if (homeObject) {
-      homeObject.traverse(function (child) {
-        if (child instanceof THREE.Mesh) {
-          if (Array.isArray(child.material)) {
-            child.material.forEach((material) => {
-              console.log(material.name)
-              if (material.name && /-paving(\.\d+)*$/.test(material.name)) {
-                const texture = new THREE.TextureLoader().load(textureUrl);
-                texture.wrapS = textureConfig.wrapS;
-                texture.wrapT = textureConfig.wrapT;
-                texture.repeat.set(1, 1);
-                texture.encoding = THREE.sRGBEncoding;
-                material.map = texture;
-                material.magFilter = THREE.LinearFilter;
-                material.minFilter = THREE.LinearMipmapLinearFilter;
-                material.needsUpdate = true;
-              }
-            });
-          } else {
-            const material = child.material;
-            if (material.name && /-paving(\.\d+)*$/.test(material.name)) {
-              const texture = new THREE.TextureLoader().load(textureUrl);
-              texture.wrapS = textureConfig.wrapS;
-              texture.wrapT = textureConfig.wrapT;
-              texture.repeat.set(1, 1);
-              texture.encoding = THREE.sRGBEncoding;
-              material.map = texture;
-              material.magFilter = THREE.LinearFilter;
-              material.minFilter = THREE.LinearMipmapLinearFilter;
-              material.needsUpdate = true;
-            }
-          }
-        }
-      });
-    }
-  }
-}
-
-const itemsZabor = document.querySelectorAll('#zabor .item');
-itemsZabor.forEach(item => item.addEventListener('click', handleClickTexturesZabor));
-
-function handleClickTexturesZabor(event) {
-  itemsZabor.forEach(item => item.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  const textureUrl = event.currentTarget.getAttribute('data-textures');
-
-  if (scene) {
-    const homeObject = scene.getObjectByName("Buttom");
-    console.log(homeObject)
-
-    if (homeObject) {
-      homeObject.traverse(function (child) {
-        if (child instanceof THREE.Mesh) {
-          if (Array.isArray(child.material)) {
-            child.material.forEach((material) => {
-              console.log(material.name)
-              if (material.name && /-zabor(\.\d+)*$/.test(material.name)) {
-                const texture = new THREE.TextureLoader().load(textureUrl);
-                texture.wrapS = textureConfig.wrapS;
-                texture.wrapT = textureConfig.wrapT;
-                texture.repeat.set(1, 1);
-                texture.encoding = THREE.sRGBEncoding;
-                material.map = texture;
-                material.magFilter = THREE.LinearFilter;
-                material.minFilter = THREE.LinearMipmapLinearFilter;
-                material.needsUpdate = true;
-              }
-            });
-          } else {
-            const material = child.material;
-            if (material.name && /-zabor(\.\d+)*$/.test(material.name)) {
-              const texture = new THREE.TextureLoader().load(textureUrl);
-              texture.wrapS = textureConfig.wrapS;
-              texture.wrapT = textureConfig.wrapT;
-              texture.repeat.set(1, 1);
-              texture.encoding = THREE.sRGBEncoding;
-              material.map = texture;
-              material.magFilter = THREE.LinearFilter;
-              material.minFilter = THREE.LinearMipmapLinearFilter;
-              material.needsUpdate = true;
-            }
-          }
-        }
-      });
-    }
-  }
-}
-
+// ============= Смена моделей в объекте Bottom ===============
 const itemsLand = document.querySelectorAll('#land .item');
 itemsLand.forEach(item => item.addEventListener('click', handleClickModelLand));
-
 function handleClickModelLand(event) {
   itemsLand.forEach(item => item.classList.remove('active'));
   event.currentTarget.classList.add('active');
@@ -690,10 +605,8 @@ function handleClickModelLand(event) {
     showFenceForLandscape(object, activeLandscape, activeFenceVariant);
   }
 }
-
 const itemsTypeZabor = document.querySelectorAll('#type-zabor .item');
 itemsTypeZabor.forEach(item => item.addEventListener('click', handleClickModelTypeZabor));
-
 function handleClickModelTypeZabor(event) {
   itemsLand.forEach(item => item.classList.remove('active'));
   event.currentTarget.classList.add('active');
@@ -705,6 +618,35 @@ function handleClickModelTypeZabor(event) {
   }
 }
 
+// ================ Готовые решения ===========================
+const itemsReadySolutions = document.querySelectorAll('#readySolutions .item');
+itemsReadySolutions.forEach(item => item.addEventListener('click', function (event) {
+  itemsReadySolutions.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  const object = scene.getObjectByName("Buttom");
+
+  const land = event.currentTarget.getAttribute('data-land');
+  const bricks = event.currentTarget.getAttribute('data-bricks');
+  const color = event.currentTarget.getAttribute('data-color');
+  const paving = event.currentTarget.getAttribute('data-paving');
+  const zabor = event.currentTarget.getAttribute('data-zabor');
+  const cher = event.currentTarget.getAttribute('data-cher');
+  const dado = event.currentTarget.getAttribute('data-dado');
+
+  handleClick(["L-2", "Roof", 'V-2', "Hall", "Garage", "V-h", 'V-g'], ["Roof1", "V-1"])
+  showFenceForLandscape(object, land, 1);
+  handleClickTexture(bricks, 'wall', 'Home', 0.5);
+  changeColor(color, 'stavny')
+  changeColor(color, 'stovepipe')
+  changeColor(color, 'water')
+  handleClickTexture(paving, 'paving', 'Buttom');
+  handleClickTexture(zabor, 'zabor', 'Buttom');
+  handleClickTexture(cher, 'cherepicza', 'Home');
+  handleClickTexture(dado, 'pallet', 'Home');
+}));
+
+// ============= Реализация скриншота ===========================
 const saveButton = document.getElementById("save-screenshot");
 const imagePopup = document.getElementById("image-popup");
 const popupImage = document.getElementById("popup-image");
@@ -727,8 +669,6 @@ saveButton.addEventListener('click', () => {
     return;
   }
 });
-
-// Обработчик для кнопки "Скачать"
 downloadButton.addEventListener('click', () => {
   if (imageDataUrl) {
     // Создаем ссылку для скачивания и инициируем скачивание
@@ -738,16 +678,12 @@ downloadButton.addEventListener('click', () => {
     a.click();
   }
 });
-
-// Обработчик для кнопки "Отмена"
 cancelButton.addEventListener('click', () => {
   // Закрываем всплывающее окно и очищаем данные изображения
   imagePopup.classList.remove('active')
   popupImage.src = "";
   imageDataUrl = null;
 });
-
-// Обработчик для кнопки "Закрыть"
 closeButton.addEventListener('click', () => {
   // Закрываем всплывающее окно и очищаем данные изображения
   imagePopup.classList.remove('active')
@@ -761,6 +697,7 @@ const doc = new jsPDF({
   format: 'a4',
 });;
 
+// ===================== PDF ==============================
 document.addEventListener("DOMContentLoaded", function () {
 
 
@@ -845,8 +782,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
-// Функция для загрузки HTML-контента и добавления его в PDF
 function createPDF() {
 
   // Получаем снимок экрана из HTML
@@ -864,4 +799,49 @@ function createPDF() {
     doc.save('Akbarskeramic 3D Configuration.pdf');
 
   });
+}
+
+
+function saveCanvasImage() {
+  // Получите элемент <canvas>
+  const canvas = document.getElementById("canvas");
+
+  // Получите данные изображения с <canvas>
+  const imageData = canvas.toDataURL("image/png");
+
+  // Создайте элемент <a>
+  const link = document.createElement("a");
+
+  // Установите атрибуты элемента <a>
+  link.href = imageData;
+  link.download = "canvas_image.png";
+
+  // Эмулируйте клик на элементе <a> для сохранения файла
+  link.click();
+}
+
+// Добавьте обработчик события для нажатия клавиши 4
+document.addEventListener("keydown", function (event) {
+  if (event.key === "4") {
+    saveCanvasImage();
+  }
+});
+
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "1") {
+    toggleVisibility("modes");
+    toggleVisibility("modes-social");
+    toggleVisibility("modes-export");
+    toggleVisibility("app-menu");
+  }
+});
+
+function toggleVisibility(elementId) {
+  const element = document.getElementById(elementId);
+  if (element.style.display === "none" || element.style.display === "") {
+    element.style.display = "flex";
+  } else {
+    element.style.display = "none";
+  }
 }

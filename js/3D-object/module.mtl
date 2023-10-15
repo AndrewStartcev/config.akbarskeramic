@@ -51,7 +51,7 @@ d 1.000000
 illum 1
 map_Kd hrt/TratColor_1.jpg
 
-newmtl Land2-paving.03
+newmtl Land2-paving.001
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -61,7 +61,7 @@ d 1.000000
 illum 1
 map_Kd hrt/1.jpg
 
-newmtl Land3-paving.02
+newmtl Land3-paving.003
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -71,7 +71,7 @@ d 1.000000
 illum 1
 map_Kd hrt/1.jpg
 
-newmtl Land4-paving.04
+newmtl Land4-paving.004
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -401,7 +401,7 @@ d 1.000000
 illum 1
 map_Kd hrt/grass_grass_0075_02_tiled_s.jpg
 
-newmtl land1-zabor.00
+newmtl land1-zabor.001
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -411,7 +411,7 @@ d 1.000000
 illum 1
 map_Kd hrt/BavarCoraDub.jpg
 
-newmtl land2-zabor.01
+newmtl land2-zabor.002
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -421,7 +421,7 @@ d 1.000000
 illum 1
 map_Kd hrt/BavarCoraDub.jpg
 
-newmtl land3-zabor.02
+newmtl land3-zabor.003
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -431,7 +431,7 @@ d 1.000000
 illum 1
 map_Kd hrt/BavarCoraDub.jpg
 
-newmtl land4-zabor.04
+newmtl land4-zabor.004
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000

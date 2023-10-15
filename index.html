@@ -77,7 +77,7 @@
       <div class="mode" id="mode-3d">2D</div>
       <div class="mode active" id="mode-3d-three">3D</div>
     </div>
-    <div class="box-shadow sidebar-social">
+    <div id="modes-social" class="box-shadow sidebar-social">
       <div class="sidebar-social__item">
         <a href="https://vk.com/abceramic" target="_blank">
           <svg height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +97,7 @@
         </a>
       </div>
     </div>
-    <div class="box-shadow sidebar-export">
+    <div id="modes-export" class="box-shadow sidebar-export">
       <div class="sidebar-export__item">
         <div class="save-pdf flex-center" data-tooltip="Скачать PDF">
           <svg class="pdf-icon" enable-background="new 0 0 128 170" height="170px" id="Layer_1" version="1.1"
@@ -151,7 +151,7 @@
         <div class="tab-menu app-menu-item flex-center" data-chapter="land-menu" data-tooltip="Ландшафт">
           <img class="icon" src="img/icons/three-active.svg" alt="" />
         </div>
-        <div class="tab-menu app-menu-item flex-center" data-chapter="#" data-tooltip="Готовые решения">
+        <div class="tab-menu app-menu-item flex-center" data-chapter="readySolutions" data-tooltip="Готовые решения">
           <img class="icon" src="img/icons/home-active2.svg" alt="" />
         </div>
 
@@ -363,6 +363,61 @@
               <div class="tab-menu-dop layout-group-item" data-chapter="type-zabor">
                 <div class="img"><img src="img/icons/fence-active.svg" alt=""></div>
                 <h3>Тип Ограждения</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-chapter app-chapter-dop" id="readySolutions">
+          <div class="inner">
+            <h2>Готовые решения</h2>
+            <div class="wrap-item custom-scroll">
+              <div class="item" style="background-image: url(img/solution-screen/1.jpg);" data-land="Land-2"
+                data-bricks="img/solution/3.png" data-color="221202" data-paving="img/land-textures/3.jpg"
+                data-zabor="img/zabor/2.jpg" data-cher="img/cher/cherepitsa-3.jpg"
+                data-dado="img/kladka_tsokol/Сottage_brick.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/solution-screen/2.jpg);" data-land="Land-2"
+                data-bricks="img/solution/2.png" data-color="DDD3C4" data-paving="img/land-textures/9.jpg"
+                data-zabor="img/zabor/3.jpg" data-cher="img/cher/cherepitsa-8.jpg"
+                data-dado="img/kladka_tsokol/Сottage_brick.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/solution-screen/3.jpg);" data-land="Land-2"
+                data-bricks="img/solution/1.png" data-color="540103" data-paving="img/land-textures/12.jpg"
+                data-zabor="img/zabor/5.jpg" data-cher="img/cher/cherepitsa-4.jpg"
+                data-dado="img/kladka_tsokol/Stroeher_Stroeher.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/solution-screen/4.jpg);" data-land="Land-2"
+                data-bricks="img/solution/4.png" data-color="DDD3C4" data-paving="img/land-textures/11.jpg"
+                data-zabor="img/zabor/2.jpg" data-cher="img/cher/cherepitsa-5.jpg"
+                data-dado="img/kladka_tsokol/Stroeher_Tabakbraun.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/solution-screen/5.jpg);" data-land="Land-2"
+                data-bricks="img/solution/6.png" data-color="DDD3C4" data-paving="img/land-textures/2.jpg"
+                data-zabor="img/zabor/1.jpg" data-cher="img/cher/Cherepicza.jpg"
+                data-dado="img/kladka_tsokol/Stroeher_Stroeher.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
+              </div>
+              <div class="item" style="background-image: url(img/solution-screen/6.jpg);" data-land="Land-2"
+                data-bricks="img/solution/6.png" data-color="DDD3C4" data-paving="img/land-textures/5.jpg"
+                data-zabor="img/zabor/3.jpg" data-cher="img/cher/cherepitsa-6.jpg"
+                data-dado="img/kladka_tsokol/Stroeher_Stroeher.jpg">
+                <div class="btn-item">
+                  <span class="checked"></span>
+                </div>
               </div>
             </div>
           </div>
@@ -864,7 +919,7 @@
         </div>
         <div class="app-chapter app-chapter-dop" id="zabor">
           <div class="inner">
-            <h2>Брусчатка</h2>
+            <h2>Ограждения</h2>
             <div class="wrap-item custom-scroll">
               <div class="item active" style="background-image: url(img/zabor/0.jpg);" data-textures="img/zabor/0.jpg">
                 <div class="btn-item">
@@ -929,6 +984,7 @@
             </div>
           </div>
         </div>
+
       </div>
       <button class="close-button"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
