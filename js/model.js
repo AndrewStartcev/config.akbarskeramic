@@ -608,7 +608,7 @@ function handleClickModelLand(event) {
 const itemsTypeZabor = document.querySelectorAll('#type-zabor .item');
 itemsTypeZabor.forEach(item => item.addEventListener('click', handleClickModelTypeZabor));
 function handleClickModelTypeZabor(event) {
-  itemsLand.forEach(item => item.classList.remove('active'));
+  itemsTypeZabor.forEach(item => item.classList.remove('active'));
   event.currentTarget.classList.add('active');
   activeFenceVariant = event.currentTarget.getAttribute('data-model');
 
