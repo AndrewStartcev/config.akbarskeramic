@@ -32,6 +32,17 @@ const skyMaterial = new THREE.MeshBasicMaterial({
 });
 const sky = new THREE.Mesh(skyGeometry, skyMaterial);
 
+const backgroundCheckbox = document.getElementById('check_bg');
+
+// Добавляем обработчик события при изменении состояния чекбокса
+backgroundCheckbox.addEventListener('change', function () {
+  // Получаем состояние чекбокса
+  const isChecked = backgroundCheckbox.checked;
+
+  // Вызываем функцию ShowBackgroundModel в зависимости от состояния чекбокса
+  ShowBackgroundModel(isChecked);
+});
+
 // Переменные для сохранения оригинальных материалов
 const originalMaterials = {};
 
@@ -82,9 +93,6 @@ function showFenceForLandscape(object, landscape, fenceVariant) {
   object.traverse((child) => {
     if (child instanceof THREE.Mesh) {
       if (child.name === landscape || child.name === landscape + '-zabor-' + fenceVariant) {
-        child.visible = true;
-        child.castShadow = true;
-      } else if (child.name === 'BG') {
         child.visible = true;
         child.castShadow = true;
       } else {
@@ -199,10 +207,29 @@ function loadModelsAndTextures() {
 
 }
 
+function ShowBackgroundModel(isShow) {
+  if (scene) {
+    const homeObject = scene.getObjectByName("Buttom");
+    if (homeObject) {
+      homeObject.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          if (child.name === 'BG') {
+            if (isShow) {
+              scene.add(sky);
+            } else {
+              scene.remove(sky);
+            }
+            child.visible = isShow;
+          }
+        }
+      })
+    }
+  }
+}
 // =================== Инициализация сцены, камеры и контролов ==============
 function init() {
   updateLoadingText("Настройка сцены, света и фона...");
-  scene.add(sky);
+
 
   renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
@@ -273,15 +300,6 @@ function init() {
 
 init();
 
-function changeMaxDistance(targetDistance, duration) {
-  var currentDistance = controls.maxDistance;
-  var tween = new TWEEN.Tween({ distance: currentDistance })
-    .to({ distance: targetDistance }, duration)
-    .onUpdate(function () {
-      controls.maxDistance = this.distance;
-    })
-    .start();
-}
 
 // =================== Функция для обновления текстуры стен ==================
 export function updateWallTexture() {
