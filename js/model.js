@@ -25,6 +25,13 @@ const initialCameraPosition = new THREE.Vector3(-2.07, -1.94, 3.66); // Нача
 const lookAtPosition = new THREE.Vector3(0, -10, -10); // Позиция, на которую камера смотрит
 var renderer = new THREE.WebGLRenderer();
 
+const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
+const skyMaterial = new THREE.MeshBasicMaterial({
+  map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
+  side: THREE.BackSide
+});
+const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+
 // Переменные для сохранения оригинальных материалов
 const originalMaterials = {};
 
@@ -77,12 +84,16 @@ function showFenceForLandscape(object, landscape, fenceVariant) {
       if (child.name === landscape || child.name === landscape + '-zabor-' + fenceVariant) {
         child.visible = true;
         child.castShadow = true;
+      } else if (child.name === 'BG') {
+        child.visible = true;
+        child.castShadow = true;
       } else {
         child.visible = false;
       }
     }
   });
 }
+
 function loadModelsAndTextures() {
 
   updateLoadingText("Загрузка моделей...");
@@ -143,7 +154,6 @@ function loadModelsAndTextures() {
   });
 
 
-
   // Загрузка модели "Home"
   const homeLoader = new OBJLoader();
   const homeMtlLoader = new MTLLoader();
@@ -192,14 +202,7 @@ function loadModelsAndTextures() {
 // =================== Инициализация сцены, камеры и контролов ==============
 function init() {
   updateLoadingText("Настройка сцены, света и фона...");
-
-  // const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
-  // const skyMaterial = new THREE.MeshBasicMaterial({
-  //   map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
-  //   side: THREE.BackSide
-  // });
-  // const sky = new THREE.Mesh(skyGeometry, skyMaterial);
-  // scene.add(sky);
+  scene.add(sky);
 
   renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
@@ -245,9 +248,9 @@ function init() {
   const controls = new OrbitControls(camera, renderer.domElement);
 
   controls.minPolarAngle = 0; // Ограничение по углу наклона вверх
-  controls.maxPolarAngle = Math.PI / 1.9;  // Ограничение по углу наклона вниз
-  controls.minDistance = 3.2//3.3;  // Ограничение по дистанции
-  controls.maxDistance = 10;  // Ограничение по дистанции
+  controls.maxPolarAngle = Math.PI / 2.0;  // Ограничение по углу наклона вниз
+  controls.minDistance = 0 ///3.2//3.3;  // Ограничение по дистанции
+  controls.maxDistance = 9;  // Ограничение по дистанции
   controls.enablePan = false; // Отключение перемещения камеры (панорамирования)
   controls.enableDamping = true; // Включение затухания для более плавных движений
   controls.dampingFactor = 0.5; // Включение затухания для более плавных движений
@@ -256,6 +259,7 @@ function init() {
   onWindowResize();
 
   const animate = () => {
+
 
     directionalLight.position.copy(camera.position);
     requestAnimationFrame(animate);
@@ -268,6 +272,16 @@ function init() {
 }
 
 init();
+
+function changeMaxDistance(targetDistance, duration) {
+  var currentDistance = controls.maxDistance;
+  var tween = new TWEEN.Tween({ distance: currentDistance })
+    .to({ distance: targetDistance }, duration)
+    .onUpdate(function () {
+      controls.maxDistance = this.distance;
+    })
+    .start();
+}
 
 // =================== Функция для обновления текстуры стен ==================
 export function updateWallTexture() {

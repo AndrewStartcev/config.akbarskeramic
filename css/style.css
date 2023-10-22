@@ -331,6 +331,7 @@ sub {
 	height: calc(100vh - 40px);
 }
 #app-menu .app-chapter .inner > h2 {
+	padding-top: 20px;
 	color: var(--white-color);
 	font-weight: bold;
 	font-family: 'Comfortaa', cursive;
@@ -659,7 +660,7 @@ sub {
 	}
 	#app-menu .fl {
 		width: 60px;
-		padding: 60px 0px;
+		padding: 20px 0px;
 	}
 	#house {
 		width: calc(100% - 60px);
@@ -1018,7 +1019,7 @@ sub {
 @media (max-width: 700px) {
 	#app-menu .fl {
 		width: 50px;
-		padding: 50px 0px;
+		padding: 20px 0px;
 	}
 	#app-menu.opened .fr {
 		width: calc(100% - 50px);
@@ -1632,4 +1633,66 @@ sub {
 }
 #app-menu .fl {
 border-radius: 20px;
+display: flex;
+    flex-direction: column;
+
+}
+.tab-menu-footer {
+	margin-top: auto;
+}
+
+.wrap-checkbox {
+  display: flex;
+  align-items: center;
+	justify-content: space-between;
+	padding: 20px 15px;
+	background: #5221d1;
+	border-radius: 8px;
+}
+
+.wrap-checkbox h4 {
+	font-size: 18px;
+  margin-right: 10px;
+}
+
+.item-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.item-checkbox label {
+	cursor: pointer;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 28px;
+  background-color: #d9d9d9;
+  border-radius: 28px;
+}
+
+
+.item-checkbox label:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  border: 3px solid #d9d9d9;
+  background-color: #5221d1;
+  border-radius: 50%;
+  transform: translateX(0);
+  transition: transform 0.2s;
+}
+
+.item-checkbox input[type="checkbox"]:checked + label:after {
+	border: 3px solid #fff;
+  transform: translateX(32px);
+}
+.item-checkbox input[type="checkbox"]:checked + label {
+	background-color: #fff;
+}
+.g-4 {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
