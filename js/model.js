@@ -33,14 +33,34 @@ const skyMaterial = new THREE.MeshBasicMaterial({
 const sky = new THREE.Mesh(skyGeometry, skyMaterial);
 
 const backgroundCheckbox = document.getElementById('check_bg');
+const roofCheckbox = document.getElementById('check_roof');
+let backgroundCheckboxisChecked = false
+let roofCheckboxisChecked = false
+
 
 // Добавляем обработчик события при изменении состояния чекбокса
 backgroundCheckbox.addEventListener('change', function () {
   // Получаем состояние чекбокса
-  const isChecked = backgroundCheckbox.checked;
+  backgroundCheckboxisChecked = backgroundCheckbox.checked;
 
   // Вызываем функцию ShowBackgroundModel в зависимости от состояния чекбокса
-  ShowBackgroundModel(isChecked);
+  ShowBackgroundModel();
+});
+roofCheckbox.addEventListener('change', function () {
+  roofCheckboxisChecked = roofCheckbox.checked;
+
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+    if (homeObject) {
+      if (!roofCheckboxisChecked) {
+        initElementsHome(homeObject, ["L-2", "Roof", "Roof1", "Garage", "Hall", 'V-h', 'V-g', 'V-2', "V-1",], false)
+        initElementsHome(homeObject, ["L-1", 'L-1-top'], true)
+      } else {
+        initElementsHome(homeObject, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2', 'L-1-top'], false)
+        initElementsHome(homeObject, ["L-1", "V-1", "Roof1",], true)
+      }
+    }
+  }
 });
 
 // Переменные для сохранения оригинальных материалов
@@ -99,6 +119,7 @@ function showFenceForLandscape(object, landscape, fenceVariant) {
         child.visible = false;
       }
     }
+    ShowBackgroundModel()
   });
 }
 
@@ -175,9 +196,8 @@ function loadModelsAndTextures() {
       object.position.set(object.position.x, -2.01, object.position.z);
       object.name = "Home";
 
-      initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2'], false)
+      initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2', 'L-1-top'], false)
       initElementsHome(object, ["L-1", "Roof1", "V-1"], true)
-
 
       object.traverse(function (child) {
         if (child instanceof THREE.Mesh) {
@@ -207,19 +227,19 @@ function loadModelsAndTextures() {
 
 }
 
-function ShowBackgroundModel(isShow) {
+function ShowBackgroundModel() {
   if (scene) {
     const homeObject = scene.getObjectByName("Buttom");
     if (homeObject) {
       homeObject.traverse((child) => {
         if (child instanceof THREE.Mesh) {
           if (child.name === 'BG') {
-            if (isShow) {
+            if (backgroundCheckboxisChecked) {
               scene.add(sky);
             } else {
               scene.remove(sky);
             }
-            child.visible = isShow;
+            child.visible = backgroundCheckboxisChecked;
           }
         }
       })
@@ -276,18 +296,16 @@ function init() {
 
   controls.minPolarAngle = 0; // Ограничение по углу наклона вверх
   controls.maxPolarAngle = Math.PI / 2.0;  // Ограничение по углу наклона вниз
-  controls.minDistance = 0 ///3.2//3.3;  // Ограничение по дистанции
-  controls.maxDistance = 9;  // Ограничение по дистанции
+  controls.minDistance = 3.2 ///3.2//3.3;  // Ограничение по дистанции
+  controls.maxDistance = 8;  // Ограничение по дистанции
   controls.enablePan = false; // Отключение перемещения камеры (панорамирования)
-  controls.enableDamping = true; // Включение затухания для более плавных движений
-  controls.dampingFactor = 0.5; // Включение затухания для более плавных движений
+  controls.enableDamping = false; // Включение затухания для более плавных движений
+  controls.dampingFactor = 1; // Включение затухания для более плавных движений
   controls.rotateSpeed = 0.5; // Скорость вращения
 
   onWindowResize();
 
   const animate = () => {
-
-
     directionalLight.position.copy(camera.position);
     requestAnimationFrame(animate);
 
@@ -339,42 +357,6 @@ export function updateWallTexture() {
   }
 }
 
-function updateWallTextureURL(url) {
-  if (scene) {
-    const homeObject = scene.getObjectByName("Home");
-
-    if (homeObject) {
-      // Обойдем все дочерние объекты homeObject
-      homeObject.traverse(function (child) {
-        if (child instanceof THREE.Mesh) {
-          // Проверяем, есть ли у объекта материалы
-          if (Array.isArray(child.material)) {
-            child.material.forEach((material) => {
-              // Используем регулярное выражение для поиска материалов с приставкой "-wall"
-              if (material.name && /-wall(\.\d+)?$/.test(material.name)) {
-                const wallTexture = url;
-                wallTexture.encoding = THREE.sRGBEncoding;
-                material.map = wallTexture;
-                material.color = new THREE.Color(1, 1, 1);
-                material.needsUpdate = true;
-              }
-            });
-          } else {
-            // Если у объекта только один материал
-            const material = child.material;
-            if (material.name && /-wall(\.\d+)?$/.test(material.name)) {
-              const wallTexture = url;
-              wallTexture.encoding = THREE.sRGBEncoding;
-              material.map = wallTexture;
-              material.color = new THREE.Color(1, 1, 1);
-              material.needsUpdate = true;
-            }
-          }
-        }
-      });
-    }
-  }
-}
 
 // ================ Реализация переключение планировки ===========
 const elementInfo = {
