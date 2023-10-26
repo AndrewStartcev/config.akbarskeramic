@@ -17,6 +17,15 @@ const customColor = new THREE.Color(0x5221d1);
 const customColorRed = new THREE.Color(0xff0000);
 const showMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.5, color: customColor });
 const hideMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.3, color: customColorRed });
+// Переменные для сохранения оригинальных материалов
+const originalMaterials = {};
+
+const buttons = [
+  { buttonId: "layout-type-1", elementsToShow: ["L-1", "Roof1", "V-1"], elementsToHide: ["L-2", "Roof", "Hall", "Garage", 'V-h', 'V-g', 'V-2'] },
+  { buttonId: "layout-type-2", elementsToShow: ["L-2", "Roof", 'V-2'], elementsToHide: ["Roof1", "Hall", "Garage", "V-1", 'V-h', 'V-g',] },
+  { buttonId: "layout-type-3", elementsToShow: ["L-2", "Roof", 'V-2', "Hall", "V-h"], elementsToHide: ["Roof1", "Garage", "V-1", 'V-g',] },
+  { buttonId: "layout-type-4", elementsToShow: ["L-2", "Roof", 'V-2', "Hall", "Garage", "V-h", 'V-g'], elementsToHide: ["Roof1", "V-1"] },
+];
 
 // Сцена, камера и рендерер
 const scene = new THREE.Scene();
@@ -34,9 +43,10 @@ const sky = new THREE.Mesh(skyGeometry, skyMaterial);
 
 const backgroundCheckbox = document.getElementById('check_bg');
 const roofCheckbox = document.getElementById('check_roof');
+const l2Checkbox = document.getElementById('check_l2');
 let backgroundCheckboxisChecked = false
-let roofCheckboxisChecked = false
-
+let roofCheckboxChecked = true
+let l2CheckboxChecked = true
 
 // Добавляем обработчик события при изменении состояния чекбокса
 backgroundCheckbox.addEventListener('change', function () {
@@ -46,25 +56,71 @@ backgroundCheckbox.addEventListener('change', function () {
   // Вызываем функцию ShowBackgroundModel в зависимости от состояния чекбокса
   ShowBackgroundModel();
 });
-roofCheckbox.addEventListener('change', function () {
-  roofCheckboxisChecked = roofCheckbox.checked;
 
+function handleRoofCheckboxChange() {
+  roofCheckboxChecked = roofCheckbox.checked;
   if (scene) {
     const homeObject = scene.getObjectByName("Home");
+    let isL2Show = isElementVisible(homeObject, "L-2");
+
     if (homeObject) {
-      if (!roofCheckboxisChecked) {
-        initElementsHome(homeObject, ["L-2", "Roof", "Roof1", "Garage", "Hall", 'V-h', 'V-g', 'V-2', "V-1",], false)
-        initElementsHome(homeObject, ["L-1", 'L-1-top'], true)
+      if (roofCheckboxChecked) {
+        if (isL2Show) {
+          initElementsHome(homeObject, ["Roof", 'V-2'], true, false);
+        } else {
+          initElementsHome(homeObject, ["Roof1", 'V-1'], true, false);
+        }
+        initElementsHome(homeObject, ["L-2-top", 'L-1-top'], false, false);
       } else {
-        initElementsHome(homeObject, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2', 'L-1-top'], false)
-        initElementsHome(homeObject, ["L-1", "V-1", "Roof1",], true)
+        if (isL2Show) {
+          initElementsHome(homeObject, ["Roof", 'V-2'], false, false);
+          initElementsHome(homeObject, ["L-2-top"], true, false);
+        } else {
+          initElementsHome(homeObject, ["Roof1", 'V-1'], false, false);
+          initElementsHome(homeObject, ["L-1-top"], true, false);
+        }
       }
     }
   }
-});
+}
+function handleL2CheckboxChange() {
+  l2CheckboxChecked = l2Checkbox.checked;
+  if (scene) {
+    const homeObject = scene.getObjectByName("Home");
+    let isL2Show = isElementVisible(homeObject, "L-2");
 
-// Переменные для сохранения оригинальных материалов
-const originalMaterials = {};
+    if (homeObject) {
+      if (!l2CheckboxChecked) {
+        if (isL2Show) {
+          initElementsHome(homeObject, ["Roof", "L-2", "L-2-top"], false, false);
+          if (roofCheckboxChecked) {
+            initElementsHome(homeObject, ["Roof1", 'V-1'], true, false);
+            initElementsHome(homeObject, ["L-1-top"], false, false);
+          } else {
+            initElementsHome(homeObject, ["Roof1", 'V-1'], false, false);
+            initElementsHome(homeObject, ["L-1-top"], true, false);
+          }
+        } else {
+          l2Checkbox.checked = true;
+        }
+      } else {
+        initElementsHome(homeObject, ["L-2", "L-2-top"], true, false);
+        initElementsHome(homeObject, ["L-1-top"], false, false);
+        if (roofCheckboxChecked) {
+          initElementsHome(homeObject, ["Roof", 'V-2'], true, false);
+          initElementsHome(homeObject, ["L-2-top"], false, false);
+        } else {
+          initElementsHome(homeObject, ["Roof", 'V-2'], false, false);
+          initElementsHome(homeObject, ["L-2-top"], true, false);
+        }
+      }
+    }
+  }
+}
+
+roofCheckbox.addEventListener('change', handleRoofCheckboxChange);
+l2Checkbox.addEventListener('change', handleL2CheckboxChange);
+
 
 // Функция для создания текстуры из canvas
 function createTextureFromCanvas(canvas) {
@@ -96,16 +152,30 @@ function onWindowResize() {
   renderer.setSize(newWidth, newHeight);
 }
 // Инициализация объектов дома
-function initElementsHome(object, elementsToInit, isVisible) {
+function initElementsHome(object, elementsToInit, isVisible, isMaterials = true) {
   elementsToInit.forEach(elementName => {
     const element = object.getObjectByName(elementName);
     if (element) {
       element.visible = isVisible;
       element.castShadow = true;
-      originalMaterials[elementName] = element.material;
+      if (isMaterials) {
+        originalMaterials[elementName] = element.material;
+      } else {
+        for (const elementName of elementsToInit) {
+          const element = object.getObjectByName(elementName);
+          element.material = originalMaterials[elementName];
+        }
+      }
+
     }
   });
 }
+
+function isElementVisible(object, elementName) {
+  const element = object.getObjectByName(elementName);
+  return element ? element.visible : false;
+}
+
 let activeLandscape = "Land-1"; // Изначально активный ландшафт
 let activeFenceVariant = 1; // Изначально активный вариант забора
 
@@ -196,7 +266,7 @@ function loadModelsAndTextures() {
       object.position.set(object.position.x, -2.01, object.position.z);
       object.name = "Home";
 
-      initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2', 'L-1-top'], false)
+      initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2', 'L-1-top', 'L-2-top'], false)
       initElementsHome(object, ["L-1", "Roof1", "V-1"], true)
 
       object.traverse(function (child) {
@@ -371,12 +441,6 @@ const elementInfo = {
   'V-h': { visible: false },
   'V-g': { visible: false },
 };
-const buttons = [
-  { buttonId: "layout-type-1", elementsToShow: ["L-1", "Roof1", "V-1"], elementsToHide: ["L-2", "Roof", "Hall", "Garage", 'V-h', 'V-g', 'V-2'] },
-  { buttonId: "layout-type-2", elementsToShow: ["L-2", "Roof", 'V-2'], elementsToHide: ["Roof1", "Hall", "Garage", "V-1", 'V-h', 'V-g',] },
-  { buttonId: "layout-type-3", elementsToShow: ["L-2", "Roof", 'V-2', "Hall", "V-h"], elementsToHide: ["Roof1", "Garage", "V-1", 'V-g',] },
-  { buttonId: "layout-type-4", elementsToShow: ["L-2", "Roof", 'V-2', "Hall", "Garage", "V-h", 'V-g'], elementsToHide: ["Roof1", "V-1"] },
-];
 
 buttons.forEach(button => {
   const buttonElement = document.getElementById(button.buttonId);
@@ -459,6 +523,9 @@ function handleClick(elementsToShow, elementsToHide) {
         elementInfo[elementName].visible = false;
         hideObject(element);
       }
+
+      handleRoofCheckboxChange()
+      handleL2CheckboxChange()
     }
   }
 }
