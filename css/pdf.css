@@ -21,8 +21,11 @@
     background: #5D1CD4;
     padding: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+}
+.generator-pdf__address {
+    width: 200px;
 }
 .generator-pdf__footer {
     margin-top: auto;

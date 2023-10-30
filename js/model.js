@@ -92,7 +92,7 @@ function handleL2CheckboxChange() {
     if (homeObject) {
       if (!l2CheckboxChecked) {
         if (isL2Show) {
-          initElementsHome(homeObject, ["Roof", "L-2", "L-2-top"], false, false);
+          initElementsHome(homeObject, ["Roof", "L-2", "L-2-top", 'V-2'], false, false);
           if (roofCheckboxChecked) {
             initElementsHome(homeObject, ["Roof1", 'V-1'], true, false);
             initElementsHome(homeObject, ["L-1-top"], false, false);
@@ -105,7 +105,7 @@ function handleL2CheckboxChange() {
         }
       } else {
         initElementsHome(homeObject, ["L-2", "L-2-top"], true, false);
-        initElementsHome(homeObject, ["L-1-top"], false, false);
+        initElementsHome(homeObject, ["L-1-top", 'Roof1'], false, false);
         if (roofCheckboxChecked) {
           initElementsHome(homeObject, ["Roof", 'V-2'], true, false);
           initElementsHome(homeObject, ["L-2-top"], false, false);
