@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" prefix="og: http://ogp.me/ns#">
+<html lang="ru">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -7,30 +7,27 @@
   <link type="image/x-icon" href="imgs/favicon.ico" rel="shortcut icon">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="apple-mobile-web-app-title" content="Акбарс Керамик">
-  <meta property="og:site_name" content="Акбарс Керамик">
-  <meta property="twitter:site" content="@Акбарс Керамик">
-  <meta property="twitter:domain" content="">
+
   <meta name="theme-color" content="#5944b8">
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
   <link rel="stylesheet" href="fonts/font.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css?ver=2.0" />
   <link rel="stylesheet" href="css/pdf.css?ver=2.0">
 
   <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
-
   <script type="importmap">
-    {
-    "imports": {
-      "three": "https://unpkg.com/three@0.156/build/three.module.js",
-      "three/addons/": "https://unpkg.com/browse/three@0.156.0/examples/jsm/"
+      {
+      "imports": {
+        "three": "https://unpkg.com/three@0.156/build/three.module.js",
+        "three/addons/": "https://unpkg.com/browse/three@0.156.0/examples/jsm/"
+      }
     }
-  }
-</script>
+  </script>
 </head>
 
 <body id="AKBARS">
@@ -74,7 +71,7 @@
           <path d="M0 30H65V56H0V30Z" fill="#D9D9D9" />
         </svg>
       </div>
-      <div class="mode" id="mode-3d">2D</div>
+      <div class="mode" id="mode-3d" style="display: none;">2D</div>
       <div class="mode active" id="mode-3d-three">3D</div>
     </div>
     <div id="modes-social" class="box-shadow sidebar-social">
@@ -1019,11 +1016,13 @@
         </div>
 
       </div>
-      <button class="close-button"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <button class="close-button">
+        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
             d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z"
             fill="#fff"></path>
-        </svg></button>
+        </svg>
+      </button>
     </div>
     </div>
     </div>
@@ -1057,14 +1056,12 @@
         </div>
       </div>
     </div>
-    <!-- 3D -->
     <div id="layout-3d-three" style="display: block">
 
     </div>
 
     <div id="main">
       <canvas id="canvas"></canvas>
-
       <datalist id="values">
         <option value="0" label="0"></option>
         <option value="25" label="25"></option>
@@ -1074,7 +1071,6 @@
       </datalist>
     </div>
   </section>
-
 
 
   <div id="image-popup">
@@ -1162,17 +1158,10 @@
   </div>
 
 
-
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-  <script src="
-  https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js
-  "></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
   <script type="module" src="js/main.js?ver=2.0" defer></script>
 </body>

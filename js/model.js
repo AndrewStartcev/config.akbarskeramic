@@ -19,7 +19,6 @@ const showMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0
 const hideMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.3, color: customColorRed });
 // Переменные для сохранения оригинальных материалов
 const originalMaterials = {};
-
 const buttons = [
   { buttonId: "layout-type-1", elementsToShow: ["L-1", "Roof1", "V-1"], elementsToHide: ["L-2", "Roof", "Hall", "Garage", 'V-h', 'V-g', 'V-2'] },
   { buttonId: "layout-type-2", elementsToShow: ["L-2", "Roof", 'V-2'], elementsToHide: ["Roof1", "Hall", "Garage", "V-1", 'V-h', 'V-g',] },
@@ -56,6 +55,8 @@ backgroundCheckbox.addEventListener('change', function () {
   // Вызываем функцию ShowBackgroundModel в зависимости от состояния чекбокса
   ShowBackgroundModel();
 });
+roofCheckbox.addEventListener('change', handleRoofCheckboxChange);
+l2Checkbox.addEventListener('change', handleL2CheckboxChange);
 
 function handleRoofCheckboxChange() {
   roofCheckboxChecked = roofCheckbox.checked;
@@ -117,10 +118,6 @@ function handleL2CheckboxChange() {
     }
   }
 }
-
-roofCheckbox.addEventListener('change', handleRoofCheckboxChange);
-l2Checkbox.addEventListener('change', handleL2CheckboxChange);
-
 
 // Функция для создания текстуры из canvas
 function createTextureFromCanvas(canvas) {
@@ -293,8 +290,6 @@ function loadModelsAndTextures() {
       checkLoadingComplete();
     });
   });
-
-
 }
 
 function ShowBackgroundModel() {
@@ -319,7 +314,6 @@ function ShowBackgroundModel() {
 // =================== Инициализация сцены, камеры и контролов ==============
 function init() {
   updateLoadingText("Настройка сцены, света и фона...");
-
 
   renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
@@ -388,7 +382,6 @@ function init() {
 
 init();
 
-
 // =================== Функция для обновления текстуры стен ==================
 export function updateWallTexture() {
   if (scene) {
@@ -426,7 +419,6 @@ export function updateWallTexture() {
     }
   }
 }
-
 
 // ================ Реализация переключение планировки ===========
 const elementInfo = {
@@ -772,6 +764,7 @@ closeButton.addEventListener('click', () => {
   imageDataUrl = null;
 });
 window.jsPDF = window.jspdf.jsPDF;
+
 const doc = new jsPDF({
   orientation: 'p',
   unit: 'mm',
@@ -780,7 +773,6 @@ const doc = new jsPDF({
 
 // ===================== PDF ==============================
 document.addEventListener("DOMContentLoaded", function () {
-
 
   $('#AKBARS').on('click', '.save-pdf', function () {
 
@@ -882,7 +874,6 @@ function createPDF() {
   });
 }
 
-
 function saveCanvasImage() {
   // Получите элемент <canvas>
   const canvas = document.getElementById("canvas");
@@ -901,13 +892,20 @@ function saveCanvasImage() {
   link.click();
 }
 
-// Добавьте обработчик события для нажатия клавиши 4
+function toggleVisibility(elementId) {
+  const element = document.getElementById(elementId);
+  if (element.style.display === "none" || element.style.display === "") {
+    element.style.display = "flex";
+  } else {
+    element.style.display = "none";
+  }
+}
+
 document.addEventListener("keydown", function (event) {
   if (event.key === "4") {
     saveCanvasImage();
   }
 });
-
 
 document.addEventListener("keydown", function (event) {
   if (event.key === "1") {
@@ -917,12 +915,3 @@ document.addEventListener("keydown", function (event) {
     toggleVisibility("app-menu");
   }
 });
-
-function toggleVisibility(elementId) {
-  const element = document.getElementById(elementId);
-  if (element.style.display === "none" || element.style.display === "") {
-    element.style.display = "flex";
-  } else {
-    element.style.display = "none";
-  }
-}
