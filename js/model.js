@@ -361,7 +361,7 @@ function init() {
   controls.minPolarAngle = 0; // Ограничение по углу наклона вверх
   controls.maxPolarAngle = Math.PI / 2.0;  // Ограничение по углу наклона вниз
   controls.minDistance = 3.2 ///3.2//3.3;  // Ограничение по дистанции
-  controls.maxDistance = 8;  // Ограничение по дистанции
+  controls.maxDistance = 10.3  // Ограничение по дистанции
   controls.enablePan = false; // Отключение перемещения камеры (панорамирования)
   controls.enableDamping = false; // Включение затухания для более плавных движений
   controls.dampingFactor = 1; // Включение затухания для более плавных движений
