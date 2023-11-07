@@ -1,6 +1,10 @@
 import * as THREE from 'three';
 
 import { OBJLoader } from './three/examples/jsm/loaders/OBJLoader.js';
+
+import { GLTFLoader } from './three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from './three/examples/jsm/loaders/DRACOLoader.js';
+
 import { MTLLoader } from './three/examples/jsm/loaders/MTLLoader.js';
 import { OrbitControls } from './three/examples/jsm/controls/OrbitControls.js';
 import { lightingConfig } from './3D-object/config/lightingConfig.js';
@@ -31,11 +35,11 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.8, 1000);
 const initialCameraPosition = new THREE.Vector3(-2.07, -1.94, 3.66); // Начальная позиция камеры
 const lookAtPosition = new THREE.Vector3(0, -10, -10); // Позиция, на которую камера смотрит
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({ antialias: true });
 
 const skyGeometry = new THREE.SphereGeometry(100, 32, 32);
 const skyMaterial = new THREE.MeshBasicMaterial({
-  map: new THREE.TextureLoader().load('./imgs/sky-1.jpg'),
+  map: new THREE.TextureLoader().load('imgs/sky-1.jpg'), //imgs/sky-1.jpg
   side: THREE.BackSide
 });
 const sky = new THREE.Mesh(skyGeometry, skyMaterial);
@@ -173,21 +177,25 @@ function isElementVisible(object, elementName) {
   return element ? element.visible : false;
 }
 
-let activeLandscape = "Land-1"; // Изначально активный ландшафт
-let activeFenceVariant = 1; // Изначально активный вариант забора
-
+let activeLandscape = "Land-1";
+let activeFenceVariant = 1;
 function showFenceForLandscape(object, landscape, fenceVariant) {
+  const regex1 = new RegExp(`^${landscape}(_\\d+)?$`);
+  const regex2 = new RegExp(`${landscape}-zabor-${fenceVariant}(_\\d+)?$`);
+
   object.traverse((child) => {
     if (child instanceof THREE.Mesh) {
-      if (child.name === landscape || child.name === landscape + '-zabor-' + fenceVariant) {
+      if (regex1.test(child.name) || regex2.test(child.name)) {
         child.visible = true;
         child.castShadow = true;
       } else {
         child.visible = false;
       }
     }
-    ShowBackgroundModel()
   });
+
+  // Вызов функции ShowBackgroundModel() за пределами цикла traverse
+  ShowBackgroundModel();
 }
 
 function loadModelsAndTextures() {
@@ -208,45 +216,79 @@ function loadModelsAndTextures() {
   }
 
   // Загрузка модели "Buttom"
-  const bottomLoader = new OBJLoader();
-  const bottomMtlLoader = new MTLLoader();
-  bottomMtlLoader.load('./js/3D-object/module.mtl', (materials) => {
+  // const bottomLoader = new OBJLoader();
+  // const bottomMtlLoader = new MTLLoader();
+  // bottomMtlLoader.load('./js/3D-object/module.mtl', (materials) => {
 
-    materials.preload();
-    bottomLoader.setMaterials(materials);
+  //   materials.preload();
+  //   bottomLoader.setMaterials(materials);
 
-    bottomLoader.load('./js/3D-object/module.obj', function (object) {
+  //   bottomLoader.load('./js/3D-object/module.obj', function (object) {
 
-      object.name = "Buttom";
+  //     object.name = "Buttom";
 
-      showFenceForLandscape(object, activeLandscape, activeFenceVariant);
+  //     showFenceForLandscape(object, activeLandscape, activeFenceVariant);
 
-      object.traverse(function (child) {
-        if (child instanceof THREE.Mesh) {
-          if (Array.isArray(child.material)) {
-            child.material.forEach((material) => {
-              if (material.map) {
-                // Установка текстурного фильтра
-                material.map.magFilter = THREE.LinearFilter;
-                material.map.minFilter = THREE.LinearMipmapLinearFilter;
-              }
-            });
-          } else {
-            if (child.material.map) {
-              // Установка текстурного фильтра
-              child.material.map.magFilter = THREE.LinearFilter;
-              child.material.map.minFilter = THREE.LinearMipmapLinearFilter;
-            }
+  //     object.traverse(function (child) {
+  //       if (child instanceof THREE.Mesh) {
+  //         if (Array.isArray(child.material)) {
+  //           child.material.forEach((material) => {
+  //             if (material.map) {
+  //               // Установка текстурного фильтра
+  //               material.map.magFilter = THREE.LinearFilter;
+  //               material.map.minFilter = THREE.LinearMipmapLinearFilter;
+  //             }
+  //           });
+  //         } else {
+  //           if (child.material.map) {
+  //             // Установка текстурного фильтра
+  //             child.material.map.magFilter = THREE.LinearFilter;
+  //             child.material.map.minFilter = THREE.LinearMipmapLinearFilter;
+  //           }
+  //         }
+  //       }
+  //     });
+
+  //     object.position.set(object.position.x, -2, object.position.z);
+  //     object.castShadow = true;
+  //     scene.add(object);
+
+  //     checkLoadingComplete();
+  //   });
+  // });
+
+  const gltfLoader = new GLTFLoader();
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath('./js/3D-object/drako/'); // Укажите правильный путь к DRACO декодеру
+  gltfLoader.setDRACOLoader(dracoLoader);
+
+  // Загрузка GLTF-модели
+  gltfLoader.load('./js/3D-object/scena.gltf', (gltf) => {
+    const object = gltf.scene;
+    object.name = "Buttom";
+
+    // Ваша функция showFenceForLandscape
+    showFenceForLandscape(object, activeLandscape, activeFenceVariant);
+
+    // Настройка текстурного фильтра для всех материалов
+    object.traverse((child) => {
+      if (child.isMesh) {
+        const materials = Array.isArray(child.material) ? child.material : [child.material];
+        materials.forEach((material) => {
+          if (material.map) {
+            // Установка текстурного фильтра
+            material.map.magFilter = THREE.LinearFilter;
+            material.map.minFilter = THREE.LinearMipmapLinearFilter;
           }
-        }
-      });
-
-      object.position.set(object.position.x, -2, object.position.z);
-      object.castShadow = true;
-      scene.add(object);
-
-      checkLoadingComplete();
+        });
+      }
     });
+
+    object.position.set(object.position.x, -2, object.position.z);
+    object.castShadow = true;
+    scene.add(object);
+
+    checkLoadingComplete();
   });
 
 
@@ -296,9 +338,10 @@ function ShowBackgroundModel() {
   if (scene) {
     const homeObject = scene.getObjectByName("Buttom");
     if (homeObject) {
+      const BG = new RegExp(`^BG(_\\d+)?$`);
       homeObject.traverse((child) => {
         if (child instanceof THREE.Mesh) {
-          if (child.name === 'BG') {
+          if (BG.test(child.name)) {
             if (backgroundCheckboxisChecked) {
               scene.add(sky);
             } else {
@@ -311,6 +354,7 @@ function ShowBackgroundModel() {
     }
   }
 }
+
 // =================== Инициализация сцены, камеры и контролов ==============
 function init() {
   updateLoadingText("Настройка сцены, света и фона...");
