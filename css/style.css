@@ -346,8 +346,6 @@ sub {
 #app-menu .app-chapter .inner .group-items.custom-scroll {
 	height: 100%;
 	padding-bottom: 448px;
-	/* max-height: calc(100vh - 220px);
-	max-height: 450px; */
 }
 #app-menu  #seam .inner .group-items.custom-scroll {
 	height: 100%;
@@ -471,7 +469,7 @@ sub {
 	width: 100%;
 	height: 100%;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
-	pointer-events: none; /* Allows clicks to pass through the pseudo-element */
+	pointer-events: none;
 }
 
 .app-logo {
@@ -582,27 +580,27 @@ sub {
 }
 
 [data-tooltip] {
-	position: relative; /* Относительное позиционирование */
+	position: relative;
 }
 [data-tooltip]::after {
-	content: attr(data-tooltip); /* Выводим текст */
-	position: absolute; /* Абсолютное позиционирование */
-	width: 100px; /* Ширина подсказки */
+	content: attr(data-tooltip);
+	position: absolute;
+	width: 100px;
 	left: 60px;
-	top: 0; /* Положение подсказки */
-	background: #f4f4f4; /* Синий цвет фона */
-	color: #4d4d4d; /* Цвет текста */
-	padding: 0.5em; /* Поля вокруг текста */
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
-	pointer-events: none; /* Подсказка */
-	opacity: 0; /* Подсказка невидима */
-	transition: 0.5s; /* Время появления подсказки */
+	top: 0;
+	background: #f4f4f4;
+	color: #4d4d4d;
+	padding: 0.5em;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+	pointer-events: none;
+	opacity: 0;
+	transition: 0.5s;
 	border-radius: 5px;
 	z-index: 1000;
 }
 [data-tooltip]:hover::after {
-	opacity: 1; /* Показываем подсказку */
-	top: 2em; /* Положение подсказки */
+	opacity: 1;
+	top: 2em;
 }
 
 #house .inner .brick-layer .house .face {
@@ -1695,4 +1693,127 @@ display: flex;
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+}
+
+
+
+
+@media (max-width: 768px) {
+	#app-menu {
+	zoom: 1;
+  top: 0;
+  left: 0px;
+  transform: translateY(0);
+  border-radius: 0px;
+}
+#app-menu .fl {
+	gap: 10px;
+	padding: 20px 0;
+}
+#app-menu .app-menu-item {
+	aspect-ratio: 0;
+	flex: 0 0 auto;
+	height: 56px;
+	padding: 5px 0;
+}
+#app-menu .app-menu-item.chosen {
+border-radius: 0
+}
+#app-menu .app-chapter .inner > h2 {
+	padding-top: 5px;
+	font-size: 16px;
+}
+#app-menu.opened .fr {
+	width: 200px;
+}
+#app-menu.opened-dop .fd {
+	width: 250px;
+}
+#app-menu .app-chapter .inner .group-items {
+	padding-right: 0;
+}
+#app-menu .inner .group-items .layout-group-item h3, #app-menu .app-chapter .inner .group-items .layout-group-item > h3, #app-menu .app-chapter .inner .group-items .group-item > h3 {
+	font-size: 14px;
+	line-height: 16px;
+	height: auto;
+}
+#app-menu .app-chapter .inner .group-items .group-item {
+	height: auto;
+	display: flex;
+	align-items: center;
+}
+.layout-group-item .val {
+	font-size: 10px;
+	opacity: 0.8;
+}
+sub {
+	font-size: 8px;
+}
+#app-menu .app-chapter .inner .group-items .layout-group-item {
+	height: auto;
+}
+#app-menu .fr {
+	border-radius: 0;
+}
+#app-menu .app-chapter .inner .group-items .layout-group-item .img {
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+}
+.wrap-item {
+	margin: 10px 10px;
+	padding-right: 0;
+}
+.item {
+	  margin: 10px 0px;
+    padding: 0;
+    height: 112px;
+}
+.btn-item {
+    background: #fff;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 20px;
+		height: 20px;
+}
+.checked:after {
+	zoom: 0.5
+}
+
+
+.wrap-checkbox {
+	padding: 20px 10px;
+}
+
+.wrap-checkbox h4 {
+	font-size: 14px;
+  margin-right: 10px;
+}
+
+
+.item-checkbox label {
+  width: 30px;
+  height: 14px;
+}
+
+
+.item-checkbox label:after {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #d9d9d9;
+}
+
+.item-checkbox input[type="checkbox"]:checked + label:after {
+	border: 1px solid #fff;
+  transform: translateX(15px);
+}
+.g-4 {
+	gap: 10px;
+}
+
+.sidebar-social, .sidebar-export, #modes, #pdf {
+	border-radius: 8px;
+}
+
 }

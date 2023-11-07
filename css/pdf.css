@@ -1,8 +1,8 @@
 
 #yourHtmlElement {
-    width: 794px; /* Ширина A4 в пикселях (приблизительно) */
+    width: 794px;
 
-    margin: 0 auto; /* Центрирование блока по горизонтали */ /* Фон блока */
+    margin: 0 auto;
     position: absolute;
     top: 0;
     right: 150px;
