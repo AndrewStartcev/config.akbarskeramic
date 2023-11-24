@@ -32,7 +32,7 @@ const buttons = [
 
 // Сцена, камера и рендерер
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.8, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const initialCameraPosition = new THREE.Vector3(-2.07, -1.94, 3.66); // Начальная позиция камеры
 const lookAtPosition = new THREE.Vector3(0, -10, -10); // Позиция, на которую камера смотрит
 var renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -291,47 +291,87 @@ function loadModelsAndTextures() {
     checkLoadingComplete();
   });
 
+  const gltfLoaderHome = new GLTFLoader();
+  const dracoLoaderHome = new DRACOLoader();
+  dracoLoaderHome.setDecoderPath('./js/3D-object/drako/'); // Укажите правильный путь к DRACO декодеру
+  gltfLoaderHome.setDRACOLoader(dracoLoaderHome);
 
-  // Загрузка модели "Home"
-  const homeLoader = new OBJLoader();
-  const homeMtlLoader = new MTLLoader();
-  homeMtlLoader.load('./js/3D-object/home.mtl', (materials) => {
+  gltfLoaderHome.load('./js/3D-object/home.gltf', (gltf) => {
+    const object = gltf.scene;
+    object.name = "Home";
+
     updateLoadingText("Загрузка дома...");
 
-    materials.preload();
-    homeLoader.setMaterials(materials);
+    object.position.set(object.position.x, -2.01, object.position.z);
+    object.name = "Home";
 
-    homeLoader.load('./js/3D-object/home.obj', function (object) {
-      object.position.set(object.position.x, -2.01, object.position.z);
-      object.name = "Home";
+    initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2', 'L-1-top', 'L-2-top'], false)
+    initElementsHome(object, ["L-1", "Roof1", "V-1"], true)
 
-      initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2', 'L-1-top', 'L-2-top'], false)
-      initElementsHome(object, ["L-1", "Roof1", "V-1"], true)
-
-      object.traverse(function (child) {
-        if (child instanceof THREE.Mesh) {
-          if (Array.isArray(child.material)) {
-            child.material.forEach((material) => {
-              if (material.map) {
-                // Установка текстурного фильтра
-                material.map.magFilter = THREE.LinearFilter;
-                material.map.minFilter = THREE.LinearMipmapLinearFilter;
-              }
-            });
-          } else {
-            if (child.material.map) {
+    object.traverse(function (child) {
+      if (child instanceof THREE.Mesh) {
+        if (Array.isArray(child.material)) {
+          child.material.forEach((material) => {
+            if (material.map) {
               // Установка текстурного фильтра
-              child.material.map.magFilter = THREE.LinearFilter;
-              child.material.map.minFilter = THREE.LinearMipmapLinearFilter;
+              material.map.magFilter = THREE.LinearFilter;
+              material.map.minFilter = THREE.LinearMipmapLinearFilter;
             }
+          });
+        } else {
+          if (child.material.map) {
+            // Установка текстурного фильтра
+            child.material.map.magFilter = THREE.LinearFilter;
+            child.material.map.minFilter = THREE.LinearMipmapLinearFilter;
           }
         }
-      });
-      object.castShadow = true;
-      scene.add(object);
-      checkLoadingComplete();
+      }
     });
+    object.castShadow = true;
+    scene.add(object);
+    checkLoadingComplete();
   });
+
+  // // Загрузка модели "Home"
+  // const homeLoader = new OBJLoader();
+  // const homeMtlLoader = new MTLLoader();
+  // homeMtlLoader.load('./js/3D-object/home.mtl', (materials) => {
+  //   updateLoadingText("Загрузка дома...");
+
+  //   materials.preload();
+  //   homeLoader.setMaterials(materials);
+
+  //   homeLoader.load('./js/3D-object/home.obj', function (object) {
+  //     object.position.set(object.position.x, -2.01, object.position.z);
+  //     object.name = "Home";
+
+  //     initElementsHome(object, ["L-2", "Roof", "Garage", "Hall", 'V-h', 'V-g', 'V-2', 'L-1-top', 'L-2-top'], false)
+  //     initElementsHome(object, ["L-1", "Roof1", "V-1"], true)
+
+  //     object.traverse(function (child) {
+  //       if (child instanceof THREE.Mesh) {
+  //         if (Array.isArray(child.material)) {
+  //           child.material.forEach((material) => {
+  //             if (material.map) {
+  //               // Установка текстурного фильтра
+  //               material.map.magFilter = THREE.LinearFilter;
+  //               material.map.minFilter = THREE.LinearMipmapLinearFilter;
+  //             }
+  //           });
+  //         } else {
+  //           if (child.material.map) {
+  //             // Установка текстурного фильтра
+  //             child.material.map.magFilter = THREE.LinearFilter;
+  //             child.material.map.minFilter = THREE.LinearMipmapLinearFilter;
+  //           }
+  //         }
+  //       }
+  //     });
+  //     object.castShadow = true;
+  //     scene.add(object);
+  //     checkLoadingComplete();
+  //   });
+  // });
 }
 
 function ShowBackgroundModel() {
@@ -395,7 +435,7 @@ function init() {
 
   scene.add(directionalLight);
 
-  camera.position.copy(initialCameraPosition);
+  camera.position.set(initialCameraPosition.x, initialCameraPosition.y, initialCameraPosition.z);
   camera.lookAt(lookAtPosition);
 
   loadModelsAndTextures();
@@ -407,8 +447,8 @@ function init() {
   controls.minDistance = 3.2 ///3.2//3.3;  // Ограничение по дистанции
   controls.maxDistance = 10.3  // Ограничение по дистанции
   controls.enablePan = false; // Отключение перемещения камеры (панорамирования)
-  controls.enableDamping = false; // Включение затухания для более плавных движений
-  controls.dampingFactor = 1; // Включение затухания для более плавных движений
+  controls.enableDamping = true; // Включение затухания для более плавных движений
+  controls.dampingFactor = 1.2; // Включение затухания для более плавных движений
   controls.rotateSpeed = 0.5; // Скорость вращения
 
   onWindowResize();
@@ -603,6 +643,15 @@ itemsWater.forEach(item => item.addEventListener('click', function (event) {
   changeColor(hexColor, 'water')
 }));
 
+// Цвета ворот
+const itemsZaborСolor = document.querySelectorAll('#zabor-color .image-item');
+itemsZaborСolor.forEach(item => item.addEventListener('click', function (event) {
+  itemsZaborСolor.forEach(item => item.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const hexColor = event.currentTarget.getAttribute('data-color');
+  changeColor(hexColor, 'color', 'Buttom')
+}));
+
 const itemsDodo = document.querySelectorAll('#dado .item');
 itemsDodo.forEach(item => item.addEventListener('click', function (event) {
   itemsDodo.forEach(item => item.classList.remove('active'));
@@ -638,9 +687,9 @@ itemsZabor.forEach(item => item.addEventListener('click', function (event) {
 }));
 
 
-function changeColor(color, materialName) {
+function changeColor(color, materialName, model = 'Home') {
   if (scene) {
-    const homeObject = scene.getObjectByName("Home");
+    const homeObject = scene.getObjectByName(model);
 
     if (homeObject) {
       homeObject.traverse(function (child) {
